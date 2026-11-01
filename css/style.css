@@ -1,0 +1,292 @@
+/* ==========================================================================
+   Ontwerpvariabelen
+   Alle kleuren, fonts en afstanden staan hier. Pas het design aan via deze
+   variabelen, niet met losse waarden verderop. De waarden zijn tijdelijk.
+   ========================================================================== */
+:root {
+  /* Kleuren */
+  --kleur-achtergrond: #ffffff;
+  --kleur-achtergrond-alt: #f4f4f4;
+  --kleur-tekst: #1a1a1a;
+  --kleur-tekst-zacht: #666666;
+  --kleur-primair: #333333;
+  --kleur-primair-tekst: #ffffff;
+  --kleur-rand: #dddddd;
+
+  /* Lettertypes */
+  --font-basis: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-koppen: var(--font-basis);
+
+  /* Lettergroottes (mobiel; groter vanaf de breakpoint onderaan) */
+  --tekst-klein: 0.875rem;
+  --tekst-basis: 1rem;
+  --tekst-groot: 1.25rem;
+  --kop-2: 1.5rem;
+  --kop-1: 2rem;
+  --regelhoogte: 1.6;
+  --regelhoogte-koppen: 1.2;
+
+  /* Afstanden */
+  --ruimte-xs: 0.25rem;
+  --ruimte-s: 0.5rem;
+  --ruimte-m: 1rem;
+  --ruimte-l: 2rem;
+  --ruimte-xl: 3rem;
+  --ruimte-sectie: 3rem;
+
+  /* Layout */
+  --container-breedte: 1120px;
+  --container-marge: 1rem;
+  --header-hoogte: 4rem;
+
+  /* Vormen */
+  --radius: 4px;
+  --overgang: 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --kop-2: 2rem;
+    --kop-1: 3rem;
+    --ruimte-sectie: 5rem;
+    --container-marge: 2rem;
+  }
+}
+
+/* ==========================================================================
+   Basis
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-hoogte);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-basis);
+  font-size: var(--tekst-basis);
+  line-height: var(--regelhoogte);
+  color: var(--kleur-tekst);
+  background: var(--kleur-achtergrond);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-koppen);
+  line-height: var(--regelhoogte-koppen);
+  margin: 0 0 var(--ruimte-m);
+}
+
+h1 { font-size: var(--kop-1); }
+h2 { font-size: var(--kop-2); }
+
+p {
+  margin: 0 0 var(--ruimte-m);
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-breedte);
+  margin-inline: auto;
+  padding-inline: var(--container-marge);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--ruimte-m);
+  top: -100px;
+  padding: var(--ruimte-s) var(--ruimte-m);
+  background: var(--kleur-primair);
+  color: var(--kleur-primair-tekst);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: var(--ruimte-m);
+}
+
+/* ==========================================================================
+   Header en navigatie
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--kleur-achtergrond);
+  border-bottom: 1px solid var(--kleur-rand);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-hoogte);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: var(--tekst-groot);
+  text-decoration: none;
+}
+
+.nav-toggle {
+  font: inherit;
+  padding: var(--ruimte-s) var(--ruimte-m);
+  background: none;
+  border: 1px solid var(--kleur-rand);
+  border-radius: var(--radius);
+  color: var(--kleur-tekst);
+  cursor: pointer;
+}
+
+.site-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--kleur-achtergrond);
+  border-bottom: 1px solid var(--kleur-rand);
+}
+
+.site-nav.is-open {
+  display: block;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: var(--ruimte-s) var(--container-marge) var(--ruimte-m);
+}
+
+.site-nav a {
+  display: block;
+  padding: var(--ruimte-s) 0;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    display: block;
+    position: static;
+    border: 0;
+  }
+
+  .site-nav ul {
+    display: flex;
+    gap: var(--ruimte-l);
+    padding: 0;
+  }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  padding-block: var(--ruimte-sectie);
+  background: var(--kleur-achtergrond-alt);
+}
+
+.eyebrow {
+  font-size: var(--tekst-klein);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--kleur-tekst-zacht);
+  margin-bottom: var(--ruimte-s);
+}
+
+.hero__intro {
+  font-size: var(--tekst-groot);
+  color: var(--kleur-tekst-zacht);
+  max-width: 40ch;
+  margin-bottom: var(--ruimte-l);
+}
+
+.button {
+  display: inline-block;
+  padding: var(--ruimte-m) var(--ruimte-l);
+  background: var(--kleur-primair);
+  color: var(--kleur-primair-tekst);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity var(--overgang);
+}
+
+.button:hover {
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   Secties
+   ========================================================================== */
+.section {
+  padding-block: var(--ruimte-sectie);
+}
+
+.section--alt {
+  background: var(--kleur-achtergrond-alt);
+}
+
+.grid {
+  display: grid;
+  gap: var(--ruimte-m);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--ruimte-l);
+  }
+}
+
+.card {
+  padding: var(--ruimte-l);
+  background: var(--kleur-achtergrond);
+  border: 1px solid var(--kleur-rand);
+  border-radius: var(--radius);
+}
+
+/* Tijdelijk: markeert lege plekken tot er echte inhoud is */
+.placeholder {
+  color: var(--kleur-tekst-zacht);
+  border: 1px dashed var(--kleur-rand);
+  border-radius: var(--radius);
+  padding: var(--ruimte-l);
+  text-align: center;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  padding-block: var(--ruimte-l);
+  border-top: 1px solid var(--kleur-rand);
+  font-size: var(--tekst-klein);
+  color: var(--kleur-tekst-zacht);
+}
+
+.site-footer p {
+  margin: 0;
+}
