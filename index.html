@@ -3,9 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Merknaam</title>
-  <meta name="description" content="Korte omschrijving van het merk (volgt later).">
+  <title>Merknaam | Brandgroup</title>
+  <meta name="description" content="Merknaam is een brandgroup die consumentenmerken voor dieren en hun baasjes bouwt en opschaalt.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
   <script src="js/main.js" defer></script>
 </head>
 <body>
@@ -15,59 +19,239 @@
     <div class="container site-header__inner">
       <a class="logo" href="/">Merknaam</a>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hoofdmenu">
-        <span class="nav-toggle__label">Menu</span>
-      </button>
-
       <nav class="site-nav" id="hoofdmenu" aria-label="Hoofdmenu">
         <ul>
-          <li><a href="#over">Over ons</a></li>
-          <li><a href="#aanbod">Aanbod</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#cijfers">Cijfers</a></li>
+          <li><a href="#merken">Merken</a></li>
+          <li><a href="#team">Oprichters</a></li>
+          <li><a href="#tijdlijn">Tijdlijn</a></li>
         </ul>
+        <a class="button button--klein site-nav__cta" href="#contact">Contact</a>
       </nav>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hoofdmenu" aria-label="Menu openen">
+        <span></span><span></span>
+      </button>
     </div>
   </header>
 
   <main id="inhoud">
+    <!-- Hero -->
     <section class="hero">
-      <div class="container">
-        <p class="eyebrow">Tijdelijke tekst</p>
-        <h1>Hier komt de kernboodschap van het merk</h1>
-        <p class="hero__intro">Een korte zin die uitlegt wat we doen en voor wie. Deze tekst vullen we in zodra het merk vaststaat.</p>
-        <a class="button" href="#contact">Call-to-action</a>
-      </div>
-    </section>
-
-    <section class="section" id="over">
-      <div class="container">
-        <h2>Over ons</h2>
-        <p class="placeholder">Inhoud volgt.</p>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="aanbod">
-      <div class="container">
-        <h2>Aanbod</h2>
-        <div class="grid">
-          <div class="card placeholder">Blok 1</div>
-          <div class="card placeholder">Blok 2</div>
-          <div class="card placeholder">Blok 3</div>
+      <div class="gloed" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <p class="pill reveal"><span class="pill__punt" aria-hidden="true"></span> Brandgroup · Nederland</p>
+        <h1 class="hero__kop reveal">Wij bouwen merken die <em>blijven</em></h1>
+        <p class="hero__intro reveal">Merknaam is een brandgroup die consumentenmerken voor dieren en hun baasjes opbouwt en opschaalt. Van eerste product tot merk dat je overal tegenkomt.</p>
+        <div class="hero__knoppen reveal">
+          <a class="button" href="#merken">Bekijk onze merken</a>
+          <a class="button button--omlijnd" href="#cijfers">Wat we hebben bereikt</a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="contact">
+    <!-- Cijfers: het eerste wat je ziet na de hero.
+         TODO: vul de echte waarden in. data-teller = eindgetal, data-prefix/data-suffix = tekens ervoor/erna.
+         Zolang data-teller leeg is, blijft "—" staan. -->
+    <section class="section section--strak" id="cijfers">
       <div class="container">
-        <h2>Contact</h2>
-        <p class="placeholder">Inhoud volgt.</p>
+        <div class="statgrid">
+          <article class="stat stat--groot reveal">
+            <p class="stat__label">Jaaromzet van de groep</p>
+            <p class="stat__waarde" data-teller="" data-prefix="€" data-suffix="M+">—</p>
+            <div class="lijn" aria-hidden="true">
+              <svg viewBox="0 0 300 80" preserveAspectRatio="none"><path class="lijn__vlak" d="M0 74 L30 72 L60 70 L90 66 L120 60 L150 54 L180 44 L210 36 L240 26 L270 16 L300 6 L300 80 L0 80 Z"/><path class="lijn__pad" d="M0 74 L30 72 L60 70 L90 66 L120 60 L150 54 L180 44 L210 36 L240 26 L270 16 L300 6"/></svg>
+            </div>
+          </article>
+
+          <article class="stat reveal">
+            <p class="stat__label">Merken</p>
+            <p class="stat__waarde" data-teller="">—</p>
+          </article>
+
+          <article class="stat reveal">
+            <p class="stat__label">Klanten</p>
+            <p class="stat__waarde" data-teller="" data-suffix="+">—</p>
+          </article>
+
+          <article class="stat reveal">
+            <p class="stat__label">Bestellingen</p>
+            <p class="stat__waarde" data-teller="" data-suffix="+">—</p>
+          </article>
+
+          <article class="stat reveal">
+            <p class="stat__label">Landen</p>
+            <p class="stat__waarde" data-teller="">—</p>
+          </article>
+        </div>
+        <p class="bron reveal">Bron en periode: [invullen, bijv. "Shopify, okt 2025 – sep 2026"]</p>
+      </div>
+    </section>
+
+    <!-- Merken -->
+    <section class="section section--rand" id="merken">
+      <div class="container">
+        <div class="section__kop reveal">
+          <p class="eyebrow">Portfolio</p>
+          <h2>Onze <em>merken</em></h2>
+          <p>Elk merk met een eigen naam, gezicht en community. Allemaal gebouwd en opgeschaald binnen de groep.</p>
+        </div>
+
+        <!-- TODO: echte merken invullen: naam, categorie, beeld (images/), cijfers, link naar de merksite -->
+        <div class="merken">
+          <a class="merk merk--groot reveal" href="#">
+            <div class="merk__beeld merk__beeld--1"><span>Merk 1</span></div>
+            <div class="merk__tekst">
+              <div>
+                <p class="merk__categorie">Categorie</p>
+                <h3>Merk 1</h3>
+                <p>Eén zin over wat dit merk maakt en voor wie.</p>
+              </div>
+              <ul class="merk__cijfers">
+                <li><b>—</b>omzet per jaar</li>
+                <li><b>—</b>klanten</li>
+                <li><b>—</b>sinds</li>
+              </ul>
+            </div>
+          </a>
+          <a class="merk reveal" href="#">
+            <div class="merk__beeld merk__beeld--2"><span>Merk 2</span></div>
+            <div class="merk__tekst">
+              <div>
+                <p class="merk__categorie">Categorie</p>
+                <h3>Merk 2</h3>
+                <p>Eén zin over wat dit merk maakt en voor wie.</p>
+              </div>
+              <ul class="merk__cijfers">
+                <li><b>—</b>omzet per jaar</li>
+                <li><b>—</b>sinds</li>
+              </ul>
+            </div>
+          </a>
+          <a class="merk reveal" href="#">
+            <div class="merk__beeld merk__beeld--3"><span>Merk 3</span></div>
+            <div class="merk__tekst">
+              <div>
+                <p class="merk__categorie">Categorie</p>
+                <h3>Merk 3</h3>
+                <p>Eén zin over wat dit merk maakt en voor wie.</p>
+              </div>
+              <ul class="merk__cijfers">
+                <li><b>—</b>omzet per jaar</li>
+                <li><b>—</b>sinds</li>
+              </ul>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Oprichters -->
+    <section class="section" id="team">
+      <div class="container">
+        <div class="section__kop section__kop--midden reveal">
+          <p class="eyebrow">De oprichters</p>
+          <h2>De mensen <em>achter de merken</em></h2>
+          <p>We bouwen elk merk zelf, van eerste product tot schaal. Dit zijn de mensen die dat doen.</p>
+        </div>
+
+        <!-- TODO: namen, rollen, foto's (images/) en teksten invullen. Een kaart weghalen of toevoegen kan gewoon. -->
+        <div class="team">
+          <article class="persoon reveal">
+            <div class="persoon__foto" aria-hidden="true"><span>Foto</span></div>
+            <p class="persoon__rol">Groei en ads</p>
+            <h3>Naam Achternaam</h3>
+            <p>Wat deze persoon heeft gebouwd: welke merken, welke groei, waar de kracht ligt.</p>
+          </article>
+          <article class="persoon reveal">
+            <div class="persoon__foto" aria-hidden="true"><span>Foto</span></div>
+            <p class="persoon__rol">Product en operatie</p>
+            <h3>Naam Achternaam</h3>
+            <p>Wat deze persoon heeft gebouwd: welke merken, welke groei, waar de kracht ligt.</p>
+          </article>
+          <article class="persoon reveal">
+            <div class="persoon__foto" aria-hidden="true"><span>Foto</span></div>
+            <p class="persoon__rol">Merk en creatie</p>
+            <h3>Naam Achternaam</h3>
+            <p>Wat deze persoon heeft gebouwd: welke merken, welke groei, waar de kracht ligt.</p>
+          </article>
+        </div>
+
+        <div class="midden reveal">
+          <a class="button" href="#contact">Werk direct met de oprichters</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hoe we bouwen -->
+    <section class="section section--rand" id="aanpak">
+      <div class="container">
+        <div class="section__kop section__kop--midden reveal">
+          <p class="eyebrow">Hoe we bouwen</p>
+          <h2>Groei brengt de omzet. <em>Het merk houdt hem vast.</em></h2>
+        </div>
+
+        <div class="pijlers">
+          <article class="pijler reveal">
+            <span class="pijler__nr">01</span>
+            <h3>Groei</h3>
+            <p>Eigen creatives, betaalde media en distributie. We weten hoe je een merk van nul naar schaal brengt, omdat we het steeds opnieuw doen.</p>
+          </article>
+          <article class="pijler reveal">
+            <span class="pijler__nr">02</span>
+            <h3>Operatie</h3>
+            <p>Inkoop, logistiek, klantenservice en data, één keer goed ingericht en gedeeld door alle merken.</p>
+          </article>
+          <article class="pijler reveal">
+            <span class="pijler__nr">03</span>
+            <h3>Merk</h3>
+            <p>Positionering, identiteit en product. Wat ervoor zorgt dat klanten blijven en het merk vanzelf aanbevelen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tijdlijn -->
+    <section class="section" id="tijdlijn">
+      <div class="container container--smal">
+        <div class="section__kop reveal">
+          <p class="eyebrow">Tijdlijn</p>
+          <h2>Hoe we <em>hier kwamen</em></h2>
+        </div>
+
+        <!-- TODO: echte jaartallen en mijlpalen invullen (lancering, omzetgrens, nieuwe markt, award, retail, nieuw merk) -->
+        <ol class="tijdlijn">
+          <li class="moment reveal"><span class="moment__jaar">Jaar</span><div><h3>Eerste merk gelanceerd</h3><p>Wat het was en hoe het begon.</p></div></li>
+          <li class="moment reveal"><span class="moment__jaar">Jaar</span><div><h3>Eerste omzetmijlpaal</h3><p>Bijvoorbeeld de eerste € 100.000 per maand.</p></div></li>
+          <li class="moment reveal"><span class="moment__jaar">Jaar</span><div><h3>Nieuwe markt</h3><p>Bijvoorbeeld de stap naar België.</p></div></li>
+          <li class="moment reveal"><span class="moment__jaar">Jaar</span><div><h3>Tweede merk erbij</h3><p>Zelf gebouwd of overgenomen.</p></div></li>
+          <li class="moment moment--nu reveal"><span class="moment__jaar">Nu</span><div><h3>Waar we nu staan</h3><p>Kort: aantal merken, omzet, volgende stap.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="slot" id="contact">
+      <div class="gloed gloed--onder" aria-hidden="true"></div>
+      <div class="container slot__inner reveal">
+        <h2>Werk je aan iets <em>dat hierbij past?</em></h2>
+        <p>Voor founders met een merk, investeerders en partners.</p>
+        <!-- TODO: e-mailadres invullen -->
+        <a class="button" href="mailto:[e-mailadres]">Neem contact op</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>&copy; <span data-jaar></span> Merknaam</p>
+    <div class="container site-footer__inner">
+      <a class="logo" href="/">Merknaam</a>
+      <ul class="site-footer__links">
+        <li><a href="#cijfers">Cijfers</a></li>
+        <li><a href="#merken">Merken</a></li>
+        <li><a href="#team">Oprichters</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <p class="site-footer__copy">&copy; <span data-jaar></span> Merknaam Brandgroup</p>
     </div>
   </footer>
 </body>

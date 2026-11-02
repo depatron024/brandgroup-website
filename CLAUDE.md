@@ -4,19 +4,25 @@ Merkwebsite in gewone HTML, CSS en een beetje JavaScript, zonder framework. Taal
 
 ## Merk
 
-Nog in te vullen.
+Eerste invulling (voorstel, nog te bevestigen).
 
-- **Naam:**
-- **Wat we doen:**
-- **Doelgroep:**
-- **Sfeer:**
-- **Kleuren:**
-- **Lettertypes:**
-- **Toon van de teksten:**
+- **Naam:** nog niet bekend (op de site staat "Merknaam")
+- **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken in de dierenbranche, nemen passende merken over en adviseren andere founders met onze systemen.
+- **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
+- **Sfeer:** donker en premium, rustig, veel ruimte (design naar `referenties/slash-com.md`).
+- **Kleuren:** bijna zwart (#050507), donkergrijze kaarten (#15161b), wit, grijze bijtekst, warm accent (#ffb37a).
+- **Lettertypes:** Instrument Serif voor koppen, Inter voor tekst (Google Fonts).
+- **Toon van de teksten:** kort, direct en zelfverzekerd, zonder grootspraak. Cijfers alleen met bron en periode.
+- **Niet noemen:** andere bedrijven of merken van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken.
 
 ## Referenties
 
-Kijk altijd eerst in de map `/referenties` voordat je iets ontwerpt of de stijl aanpast, en volg die stijl. Staat er iets in wat botst met deze CLAUDE.md, vraag het dan na. Is de map nog leeg, zeg dat dan en ga uit van de velden onder "Merk".
+Kijk altijd eerst in de map `/referenties` voordat je iets ontwerpt of de stijl aanpast, en volg die stijl.
+
+- `ooakbrands-com.md` = **concept**: het soort bedrijf dat we zijn (brandgroup). Niet het design of de teksten overnemen.
+- `slash-com.md` = **design**: hier komt de stijl vandaan.
+- Nooit een referentie 1-op-1 overnemen: geen opbouw, teksten of beelden kopiëren.
+ Staat er iets in wat botst met deze CLAUDE.md, vraag het dan na. Is de map nog leeg, zeg dat dan en ga uit van de velden onder "Merk".
 
 ## Techniek
 
