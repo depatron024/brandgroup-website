@@ -6,7 +6,7 @@ Merkwebsite in gewone HTML, CSS en een beetje JavaScript, zonder framework. Taal
 
 Eerste invulling (voorstel, nog te bevestigen).
 
-- **Naam:** nog niet bekend (op de site staat "Merknaam")
+- **Naam:** 100x Brands. Gaan we later ook andere dingen doen dan merken, dan wordt het mogelijk "100x Group".
 - **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken in de dierenbranche, nemen passende merken over en adviseren andere founders met onze systemen.
 - **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
 - **Sfeer:** donker en premium, rustig, veel ruimte (design naar `referenties/slash-com.md`).
