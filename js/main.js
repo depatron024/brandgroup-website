@@ -22,6 +22,116 @@ if (navToggle && siteNav) {
   });
 }
 
+// Hero: de grote "100x" telt op van 1x naar 100x (zonder JS of met minder beweging blijft "100x" staan)
+const heroTeller = document.querySelector('[data-hero-counter]');
+
+if (heroTeller && !geenBeweging) {
+  const duur = 2400;
+  const start = performance.now();
+
+  function heroStap(nu) {
+    const voortgang = Math.min((nu - start) / duur, 1);
+    const waarde = Math.max(1, Math.round(100 * (1 - Math.pow(1 - voortgang, 3))));
+    heroTeller.textContent = waarde + 'x';
+    if (voortgang < 1) requestAnimationFrame(heroStap);
+    else heroTeller.classList.add('is-done');
+  }
+
+  heroTeller.textContent = '1x';
+  requestAnimationFrame(heroStap);
+} else if (heroTeller) {
+  heroTeller.classList.add('is-done');
+}
+
+// Hero: de "100x" zakt mee en vervaagt bij het scrollen (parallax)
+const hero = document.querySelector('.hero');
+
+if (heroTeller && hero && !geenBeweging) {
+  let gepland = false;
+
+  function zetParallax() {
+    gepland = false;
+    const y = Math.min(window.scrollY, hero.offsetHeight);
+    heroTeller.style.transform = `translate(-50%, calc(-52% + ${y * 0.35}px)) scale(${1 + y * 0.0003})`;
+    heroTeller.style.opacity = String(Math.max(0, 1 - y / (hero.offsetHeight * 0.9)));
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!gepland) {
+      gepland = true;
+      requestAnimationFrame(zetParallax);
+    }
+  }, { passive: true });
+}
+
+// Blokken schuiven zacht in beeld; kaarten naast elkaar net na elkaar
+document.querySelectorAll('.brands, .tiles, .team, .highlights').forEach((groep) => {
+  groep.querySelectorAll('.reveal').forEach((item, i) => item.style.setProperty('--vertraging', `${i * 90}ms`));
+});
+
+const revealItems = document.querySelectorAll('.reveal');
+
+if ('IntersectionObserver' in window && !geenBeweging) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add('is-visible'));
+}
+
+// Track record: de tijdlijn speelt af terwijl je scrolt (terug scrollen spoelt terug)
+const tracker = document.querySelector('[data-tracker]');
+
+if (tracker) {
+  const blokjes = [...tracker.children];
+  const label = document.querySelector('[data-tracker-label]');
+  const hoogtepunten = [...document.querySelectorAll('.highlight[data-month]')];
+
+  hoogtepunten.forEach((h) => {
+    const blokje = blokjes[Number(h.dataset.month) - 1];
+    if (blokje) blokje.classList.add('is-milestone');
+  });
+
+  function toonTijdlijn(gevuld) {
+    blokjes.forEach((b, i) => {
+      b.classList.toggle('is-filled', i < gevuld);
+      b.classList.toggle('is-current', gevuld < blokjes.length && i === gevuld - 1);
+    });
+    hoogtepunten.forEach((h) => h.classList.toggle('is-active', Number(h.dataset.month) <= gevuld));
+    if (label) label.textContent = gevuld >= blokjes.length ? 'Now' : `Month ${Math.max(gevuld, 1)}`;
+  }
+
+  if (geenBeweging) {
+    toonTijdlijn(blokjes.length);
+  } else {
+    let tijdlijnGepland = false;
+
+    // Begint als de tijdlijn op 85% van het scherm staat, klaar op 35%
+    function updateTijdlijn() {
+      tijdlijnGepland = false;
+      const boven = tracker.getBoundingClientRect().top;
+      const h = window.innerHeight;
+      const voortgang = Math.min(Math.max((h * 0.85 - boven) / (h * 0.5), 0), 1);
+      toonTijdlijn(Math.round(voortgang * blokjes.length));
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!tijdlijnGepland) {
+        tijdlijnGepland = true;
+        requestAnimationFrame(updateTijdlijn);
+      }
+    }, { passive: true });
+    window.addEventListener('resize', updateTijdlijn);
+    updateTijdlijn();
+  }
+}
+
 // Tabs bij "How we build", ook met pijltjestoetsen te bedienen
 const tabs = [...document.querySelectorAll('.tab')];
 
