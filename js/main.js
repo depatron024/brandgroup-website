@@ -85,6 +85,53 @@ if ('IntersectionObserver' in window && !geenBeweging) {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
 
+// Track record: de tijdlijn speelt af terwijl je scrolt (terug scrollen spoelt terug)
+const tracker = document.querySelector('[data-tracker]');
+
+if (tracker) {
+  const blokjes = [...tracker.children];
+  const label = document.querySelector('[data-tracker-label]');
+  const hoogtepunten = [...document.querySelectorAll('.highlight[data-month]')];
+
+  hoogtepunten.forEach((h) => {
+    const blokje = blokjes[Number(h.dataset.month) - 1];
+    if (blokje) blokje.classList.add('is-milestone');
+  });
+
+  function toonTijdlijn(gevuld) {
+    blokjes.forEach((b, i) => {
+      b.classList.toggle('is-filled', i < gevuld);
+      b.classList.toggle('is-current', gevuld < blokjes.length && i === gevuld - 1);
+    });
+    hoogtepunten.forEach((h) => h.classList.toggle('is-active', Number(h.dataset.month) <= gevuld));
+    if (label) label.textContent = gevuld >= blokjes.length ? 'Now' : `Month ${Math.max(gevuld, 1)}`;
+  }
+
+  if (geenBeweging) {
+    toonTijdlijn(blokjes.length);
+  } else {
+    let tijdlijnGepland = false;
+
+    // Begint als de tijdlijn op 85% van het scherm staat, klaar op 35%
+    function updateTijdlijn() {
+      tijdlijnGepland = false;
+      const boven = tracker.getBoundingClientRect().top;
+      const h = window.innerHeight;
+      const voortgang = Math.min(Math.max((h * 0.85 - boven) / (h * 0.5), 0), 1);
+      toonTijdlijn(Math.round(voortgang * blokjes.length));
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!tijdlijnGepland) {
+        tijdlijnGepland = true;
+        requestAnimationFrame(updateTijdlijn);
+      }
+    }, { passive: true });
+    window.addEventListener('resize', updateTijdlijn);
+    updateTijdlijn();
+  }
+}
+
 // Tabs bij "How we build", ook met pijltjestoetsen te bedienen
 const tabs = [...document.querySelectorAll('.tab')];
 

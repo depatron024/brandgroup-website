@@ -18,6 +18,7 @@
   --kleur-accent-zacht: rgba(255, 179, 122, 0.14);
   --kleur-accent-lijn: rgba(255, 179, 122, 0.4);
   --kleur-accent-lijn-zacht: rgba(255, 179, 122, 0.24);
+  --kleur-accent-gevuld: rgba(255, 179, 122, 0.55);
   --kleur-positief: #7ee0a1;
   --kleur-positief-zacht: rgba(126, 224, 161, 0.12);
   --kleur-primair: #ffffff;
@@ -968,10 +969,28 @@ ul {
   height: 44px;
   border-radius: 4px;
   background: var(--kleur-kaart-licht);
+  transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
 
+/* Gevuld = deze maand is "afgespeeld" tijdens het scrollen */
+.tracker i.is-filled {
+  background: var(--kleur-accent-gevuld);
+}
+
+/* Hoogtepunt: dun accentrandje zolang hij nog niet bereikt is, vol accent daarna */
 .tracker i.is-milestone {
+  box-shadow: inset 0 0 0 1px var(--kleur-accent-lijn);
+}
+
+.tracker i.is-milestone.is-filled {
   background: var(--kleur-accent);
+}
+
+/* Huidige maand gloeit */
+.tracker i.is-current {
+  background: var(--kleur-accent);
+  box-shadow: 0 0 18px var(--kleur-accent);
+  transform: scaleY(1.15);
 }
 
 .tracker__axis {
@@ -981,6 +1000,11 @@ ul {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   color: var(--kleur-tekst-stil);
+}
+
+.tracker__now {
+  color: var(--kleur-accent);
+  font-variant-numeric: tabular-nums;
 }
 
 .highlights {
@@ -993,6 +1017,19 @@ ul {
   .highlights {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+.highlight {
+  transition: opacity 0.5s ease, border-color 0.5s ease, transform 0.5s ease;
+}
+
+.js .highlight {
+  opacity: 0.4;
+}
+
+.js .highlight.is-active {
+  opacity: 1;
+  border-color: var(--kleur-accent-lijn);
 }
 
 .highlight b {

@@ -244,23 +244,25 @@
       </div>
     </section>
 
-    <!-- Track record. TODO: one block per month since the start; add class "is-milestone" where something big happened,
-         and fill in the dates and the four highlights below. -->
+    <!-- Track record: de blokjes vullen zich terwijl je scrolt (js/main.js).
+         TODO: één blokje per maand sinds de start (pas het aantal <i> aan), en vul de vier hoogtepunten in.
+         data-month = het hoeveelste blokje bij dat hoogtepunt hoort; dat blokje wordt automatisch gemarkeerd.
+         De maandnummers hieronder zijn voorbeelden. -->
     <section class="section" id="track-record">
       <div class="container">
         <div class="section__head reveal">
           <h2>Every month <em>since day one</em></h2>
         </div>
-        <div class="tracker reveal" aria-hidden="true">
+        <div class="tracker" data-tracker aria-hidden="true">
           <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
           <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
-        <div class="tracker__axis"><span>[Start month]</span><span>Now</span></div>
+        <div class="tracker__axis"><span>[Start month]</span><span class="tracker__now" data-tracker-label>Month 1</span><span>Now</span></div>
         <div class="highlights">
-          <article class="card highlight reveal"><b>[Month year]</b><p>First brand launched</p></article>
-          <article class="card highlight reveal"><b>[Month year]</b><p>First big revenue milestone</p></article>
-          <article class="card highlight reveal"><b>[Month year]</b><p>Second brand joined</p></article>
-          <article class="card highlight reveal"><b>Now</b><p>[Where we stand today]</p></article>
+          <article class="card highlight" data-month="3"><b>[Month year]</b><p>First brand launched</p></article>
+          <article class="card highlight" data-month="8"><b>[Month year]</b><p>First big revenue milestone</p></article>
+          <article class="card highlight" data-month="14"><b>[Month year]</b><p>Second brand joined</p></article>
+          <article class="card highlight" data-month="24"><b>Now</b><p>[Where we stand today]</p></article>
         </div>
       </div>
     </section>
