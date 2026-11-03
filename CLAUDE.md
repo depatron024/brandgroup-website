@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Merkwebsite in gewone HTML, CSS en een beetje JavaScript, zonder framework. Taal van de site: Nederlands. Gehost op Netlify.
+Merkwebsite in gewone HTML, CSS en een beetje JavaScript, zonder framework. Taal van de site: **Engels** (alle teksten op de site). Interne documenten zoals deze mogen Nederlands blijven. Gehost op Netlify.
 
 ## Merk
 
@@ -20,7 +20,8 @@ Eerste invulling (voorstel, nog te bevestigen).
 Kijk altijd eerst in de map `/referenties` voordat je iets ontwerpt of de stijl aanpast, en volg die stijl.
 
 - `ooakbrands-com.md` = **concept**: het soort bedrijf dat we zijn (brandgroup). Niet het design of de teksten overnemen.
-- `slash-com.md` = **design**: hier komt de stijl vandaan.
+- `slash-com.md` en `187n-ai.md` = **stijl**: hier komt het design vandaan.
+- `bouwblokken.md` = **bouwblokken**: bibliotheken en galerijen (Tremor, ReUI, Rare UI, Morphin, Mobbin) om losse onderdelen uit te halen. Alleen de vorm lenen, nabouwen in gewone HTML/CSS.
 - Nooit een referentie 1-op-1 overnemen: geen opbouw, teksten of beelden kopiëren.
  Staat er iets in wat botst met deze CLAUDE.md, vraag het dan na. Is de map nog leeg, zeg dat dan en ga uit van de velden onder "Merk".
 
