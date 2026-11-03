@@ -10,7 +10,7 @@ Eerste invulling (voorstel, nog te bevestigen).
 - **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over en adviseren andere founders met onze systemen. Nog geen branche op de site noemen; eerst alleen de basis.
 - **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
 - **Sfeer:** stijl A, rustig premium: elegante serif-koppen met een cursief accent, veel ruimte, gecentreerde hero (gekozen op 3-11-2026).
-- **Kleuren:** palet "diepgroen": donker bosgroen (#0c1511), groene kaarten (#13201a), crème tekst (#efe9dc), zandgoud accent (#d8c08f).
+- **Kleuren:** origineel palet: koel bijna-zwart (#050507), donkergrijze kaarten (#121318), witte tekst, grijze bijtekst (#a6a9b4), perzik-accent (#ffb37a). Diepgroen is geprobeerd en afgewezen.
 - **Lettertypes:** Instrument Serif voor koppen, Inter voor tekst, JetBrains Mono voor kleine labels (Google Fonts).
 - **Toon van de teksten:** kort, direct en zelfverzekerd, zonder grootspraak. Cijfers alleen met bron en periode.
 - **Niet noemen:** andere bedrijven of merken van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken.

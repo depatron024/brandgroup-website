@@ -2,28 +2,28 @@
    Ontwerpvariabelen
    Alle kleuren, fonts en afstanden staan hier. Pas het design aan via deze
    variabelen, niet met losse waarden verderop.
-   Stijl A (rustig premium) met het palet "diepgroen".
+   Stijl A (rustig premium) met het originele palet: koel zwart met perzik-accent.
    ========================================================================== */
 :root {
   /* Kleuren */
-  --kleur-achtergrond: #0c1511;
-  --kleur-kaart: #13201a;
-  --kleur-kaart-licht: #1b2b23;
-  --kleur-tekst: #efe9dc;
-  --kleur-tekst-zacht: #a3ab9f;
-  --kleur-tekst-stil: #6c776d;
-  --kleur-rand: rgba(239, 233, 220, 0.1);
-  --kleur-rand-sterk: rgba(239, 233, 220, 0.2);
-  --kleur-accent: #d8c08f;
-  --kleur-accent-zacht: rgba(216, 192, 143, 0.14);
-  --kleur-positief: #9fd3a8;
-  --kleur-positief-zacht: rgba(159, 211, 168, 0.12);
-  --kleur-primair: #efe9dc;
-  --kleur-primair-tekst: #0c1511;
+  --kleur-achtergrond: #050507;
+  --kleur-kaart: #121318;
+  --kleur-kaart-licht: #1c1d23;
+  --kleur-tekst: #ffffff;
+  --kleur-tekst-zacht: #a6a9b4;
+  --kleur-tekst-stil: #6b6e79;
+  --kleur-rand: rgba(255, 255, 255, 0.09);
+  --kleur-rand-sterk: rgba(255, 255, 255, 0.18);
+  --kleur-accent: #ffb37a;
+  --kleur-accent-zacht: rgba(255, 179, 122, 0.14);
+  --kleur-positief: #7ee0a1;
+  --kleur-positief-zacht: rgba(126, 224, 161, 0.12);
+  --kleur-primair: #ffffff;
+  --kleur-primair-tekst: #050507;
   /* Tijdelijke kleuren voor merkbeelden, tot er foto's zijn */
-  --kleur-merk-1: rgba(216, 192, 143, 0.16);
-  --kleur-merk-2: rgba(150, 190, 210, 0.14);
-  --kleur-merk-3: rgba(159, 211, 168, 0.14);
+  --kleur-merk-1: rgba(255, 179, 122, 0.16);
+  --kleur-merk-2: rgba(126, 160, 255, 0.16);
+  --kleur-merk-3: rgba(126, 224, 161, 0.14);
 
   /* Lettertypes */
   --font-koppen: "Instrument Serif", Georgia, "Times New Roman", serif;
