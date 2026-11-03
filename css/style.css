@@ -1071,6 +1071,40 @@ ul {
   }
 }
 
+/* ==========================================================================
+   Scroll-effecten
+   Alleen met JavaScript aan (klasse "js" op <html>) en zonder "minder beweging".
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: var(--vertraging, 0s);
+  }
+
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hover-lift van merkkaarten blijft werken na het inschuiven */
+  .js .brand.reveal.is-visible:hover {
+    transform: translateY(-2px);
+    transition-delay: 0s;
+  }
+
+  /* Omzetgrafiek veegt van links naar rechts in beeld zodra de kaart verschijnt */
+  .js .chart svg {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s;
+  }
+
+  .js .is-visible .chart svg {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

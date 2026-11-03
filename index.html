@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
   <script src="js/main.js" defer></script>
 </head>
 <body>
@@ -61,12 +62,12 @@
          While data-counter is empty, the "—" stays. Always add the source and period below. -->
     <section class="section" id="numbers">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head reveal">
           <h2>What we've <em>built</em></h2>
         </div>
 
         <div class="numbers">
-          <article class="card revenue">
+          <article class="card revenue reveal">
             <div>
               <p class="small">Group revenue · trailing 12 months</p>
               <p class="revenue__amount" data-counter="" data-prefix="€" data-suffix="M">—</p>
@@ -91,9 +92,9 @@
           </article>
 
           <div class="tiles">
-            <article class="card tile"><p class="small">Brands</p><p class="tile__number" data-counter="">—</p></article>
-            <article class="card tile"><p class="small">Customers</p><p class="tile__number" data-counter="" data-suffix="k">—</p></article>
-            <article class="card tile"><p class="small">Countries</p><p class="tile__number" data-counter="">—</p></article>
+            <article class="card tile reveal"><p class="small">Brands</p><p class="tile__number" data-counter="">—</p></article>
+            <article class="card tile reveal"><p class="small">Customers</p><p class="tile__number" data-counter="" data-suffix="k">—</p></article>
+            <article class="card tile reveal"><p class="small">Countries</p><p class="tile__number" data-counter="">—</p></article>
           </div>
         </div>
         <p class="source">Source and period: [fill in, e.g. "Shopify, Nov 2025 – Oct 2026"]</p>
@@ -103,14 +104,14 @@
     <!-- Brands -->
     <section class="section" id="brands">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head reveal">
           <h2>Our <em>brands</em></h2>
           <p>Each with its own name, face and community. All built and scaled inside the group.</p>
         </div>
 
         <!-- TODO: real brands: name, category, one line, image (images/), figures, link to the brand site -->
         <div class="brands">
-          <a class="card brand" href="#">
+          <a class="card brand reveal" href="#">
             <div class="brand__image brand__image--1">Brand One</div>
             <div class="brand__text">
               <p class="brand__category">Category</p>
@@ -118,7 +119,7 @@
               <ul class="brand__figures"><li><b>—</b>revenue</li><li><b>—</b>customers</li><li><b>—</b>since</li></ul>
             </div>
           </a>
-          <a class="card brand" href="#">
+          <a class="card brand reveal" href="#">
             <div class="brand__image brand__image--2">Brand Two</div>
             <div class="brand__text">
               <p class="brand__category">Category</p>
@@ -126,7 +127,7 @@
               <ul class="brand__figures"><li><b>—</b>revenue</li><li><b>—</b>customers</li><li><b>—</b>since</li></ul>
             </div>
           </a>
-          <a class="card brand" href="#">
+          <a class="card brand reveal" href="#">
             <div class="brand__image brand__image--3">Brand Three</div>
             <div class="brand__text">
               <p class="brand__category">Category</p>
@@ -141,11 +142,11 @@
     <!-- How we build -->
     <section class="section" id="build">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head reveal">
           <h2>One engine behind <em>every brand</em></h2>
         </div>
 
-        <div class="tabs" role="tablist" aria-label="How we build">
+        <div class="tabs reveal" role="tablist" aria-label="How we build">
           <button class="tab" type="button" role="tab" id="tab-growth" aria-controls="panel-growth" aria-selected="true">01 Growth</button>
           <button class="tab" type="button" role="tab" id="tab-operations" aria-controls="panel-operations" aria-selected="false" tabindex="-1">02 Operations</button>
           <button class="tab" type="button" role="tab" id="tab-brand" aria-controls="panel-brand" aria-selected="false" tabindex="-1">03 Brand</button>
@@ -213,24 +214,24 @@
     <!-- Founders. TODO: names, roles, portraits (images/) and a line each -->
     <section class="section" id="founders">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head reveal">
           <h2>The people behind <em>the brands</em></h2>
           <p>We've taken brands from first product to scale. These are the people who do it.</p>
         </div>
         <div class="team">
-          <article class="card person">
+          <article class="card person reveal">
             <div class="person__photo" aria-hidden="true">Portrait</div>
             <p class="person__role">Growth &amp; ads</p>
             <h3>Name Surname</h3>
             <p>What this person has built: which brands, what growth, where their strength lies.</p>
           </article>
-          <article class="card person">
+          <article class="card person reveal">
             <div class="person__photo" aria-hidden="true">Portrait</div>
             <p class="person__role">Product &amp; operations</p>
             <h3>Name Surname</h3>
             <p>What this person has built: which brands, what growth, where their strength lies.</p>
           </article>
-          <article class="card person">
+          <article class="card person reveal">
             <div class="person__photo" aria-hidden="true">Portrait</div>
             <p class="person__role">Brand &amp; creative</p>
             <h3>Name Surname</h3>
@@ -247,19 +248,19 @@
          and fill in the dates and the four highlights below. -->
     <section class="section" id="track-record">
       <div class="container">
-        <div class="section__head">
+        <div class="section__head reveal">
           <h2>Every month <em>since day one</em></h2>
         </div>
-        <div class="tracker" aria-hidden="true">
+        <div class="tracker reveal" aria-hidden="true">
           <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
           <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
         <div class="tracker__axis"><span>[Start month]</span><span>Now</span></div>
         <div class="highlights">
-          <article class="card highlight"><b>[Month year]</b><p>First brand launched</p></article>
-          <article class="card highlight"><b>[Month year]</b><p>First big revenue milestone</p></article>
-          <article class="card highlight"><b>[Month year]</b><p>Second brand joined</p></article>
-          <article class="card highlight"><b>Now</b><p>[Where we stand today]</p></article>
+          <article class="card highlight reveal"><b>[Month year]</b><p>First brand launched</p></article>
+          <article class="card highlight reveal"><b>[Month year]</b><p>First big revenue milestone</p></article>
+          <article class="card highlight reveal"><b>[Month year]</b><p>Second brand joined</p></article>
+          <article class="card highlight reveal"><b>Now</b><p>[Where we stand today]</p></article>
         </div>
       </div>
     </section>
@@ -267,7 +268,7 @@
     <!-- Contact -->
     <section class="contact" id="contact">
       <div class="glow glow--low" aria-hidden="true"></div>
-      <div class="container contact__inner">
+      <div class="container contact__inner reveal">
         <h2>Building something <em>that fits?</em></h2>
         <p>For founders, investors and partners.</p>
         <!-- TODO: fill in the email address -->

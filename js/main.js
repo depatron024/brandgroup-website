@@ -43,6 +43,48 @@ if (heroTeller && !geenBeweging) {
   heroTeller.classList.add('is-done');
 }
 
+// Hero: de "100x" zakt mee en vervaagt bij het scrollen (parallax)
+const hero = document.querySelector('.hero');
+
+if (heroTeller && hero && !geenBeweging) {
+  let gepland = false;
+
+  function zetParallax() {
+    gepland = false;
+    const y = Math.min(window.scrollY, hero.offsetHeight);
+    heroTeller.style.transform = `translate(-50%, calc(-52% + ${y * 0.35}px)) scale(${1 + y * 0.0003})`;
+    heroTeller.style.opacity = String(Math.max(0, 1 - y / (hero.offsetHeight * 0.9)));
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!gepland) {
+      gepland = true;
+      requestAnimationFrame(zetParallax);
+    }
+  }, { passive: true });
+}
+
+// Blokken schuiven zacht in beeld; kaarten naast elkaar net na elkaar
+document.querySelectorAll('.brands, .tiles, .team, .highlights').forEach((groep) => {
+  groep.querySelectorAll('.reveal').forEach((item, i) => item.style.setProperty('--vertraging', `${i * 90}ms`));
+});
+
+const revealItems = document.querySelectorAll('.reveal');
+
+if ('IntersectionObserver' in window && !geenBeweging) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add('is-visible'));
+}
+
 // Tabs bij "How we build", ook met pijltjestoetsen te bedienen
 const tabs = [...document.querySelectorAll('.tab')];
 
