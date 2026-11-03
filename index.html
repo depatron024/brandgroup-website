@@ -1,257 +1,284 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>100x Brands | Brandgroup</title>
-  <meta name="description" content="100x Brands is een brandgroup die consumentenmerken voor dieren en hun baasjes bouwt en opschaalt.">
+  <title>100x Brands | Brand group</title>
+  <meta name="description" content="100x Brands is a brand group. We launch our own brands and scale them into category leaders.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.classList.add('js');</script>
   <script src="js/main.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#inhoud">Naar de inhoud</a>
+  <a class="skip-link" href="#content">Skip to content</a>
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="logo" href="/">100x Brands</a>
+      <a class="logo" href="/">100x <span>Brands</span></a>
 
-      <nav class="site-nav" id="hoofdmenu" aria-label="Hoofdmenu">
+      <nav class="site-nav" id="main-menu" aria-label="Main menu">
         <ul>
-          <li><a href="#cijfers">Cijfers</a></li>
-          <li><a href="#merken">Merken</a></li>
-          <li><a href="#team">Oprichters</a></li>
-          <li><a href="#tijdlijn">Tijdlijn</a></li>
+          <li><a href="#numbers">Numbers</a></li>
+          <li><a href="#brands">Brands</a></li>
+          <li><a href="#build">How we build</a></li>
+          <li><a href="#founders">Founders</a></li>
         </ul>
-        <a class="button button--klein site-nav__cta" href="#contact">Contact</a>
+        <a class="button button--small site-nav__cta" href="#contact">Get in touch</a>
       </nav>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hoofdmenu" aria-label="Menu openen">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="Open menu">
         <span></span><span></span>
       </button>
     </div>
   </header>
 
-  <main id="inhoud">
+  <main id="content">
     <!-- Hero -->
     <section class="hero">
-      <div class="gloed" aria-hidden="true"></div>
+      <div class="glow" aria-hidden="true"></div>
       <div class="container hero__inner">
-        <p class="pill reveal"><span class="pill__punt" aria-hidden="true"></span> Brandgroup · Nederland</p>
-        <h1 class="hero__kop reveal">Wij bouwen merken die <em>blijven</em></h1>
-        <p class="hero__intro reveal">100x Brands is een brandgroup die consumentenmerken voor dieren en hun baasjes opbouwt en opschaalt. Van eerste product tot merk dat je overal tegenkomt.</p>
-        <div class="hero__knoppen reveal">
-          <a class="button" href="#merken">Bekijk onze merken</a>
-          <a class="button button--omlijnd" href="#cijfers">Wat we hebben bereikt</a>
+        <p class="pill"><span class="pill__dot" aria-hidden="true"></span> Brand group</p>
+        <h1>We build brands <em>that last.</em></h1>
+        <p class="hero__intro">We launch our own brands and scale them into category leaders, with one team and one engine behind every brand.</p>
+        <div class="hero__buttons">
+          <a class="button" href="#brands">See our brands</a>
+          <a class="button button--outline" href="#contact">Work with us</a>
         </div>
       </div>
     </section>
 
-    <!-- Cijfers: het eerste wat je ziet na de hero.
-         TODO: vul de echte waarden in. data-teller = eindgetal, data-prefix/data-suffix = tekens ervoor/erna.
-         Zolang data-teller leeg is, blijft "—" staan. -->
-    <section class="section section--strak" id="cijfers">
+    <!-- Numbers
+         TODO: fill in real figures. data-counter = final number (digits only), data-prefix/data-suffix = text before/after.
+         While data-counter is empty, the "—" stays. Always add the source and period below. -->
+    <section class="section" id="numbers">
       <div class="container">
-        <div class="statgrid">
-          <article class="stat stat--groot reveal">
-            <p class="stat__label">Jaaromzet van de groep</p>
-            <p class="stat__waarde" data-teller="" data-prefix="€" data-suffix="M+">—</p>
-            <div class="lijn" aria-hidden="true">
-              <svg viewBox="0 0 300 80" preserveAspectRatio="none"><path class="lijn__vlak" d="M0 74 L30 72 L60 70 L90 66 L120 60 L150 54 L180 44 L210 36 L240 26 L270 16 L300 6 L300 80 L0 80 Z"/><path class="lijn__pad" d="M0 74 L30 72 L60 70 L90 66 L120 60 L150 54 L180 44 L210 36 L240 26 L270 16 L300 6"/></svg>
+        <div class="section__head">
+          <h2>What we've <em>built</em></h2>
+        </div>
+
+        <div class="numbers">
+          <article class="card revenue">
+            <div>
+              <p class="small">Group revenue · trailing 12 months</p>
+              <p class="revenue__amount" data-counter="" data-prefix="€" data-suffix="M">—</p>
+              <!-- TODO: growth vs. last year, e.g. "+212% year on year" -->
+            </div>
+            <!-- TODO: replace the line with real monthly revenue. Until then it is only a shape. -->
+            <div class="chart" aria-hidden="true">
+              <svg viewBox="0 0 400 160" preserveAspectRatio="none">
+                <g class="chart__grid"><line x1="0" y1="40" x2="400" y2="40"/><line x1="0" y1="80" x2="400" y2="80"/><line x1="0" y1="120" x2="400" y2="120"/></g>
+                <path class="chart__area" d="M0 142 L36 138 L73 134 L109 128 L145 122 L182 112 L218 102 L255 88 L291 74 L327 58 L364 42 L400 26 L400 160 L0 160 Z"/>
+                <path class="chart__line" d="M0 142 L36 138 L73 134 L109 128 L145 122 L182 112 L218 102 L255 88 L291 74 L327 58 L364 42 L400 26"/>
+                <circle class="chart__end" cx="396" cy="26" r="5"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Revenue by brand</h3>
+              <!-- TODO: real revenue per brand; set the bar width as a share of the largest brand -->
+              <div class="bar"><span>Brand One</span><span>€ —</span><div><i style="width: 100%"></i></div></div>
+              <div class="bar"><span>Brand Two</span><span>€ —</span><div><i style="width: 46%"></i></div></div>
+              <div class="bar"><span>Brand Three</span><span>€ —</span><div><i style="width: 18%"></i></div></div>
             </div>
           </article>
 
-          <article class="stat reveal">
-            <p class="stat__label">Merken</p>
-            <p class="stat__waarde" data-teller="">—</p>
-          </article>
-
-          <article class="stat reveal">
-            <p class="stat__label">Klanten</p>
-            <p class="stat__waarde" data-teller="" data-suffix="+">—</p>
-          </article>
-
-          <article class="stat reveal">
-            <p class="stat__label">Bestellingen</p>
-            <p class="stat__waarde" data-teller="" data-suffix="+">—</p>
-          </article>
-
-          <article class="stat reveal">
-            <p class="stat__label">Landen</p>
-            <p class="stat__waarde" data-teller="">—</p>
-          </article>
+          <div class="tiles">
+            <article class="card tile"><p class="small">Brands</p><p class="tile__number" data-counter="">—</p></article>
+            <article class="card tile"><p class="small">Customers</p><p class="tile__number" data-counter="" data-suffix="k">—</p></article>
+            <article class="card tile"><p class="small">Countries</p><p class="tile__number" data-counter="">—</p></article>
+          </div>
         </div>
-        <p class="bron reveal">Bron en periode: [invullen, bijv. "Shopify, okt 2025 – sep 2026"]</p>
+        <p class="source">Source and period: [fill in, e.g. "Shopify, Nov 2025 – Oct 2026"]</p>
       </div>
     </section>
 
-    <!-- Merken -->
-    <section class="section section--rand" id="merken">
+    <!-- Brands -->
+    <section class="section" id="brands">
       <div class="container">
-        <div class="section__kop reveal">
-          <p class="eyebrow">Portfolio</p>
-          <h2>Onze <em>merken</em></h2>
-          <p>Elk merk met een eigen naam, gezicht en community. Allemaal gebouwd en opgeschaald binnen de groep.</p>
+        <div class="section__head">
+          <h2>Our <em>brands</em></h2>
+          <p>Each with its own name, face and community. All built and scaled inside the group.</p>
         </div>
 
-        <!-- TODO: echte merken invullen: naam, categorie, beeld (images/), cijfers, link naar de merksite -->
-        <div class="merken">
-          <a class="merk merk--groot reveal" href="#">
-            <div class="merk__beeld merk__beeld--1"><span>Merk 1</span></div>
-            <div class="merk__tekst">
-              <div>
-                <p class="merk__categorie">Categorie</p>
-                <h3>Merk 1</h3>
-                <p>Eén zin over wat dit merk maakt en voor wie.</p>
-              </div>
-              <ul class="merk__cijfers">
-                <li><b>—</b>omzet per jaar</li>
-                <li><b>—</b>klanten</li>
-                <li><b>—</b>sinds</li>
-              </ul>
+        <!-- TODO: real brands: name, category, one line, image (images/), figures, link to the brand site -->
+        <div class="brands">
+          <a class="card brand" href="#">
+            <div class="brand__image brand__image--1">Brand One</div>
+            <div class="brand__text">
+              <p class="brand__category">Category</p>
+              <p>One line about what this brand makes and for whom.</p>
+              <ul class="brand__figures"><li><b>—</b>revenue</li><li><b>—</b>customers</li><li><b>—</b>since</li></ul>
             </div>
           </a>
-          <a class="merk reveal" href="#">
-            <div class="merk__beeld merk__beeld--2"><span>Merk 2</span></div>
-            <div class="merk__tekst">
-              <div>
-                <p class="merk__categorie">Categorie</p>
-                <h3>Merk 2</h3>
-                <p>Eén zin over wat dit merk maakt en voor wie.</p>
-              </div>
-              <ul class="merk__cijfers">
-                <li><b>—</b>omzet per jaar</li>
-                <li><b>—</b>sinds</li>
-              </ul>
+          <a class="card brand" href="#">
+            <div class="brand__image brand__image--2">Brand Two</div>
+            <div class="brand__text">
+              <p class="brand__category">Category</p>
+              <p>One line about what this brand makes and for whom.</p>
+              <ul class="brand__figures"><li><b>—</b>revenue</li><li><b>—</b>customers</li><li><b>—</b>since</li></ul>
             </div>
           </a>
-          <a class="merk reveal" href="#">
-            <div class="merk__beeld merk__beeld--3"><span>Merk 3</span></div>
-            <div class="merk__tekst">
-              <div>
-                <p class="merk__categorie">Categorie</p>
-                <h3>Merk 3</h3>
-                <p>Eén zin over wat dit merk maakt en voor wie.</p>
-              </div>
-              <ul class="merk__cijfers">
-                <li><b>—</b>omzet per jaar</li>
-                <li><b>—</b>sinds</li>
-              </ul>
+          <a class="card brand" href="#">
+            <div class="brand__image brand__image--3">Brand Three</div>
+            <div class="brand__text">
+              <p class="brand__category">Category</p>
+              <p>One line about what this brand makes and for whom.</p>
+              <ul class="brand__figures"><li><b>—</b>revenue</li><li><b>—</b>customers</li><li><b>—</b>since</li></ul>
             </div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Oprichters -->
-    <section class="section" id="team">
+    <!-- How we build -->
+    <section class="section" id="build">
       <div class="container">
-        <div class="section__kop section__kop--midden reveal">
-          <p class="eyebrow">De oprichters</p>
-          <h2>De mensen <em>achter de merken</em></h2>
-          <p>We bouwen elk merk zelf, van eerste product tot schaal. Dit zijn de mensen die dat doen.</p>
+        <div class="section__head">
+          <h2>One engine behind <em>every brand</em></h2>
         </div>
 
-        <!-- TODO: namen, rollen, foto's (images/) en teksten invullen. Een kaart weghalen of toevoegen kan gewoon. -->
+        <div class="tabs" role="tablist" aria-label="How we build">
+          <button class="tab" type="button" role="tab" id="tab-growth" aria-controls="panel-growth" aria-selected="true">01 Growth</button>
+          <button class="tab" type="button" role="tab" id="tab-operations" aria-controls="panel-operations" aria-selected="false" tabindex="-1">02 Operations</button>
+          <button class="tab" type="button" role="tab" id="tab-brand" aria-controls="panel-brand" aria-selected="false" tabindex="-1">03 Brand</button>
+        </div>
+
+        <article class="card panel" role="tabpanel" id="panel-growth" aria-labelledby="tab-growth">
+          <div>
+            <h3>Growth</h3>
+            <p>An in-house studio for creatives and paid media. Every brand gets the hooks that already work elsewhere in the group.</p>
+          </div>
+          <div class="screen" aria-hidden="true">
+            <div class="screen__bar"><span>Creative tests · this week</span><span>Illustrative</span></div>
+            <div class="screen__body ads">
+              <div class="ad"><span>Hook A</span></div>
+              <div class="ad"><span>Hook B</span></div>
+              <div class="ad ad--winner"><span>Hook C · winner</span></div>
+              <div class="ad"><span>Hook D</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card panel" role="tabpanel" id="panel-operations" aria-labelledby="tab-operations" hidden>
+          <div>
+            <h3>Operations</h3>
+            <p>Sourcing, fulfilment and customer service, set up once and shared by every brand.</p>
+          </div>
+          <div class="screen" aria-hidden="true">
+            <div class="screen__bar"><span>Stock overview</span><span>Illustrative</span></div>
+            <div class="screen__body rows">
+              <div class="row"><span>Brand One · core product</span><span class="meter"><i style="width: 78%"></i></span><span class="chip chip--good">In stock</span></div>
+              <div class="row"><span>Brand Two · starter box</span><span class="meter"><i style="width: 34%"></i></span><span class="chip chip--attention">Reorder</span></div>
+              <div class="row"><span>Brand Three · lead</span><span class="meter"><i style="width: 61%"></i></span><span class="chip chip--good">In transit</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card panel" role="tabpanel" id="panel-brand" aria-labelledby="tab-brand" hidden>
+          <div>
+            <h3>Brand</h3>
+            <p>Positioning, identity and product. The part that makes customers stay and tell their friends.</p>
+          </div>
+          <div class="screen" aria-hidden="true">
+            <div class="screen__bar"><span>Brand kit</span><span>Illustrative</span></div>
+            <div class="screen__body">
+              <div class="swatches">
+                <span class="swatch swatch--1"></span><span class="swatch swatch--2"></span><span class="swatch swatch--3"></span><span class="swatch swatch--4"></span>
+              </div>
+              <p class="type-sample">Aa Bb</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Milestone band. TODO: real milestones only. js/main.js duplicates the list so it loops. -->
+    <div class="band" aria-label="Recent milestones">
+      <ul class="band__track">
+        <li>[Milestone: e.g. Brand One launched in a new country]</li>
+        <li>[Milestone: e.g. 100,000th order shipped]</li>
+        <li>[Milestone: e.g. Brand Two joined the group]</li>
+        <li>[Milestone: e.g. now in 400 stores]</li>
+      </ul>
+    </div>
+
+    <!-- Founders. TODO: names, roles, portraits (images/) and a line each -->
+    <section class="section" id="founders">
+      <div class="container">
+        <div class="section__head">
+          <h2>The people behind <em>the brands</em></h2>
+          <p>We've taken brands from first product to scale. These are the people who do it.</p>
+        </div>
         <div class="team">
-          <article class="persoon reveal">
-            <div class="persoon__foto" aria-hidden="true"><span>Foto</span></div>
-            <p class="persoon__rol">Groei en ads</p>
-            <h3>Naam Achternaam</h3>
-            <p>Wat deze persoon heeft gebouwd: welke merken, welke groei, waar de kracht ligt.</p>
+          <article class="card person">
+            <div class="person__photo" aria-hidden="true">Portrait</div>
+            <p class="person__role">Growth &amp; ads</p>
+            <h3>Name Surname</h3>
+            <p>What this person has built: which brands, what growth, where their strength lies.</p>
           </article>
-          <article class="persoon reveal">
-            <div class="persoon__foto" aria-hidden="true"><span>Foto</span></div>
-            <p class="persoon__rol">Product en operatie</p>
-            <h3>Naam Achternaam</h3>
-            <p>Wat deze persoon heeft gebouwd: welke merken, welke groei, waar de kracht ligt.</p>
+          <article class="card person">
+            <div class="person__photo" aria-hidden="true">Portrait</div>
+            <p class="person__role">Product &amp; operations</p>
+            <h3>Name Surname</h3>
+            <p>What this person has built: which brands, what growth, where their strength lies.</p>
           </article>
-          <article class="persoon reveal">
-            <div class="persoon__foto" aria-hidden="true"><span>Foto</span></div>
-            <p class="persoon__rol">Merk en creatie</p>
-            <h3>Naam Achternaam</h3>
-            <p>Wat deze persoon heeft gebouwd: welke merken, welke groei, waar de kracht ligt.</p>
+          <article class="card person">
+            <div class="person__photo" aria-hidden="true">Portrait</div>
+            <p class="person__role">Brand &amp; creative</p>
+            <h3>Name Surname</h3>
+            <p>What this person has built: which brands, what growth, where their strength lies.</p>
           </article>
         </div>
-
-        <div class="midden reveal">
-          <a class="button" href="#contact">Werk direct met de oprichters</a>
+        <div class="center">
+          <a class="button" href="#contact">Work with the founders</a>
         </div>
       </div>
     </section>
 
-    <!-- Hoe we bouwen -->
-    <section class="section section--rand" id="aanpak">
+    <!-- Track record. TODO: one block per month since the start; add class "is-milestone" where something big happened,
+         and fill in the dates and the four highlights below. -->
+    <section class="section" id="track-record">
       <div class="container">
-        <div class="section__kop section__kop--midden reveal">
-          <p class="eyebrow">Hoe we bouwen</p>
-          <h2>Groei brengt de omzet. <em>Het merk houdt hem vast.</em></h2>
+        <div class="section__head">
+          <h2>Every month <em>since day one</em></h2>
         </div>
-
-        <div class="pijlers">
-          <article class="pijler reveal">
-            <span class="pijler__nr">01</span>
-            <h3>Groei</h3>
-            <p>Eigen creatives, betaalde media en distributie. We weten hoe je een merk van nul naar schaal brengt, omdat we het steeds opnieuw doen.</p>
-          </article>
-          <article class="pijler reveal">
-            <span class="pijler__nr">02</span>
-            <h3>Operatie</h3>
-            <p>Inkoop, logistiek, klantenservice en data, één keer goed ingericht en gedeeld door alle merken.</p>
-          </article>
-          <article class="pijler reveal">
-            <span class="pijler__nr">03</span>
-            <h3>Merk</h3>
-            <p>Positionering, identiteit en product. Wat ervoor zorgt dat klanten blijven en het merk vanzelf aanbevelen.</p>
-          </article>
+        <div class="tracker" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
-      </div>
-    </section>
-
-    <!-- Tijdlijn -->
-    <section class="section" id="tijdlijn">
-      <div class="container container--smal">
-        <div class="section__kop reveal">
-          <p class="eyebrow">Tijdlijn</p>
-          <h2>Hoe we <em>hier kwamen</em></h2>
+        <div class="tracker__axis"><span>[Start month]</span><span>Now</span></div>
+        <div class="highlights">
+          <article class="card highlight"><b>[Month year]</b><p>First brand launched</p></article>
+          <article class="card highlight"><b>[Month year]</b><p>First big revenue milestone</p></article>
+          <article class="card highlight"><b>[Month year]</b><p>Second brand joined</p></article>
+          <article class="card highlight"><b>Now</b><p>[Where we stand today]</p></article>
         </div>
-
-        <!-- TODO: echte jaartallen en mijlpalen invullen (lancering, omzetgrens, nieuwe markt, award, retail, nieuw merk) -->
-        <ol class="tijdlijn">
-          <li class="moment reveal"><span class="moment__jaar">Jaar</span><div><h3>Eerste merk gelanceerd</h3><p>Wat het was en hoe het begon.</p></div></li>
-          <li class="moment reveal"><span class="moment__jaar">Jaar</span><div><h3>Eerste omzetmijlpaal</h3><p>Bijvoorbeeld de eerste € 100.000 per maand.</p></div></li>
-          <li class="moment reveal"><span class="moment__jaar">Jaar</span><div><h3>Nieuwe markt</h3><p>Bijvoorbeeld de stap naar België.</p></div></li>
-          <li class="moment reveal"><span class="moment__jaar">Jaar</span><div><h3>Tweede merk erbij</h3><p>Zelf gebouwd of overgenomen.</p></div></li>
-          <li class="moment moment--nu reveal"><span class="moment__jaar">Nu</span><div><h3>Waar we nu staan</h3><p>Kort: aantal merken, omzet, volgende stap.</p></div></li>
-        </ol>
       </div>
     </section>
 
     <!-- Contact -->
-    <section class="slot" id="contact">
-      <div class="gloed gloed--onder" aria-hidden="true"></div>
-      <div class="container slot__inner reveal">
-        <h2>Werk je aan iets <em>dat hierbij past?</em></h2>
-        <p>Voor founders met een merk, investeerders en partners.</p>
-        <!-- TODO: e-mailadres invullen -->
-        <a class="button" href="mailto:[e-mailadres]">Neem contact op</a>
+    <section class="contact" id="contact">
+      <div class="glow glow--low" aria-hidden="true"></div>
+      <div class="container contact__inner">
+        <h2>Building something <em>that fits?</em></h2>
+        <p>For founders, investors and partners.</p>
+        <!-- TODO: fill in the email address -->
+        <a class="button" href="mailto:[email]">Get in touch</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <a class="logo" href="/">100x Brands</a>
+      <a class="logo" href="/">100x <span>Brands</span></a>
       <ul class="site-footer__links">
-        <li><a href="#cijfers">Cijfers</a></li>
-        <li><a href="#merken">Merken</a></li>
-        <li><a href="#team">Oprichters</a></li>
+        <li><a href="#numbers">Numbers</a></li>
+        <li><a href="#brands">Brands</a></li>
+        <li><a href="#founders">Founders</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <p class="site-footer__copy">&copy; <span data-jaar></span> 100x Brands</p>
+      <p class="site-footer__copy">&copy; <span data-year></span> 100x Brands</p>
     </div>
   </footer>
 </body>
