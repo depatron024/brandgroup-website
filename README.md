@@ -1,6 +1,6 @@
 # Merkwebsite
 
-Website in gewone HTML, CSS en JavaScript, zonder framework. Merknaam en design volgen nog.
+Website van 100x Brands, in gewone HTML, CSS en JavaScript, zonder framework.
 
 ## Lokaal bekijken
 
