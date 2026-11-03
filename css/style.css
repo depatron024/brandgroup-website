@@ -16,6 +16,8 @@
   --kleur-rand-sterk: rgba(255, 255, 255, 0.18);
   --kleur-accent: #ffb37a;
   --kleur-accent-zacht: rgba(255, 179, 122, 0.14);
+  --kleur-accent-lijn: rgba(255, 179, 122, 0.4);
+  --kleur-accent-lijn-zacht: rgba(255, 179, 122, 0.24);
   --kleur-positief: #7ee0a1;
   --kleur-positief-zacht: rgba(126, 224, 161, 0.12);
   --kleur-primair: #ffffff;
@@ -438,6 +440,57 @@ ul {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--ruimte-s);
+}
+
+/* Grote omlijnde "100x" achter de kop */
+.hero__counter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -52%);
+  font-family: var(--font-koppen);
+  font-size: clamp(11rem, 38vw, 32rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--kleur-accent-lijn);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  transition: -webkit-text-stroke-color 1.2s ease;
+}
+
+.hero__counter.is-done {
+  -webkit-text-stroke-color: var(--kleur-accent-lijn-zacht);
+}
+
+/* Kop verschijnt woord voor woord; intro en knoppen schuiven erachteraan */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__word {
+    display: inline-block;
+    animation: woord-in 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--i) * 110ms + 150ms);
+  }
+
+  .hero__fade {
+    animation: schuif-in 0.8s ease both;
+    animation-delay: var(--d, 0s);
+  }
+
+  @keyframes woord-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.45em);
+      filter: blur(12px);
+    }
+  }
+
+  @keyframes schuif-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
 }
 
 /* ==========================================================================

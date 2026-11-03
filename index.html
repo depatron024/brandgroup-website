@@ -38,11 +38,18 @@
     <!-- Hero -->
     <section class="hero">
       <div class="glow" aria-hidden="true"></div>
+      <!-- Grote "100x" achter de kop; js/main.js telt hem op van 1x naar 100x -->
+      <div class="hero__counter" data-hero-counter aria-hidden="true">100x</div>
       <div class="container hero__inner">
-        <p class="pill"><span class="pill__dot" aria-hidden="true"></span> Brand group</p>
-        <h1>We build brands <em>that last.</em></h1>
-        <p class="hero__intro">We launch our own brands and scale them into category leaders, with one team and one engine behind every brand.</p>
-        <div class="hero__buttons">
+        <p class="pill hero__fade"><span class="pill__dot" aria-hidden="true"></span> Brand group</p>
+        <h1>
+          <span class="hero__word" style="--i: 0">We</span>
+          <span class="hero__word" style="--i: 1">build</span>
+          <span class="hero__word" style="--i: 2">brands</span>
+          <span class="hero__word" style="--i: 3"><em>that last.</em></span>
+        </h1>
+        <p class="hero__intro hero__fade" style="--d: 0.9s">We launch our own brands and scale them into category leaders, with one team and one engine behind every brand.</p>
+        <div class="hero__buttons hero__fade" style="--d: 1.1s">
           <a class="button" href="#brands">See our brands</a>
           <a class="button button--outline" href="#contact">Work with us</a>
         </div>

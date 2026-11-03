@@ -22,6 +22,27 @@ if (navToggle && siteNav) {
   });
 }
 
+// Hero: de grote "100x" telt op van 1x naar 100x (zonder JS of met minder beweging blijft "100x" staan)
+const heroTeller = document.querySelector('[data-hero-counter]');
+
+if (heroTeller && !geenBeweging) {
+  const duur = 2400;
+  const start = performance.now();
+
+  function heroStap(nu) {
+    const voortgang = Math.min((nu - start) / duur, 1);
+    const waarde = Math.max(1, Math.round(100 * (1 - Math.pow(1 - voortgang, 3))));
+    heroTeller.textContent = waarde + 'x';
+    if (voortgang < 1) requestAnimationFrame(heroStap);
+    else heroTeller.classList.add('is-done');
+  }
+
+  heroTeller.textContent = '1x';
+  requestAnimationFrame(heroStap);
+} else if (heroTeller) {
+  heroTeller.classList.add('is-done');
+}
+
 // Tabs bij "How we build", ook met pijltjestoetsen te bedienen
 const tabs = [...document.querySelectorAll('.tab')];
 
