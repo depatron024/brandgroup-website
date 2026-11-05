@@ -31,7 +31,13 @@ In Netlify: *Add new site* → *Import an existing project* → kies deze GitHub
 
 ```
 .
-├── index.html        Homepage
+├── index.html        Home
+├── brands.html       Merken en cijfers
+├── how-we-build.html De motor achter de merken
+├── founders.html     Oprichters en track record
+├── work-with-us.html Verkopen, advies, investeren of inkopen
+├── contact.html      Contact
+├── credits.html      Bronnen van de archieffoto's
 ├── css/
 │   └── style.css     Alle stijlen; ontwerpvariabelen bovenaan
 ├── js/

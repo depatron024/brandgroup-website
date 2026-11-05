@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brands | 100x Brands</title>
+  <meta name="description" content="The brands of 100x Brands, and the numbers behind them.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="index.html">100x <span>Brands</span></a>
+
+      <nav class="site-nav" id="main-menu" aria-label="Main menu">
+        <ul>
+          <li><a href="brands.html" aria-current="page">Brands</a></li>
+          <li><a href="how-we-build.html">How we build</a></li>
+          <li><a href="founders.html">Founders</a></li>
+          <li><a href="work-with-us.html">Work with us</a></li>
+        </ul>
+        <a class="button button--small site-nav__cta" href="contact.html">Get in touch</a>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="page-head">
+      <div class="container page-head__inner">
+        <h1 class="reveal">Our <em>brands</em></h1>
+        <p class="reveal">Each with its own name, face and community. All built and scaled inside the group.</p>
+      </div>
+    </section>
+
+    <div class="strip reveal">
+      <figure class="strip__panel strip__panel--1"><img src="images/storefront.jpg" width="1319" height="1920" alt="Two shopkeepers in front of their store, around 1900" loading="lazy" decoding="async"></figure>
+      <figure class="strip__panel strip__panel--2"><img src="images/display.jpg" width="1204" height="1920" alt="A product and its price card in a shop display" loading="lazy" decoding="async"></figure>
+      <figure class="strip__panel strip__panel--3"><img src="images/store.jpg" width="1920" height="1434" alt="A bright shop interior with stocked shelves and counters" loading="lazy" decoding="async"></figure>
+      <figure class="strip__panel strip__panel--4"><img src="images/shopfront.jpg" width="1232" height="1920" alt="A woman and a child at the door of a small shop" loading="lazy" decoding="async"></figure>
+    </div>
+    <p class="container strip__caption">Where a brand is made: the counter, the window, the door. Shops from 1900 to the 1960s.</p>
+
+    <!-- Anoniem merk: naam en beeld bewust verborgen. images/hidden-brand.jpg is vooraf geblurd, dus het origineel staat niet online.
+         TODO: vervang de bron door een eigen merkfoto (ook vooraf blurren, nooit met CSS). Bron en periode van de claim vastleggen. -->
+    <section class="section hidden-brand">
+      <div class="container hidden-brand__grid">
+        <div class="hidden-brand__picture reveal">
+          <img src="images/hidden-brand.jpg" width="1400" height="1046" alt="Blurred image of a brand whose name is hidden" loading="lazy" decoding="async">
+          <span class="hidden-brand__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M3 3l18 18"/><path d="M10.6 5.2A9.8 9.8 0 0 1 12 5c5.5 0 9 5.5 9.5 7a14 14 0 0 1-3 3.9M6.4 6.5A14 14 0 0 0 2.5 12c.5 1.5 4 7 9.5 7a9.7 9.7 0 0 0 4.6-1.2"/><path d="M9.9 9.9a3 3 0 0 0 4.200 4.200"/></svg>
+          </span>
+        </div>
+        <div class="hidden-brand__copy">
+          <h2 class="reveal">8 figures <em>in the first year.</em></h2>
+          <p class="reveal">Became the biggest in our market. With a small team.</p>
+          <p class="hidden-brand__note reveal">Name and visuals hidden.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO: echte merken invullen: naam, categorie, jaar, beeld (images/) en link naar de merksite -->
+    <section class="section">
+      <div class="container">
+        <h2 class="index-section__head reveal">The <em>portfolio</em></h2>
+        <div class="index" data-index>
+          <ul class="index__list">
+            <li><a class="index__link is-active" href="#" data-preview="0"><span class="poster poster--2" data-name="Two" aria-hidden="true"></span><span class="index__name">Brand Two</span><span class="index__note">[Category] · [since]</span></a></li>
+            <li><a class="index__link" href="#" data-preview="1"><span class="poster poster--3" data-name="Three" aria-hidden="true"></span><span class="index__name">Brand Three</span><span class="index__note">[Category] · [since]</span></a></li>
+            <li><a class="index__link" href="work-with-us.html" data-preview="2"><img class="index__phone" src="images/workshop.jpg" width="1503" height="1184" alt="Three men in a small soda-water workshop, 1938, with bottles on the bench" loading="lazy" decoding="async"><span class="index__name">Yours?</span><span class="index__note">We buy brands that fit</span></a></li>
+          </ul>
+          <div class="index__frame" aria-hidden="true">
+            <span class="poster poster--2 is-active" data-name="Two"></span>
+            <span class="poster poster--3" data-name="Three"></span>
+            <img src="images/workshop.jpg" width="1503" height="1184" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO: echte cijfers. data-counter = eindgetal (alleen cijfers), data-prefix/data-suffix = tekst ervoor/erna.
+         Zolang data-counter leeg is, blijft "—" staan. Altijd bron en periode invullen. -->
+    <section class="section">
+      <div class="container figures">
+        <h2 class="reveal">What we've <em>built</em></h2>
+        <dl class="figures__list">
+          <div class="reveal"><dt data-counter="" data-prefix="€" data-suffix="M">—</dt><dd>Group revenue over the last twelve months.</dd></div>
+          <div class="reveal"><dt data-counter="">—</dt><dd>Brands in the group, built or bought.</dd></div>
+          <div class="reveal"><dt data-counter="" data-suffix="k">—</dt><dd>Customers who have ordered from one of them.</dd></div>
+          <div class="reveal"><dt data-counter="">—</dt><dd>Countries we ship to.</dd></div>
+        </dl>
+        <p class="figures__source">Source and period: [fill in, e.g. "Shopify, Nov 2025 – Oct 2026"]</p>
+      </div>
+    </section>
+
+    <!-- Rollende band. TODO: alleen echte mijlpalen. js/main.js verdubbelt de lijst zodat hij doorloopt. -->
+    <div class="band" aria-label="Recent milestones">
+      <ul class="band__track">
+        <li>[Milestone: e.g. Brand One launched in a new country]</li>
+        <li>[Milestone: e.g. 100,000th order shipped]</li>
+        <li>[Milestone: e.g. Brand Two joined the group]</li>
+        <li>[Milestone: e.g. now in 400 stores]</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__close">
+        <h2>Building something <em>that fits?</em></h2>
+        <a class="button button--dark" href="contact.html">Get in touch</a>
+      </div>
+      <ul class="site-footer__links">
+        <li><a href="brands.html">Brands</a></li>
+        <li><a href="how-we-build.html">How we build</a></li>
+        <li><a href="founders.html">Founders</a></li>
+        <li><a href="work-with-us.html">Work with us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="credits.html">Picture credits</a></li>
+      </ul>
+      <p class="site-footer__copy">&copy; <span data-year></span> 100x Brands</p>
+    </div>
+    <svg class="site-footer__mark" viewBox="0 -735 1563 680" aria-hidden="true" focusable="false"><path d="M20 0Q5 0 5 -11Q5 -22 18 -23L57 -27Q78 -29 85.5 -37.0Q93 -45 93 -66V-660Q93 -677 83.5 -682.5Q74 -688 59 -686L23 -682Q5 -681 5 -695Q5 -706 21 -709Q74 -718 99.0 -726.5Q124 -735 136 -735Q157 -735 157 -713V-66Q157 -45 164.5 -37.0Q172 -29 193 -27L226 -23Q239 -22 239 -11Q239 0 224 0Z"/><path d="M479 9Q421 9 377.0 -40.0Q333 -89 309.0 -173.0Q285 -257 285 -361Q285 -465 309.0 -548.5Q333 -632 377.0 -681.0Q421 -730 479 -730Q537 -730 580.5 -681.0Q624 -632 648.5 -548.5Q673 -465 673 -361Q673 -257 648.5 -173.0Q624 -89 580.5 -40.0Q537 9 479 9ZM479 -18Q542 -18 571.5 -103.0Q601 -188 601 -361Q601 -534 571.5 -618.5Q542 -703 479 -703Q416 -703 386.5 -618.5Q357 -534 357 -361Q357 -188 386.5 -103.0Q416 -18 479 -18Z"/><path d="M939 9Q881 9 837.0 -40.0Q793 -89 769.0 -173.0Q745 -257 745 -361Q745 -465 769.0 -548.5Q793 -632 837.0 -681.0Q881 -730 939 -730Q997 -730 1040.5 -681.0Q1084 -632 1108.5 -548.5Q1133 -465 1133 -361Q1133 -257 1108.5 -173.0Q1084 -89 1040.5 -40.0Q997 9 939 9ZM939 -18Q1002 -18 1031.5 -103.0Q1061 -188 1061 -361Q1061 -534 1031.5 -618.5Q1002 -703 939 -703Q876 -703 846.5 -618.5Q817 -534 817 -361Q817 -188 846.5 -103.0Q876 -18 939 -18Z"/><path d="M1396 0Q1382 0 1382 -10Q1382 -20 1395 -23L1410 -26Q1440 -33 1426 -59L1355 -199Q1351 -206 1345.5 -206.5Q1340 -207 1336 -199L1271 -77Q1249 -35 1278 -29L1304 -23Q1317 -20 1317 -10Q1317 0 1303 0H1175Q1161 0 1161 -11Q1161 -22 1173 -25L1185 -28Q1204 -33 1217.0 -43.5Q1230 -54 1250 -91L1324 -227Q1332 -242 1326 -256L1231 -443Q1220 -466 1212.5 -474.0Q1205 -482 1195 -484L1180 -487Q1167 -490 1167 -500Q1167 -510 1181 -510H1329Q1343 -510 1343 -500Q1343 -490 1330 -487L1315 -484Q1285 -477 1299 -451L1367 -319Q1371 -312 1376.0 -312.0Q1381 -312 1385 -319L1445 -433Q1467 -475 1438 -481L1412 -487Q1399 -490 1399 -500Q1399 -510 1413 -510H1541Q1555 -510 1555 -499Q1555 -488 1543 -485L1531 -482Q1512 -478 1499.0 -467.5Q1486 -457 1466 -419L1397 -291Q1388 -276 1396 -260L1494 -67Q1506 -43 1513.0 -35.5Q1520 -28 1530 -26L1545 -23Q1558 -20 1558 -10Q1558 0 1544 0Z"/></svg>
+  </footer>
+</body>
+</html>

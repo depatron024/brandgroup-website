@@ -1,4 +1,5 @@
 const geenBeweging = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const beperk = (waarde, min, max) => Math.min(Math.max(waarde, min), max);
 
 // Mobiel menu openen en sluiten
 const navToggle = document.querySelector('.nav-toggle');
@@ -16,60 +17,176 @@ if (navToggle && siteNav) {
     zetMenu(!siteNav.classList.contains('is-open'));
   });
 
-  // Menu sluiten na klikken op een link
   siteNav.addEventListener('click', (event) => {
     if (event.target.closest('a')) zetMenu(false);
   });
 }
 
-// Hero: de grote "100x" telt op van 1x naar 100x (zonder JS of met minder beweging blijft "100x" staan)
-const heroTeller = document.querySelector('[data-hero-counter]');
+// Home: vliegen door de tweede nul van 100x.
+// De SVG blijft scherp doordat we de viewBox verzetten in plaats van te schalen.
+const fly = document.querySelector('[data-fly]');
 
-if (heroTeller && !geenBeweging) {
-  const duur = 2400;
-  const start = performance.now();
-
-  function heroStap(nu) {
-    const voortgang = Math.min((nu - start) / duur, 1);
-    const waarde = Math.max(1, Math.round(100 * (1 - Math.pow(1 - voortgang, 3))));
-    heroTeller.textContent = waarde + 'x';
-    if (voortgang < 1) requestAnimationFrame(heroStap);
-    else heroTeller.classList.add('is-done');
-  }
-
-  heroTeller.textContent = '1x';
-  requestAnimationFrame(heroStap);
-} else if (heroTeller) {
-  heroTeller.classList.add('is-done');
-}
-
-// Hero: de "100x" zakt mee en vervaagt bij het scrollen (parallax)
-const hero = document.querySelector('.hero');
-
-if (heroTeller && hero && !geenBeweging) {
+if (fly && !geenBeweging) {
+  const mark = fly.querySelector('[data-fly-mark]');
+  const letterX = fly.querySelector('[data-fly-x]');
+  const intro = fly.querySelector('[data-fly-intro]');
+  const statement = fly.querySelector('[data-fly-statement]');
+  const shade = fly.querySelector('[data-fly-shade]');
+  const picture = fly.querySelector('.fly__picture');
+  const nul = { x: 939, y: -360, a: 122, b: 342 }; // midden en halve maten van de opening in de nul
+  let maat = null;
   let gepland = false;
 
-  function zetParallax() {
-    gepland = false;
-    const y = Math.min(window.scrollY, hero.offsetHeight);
-    heroTeller.style.transform = `translate(-50%, calc(-52% + ${y * 0.35}px)) scale(${1 + y * 0.0003})`;
-    heroTeller.style.opacity = String(Math.max(0, 1 - y / (hero.offsetHeight * 0.9)));
+  function meet() {
+    const b = mark.parentElement.clientWidth;
+    const h = mark.parentElement.clientHeight;
+    const staand = b < 700; // op de telefoon staat de x onder de 100
+    letterX.setAttribute('transform', staand ? 'translate(-425 560)' : '');
+    const woord = staand ? { links: 5, rechts: 1133, boven: -735, onder: 560 } : { links: 5, rechts: 1558, boven: -735, onder: 9 };
+    const marge = staand ? 16 : 32;
+    const vrij = h - (staand ? 250 : 210) - marge;
+    const start = Math.min((b - marge * 2) / (woord.rechts - woord.links), vrij / (woord.onder - woord.boven));
+    const breedte = (woord.rechts - woord.links) * start;
+    // Waar het midden van de nul op het scherm staat aan het begin
+    const beginX = (b - breedte) / 2 + (nul.x - woord.links) * start;
+    const beginY = h - marge - (woord.onder - nul.y) * start;
+    // Eindschaal: de opening van de nul bedekt het hele scherm
+    const eind = Math.hypot(b / 2 / nul.a, h / 2 / nul.b) * 1.15;
+    maat = { b, h, start, eind, beginX, beginY };
   }
 
-  window.addEventListener('scroll', () => {
+  function teken() {
+    gepland = false;
+    if (!maat) meet();
+    const { b, h, start, eind, beginX, beginY } = maat;
+    const rect = fly.getBoundingClientRect();
+    const p = beperk(-rect.top / (rect.height - h), 0, 1);
+    const zoom = beperk(p / 0.72, 0, 1);
+    const z = zoom * zoom * (3 - 2 * zoom);
+    const schaal = start * Math.pow(eind / start, z);
+    const cx = beginX + (b / 2 - beginX) * z;
+    const cy = beginY + (h / 2 - beginY) * z;
+    mark.setAttribute('viewBox', `${nul.x - cx / schaal} ${nul.y - cy / schaal} ${b / schaal} ${h / schaal}`);
+    mark.style.visibility = zoom >= 1 ? 'hidden' : 'visible';
+    // Het kind staat eerst precies in de nul; onderweg schuift de foto naar het midden en groeit hij mee
+    const groei = Math.min(z * 2.2, 1);
+    picture.style.transform = `translate(${(beginX - b / 2) * (1 - z)}px, ${(beginY - h / 2 - h * 0.09) * (1 - z)}px) scale(${0.72 + 0.33 * groei})`;
+
+    const introUit = beperk(p / 0.12, 0, 1);
+    intro.style.opacity = String(1 - introUit);
+    intro.style.visibility = introUit >= 1 ? 'hidden' : 'visible';
+    const tekst = beperk((p - 0.74) / 0.14, 0, 1);
+    statement.style.opacity = String(tekst);
+    statement.style.transform = `translateY(${(1 - tekst) * 32}px)`;
+    shade.style.opacity = String(tekst);
+  }
+
+  function vraagTeken() {
     if (!gepland) {
       gepland = true;
-      requestAnimationFrame(zetParallax);
+      requestAnimationFrame(teken);
     }
-  }, { passive: true });
+  }
+
+  mark.setAttribute('preserveAspectRatio', 'xMinYMin meet');
+  fly.classList.add('is-flying');
+  window.addEventListener('scroll', vraagTeken, { passive: true });
+  window.addEventListener('resize', () => {
+    meet();
+    vraagTeken();
+  });
+  teken();
 }
 
-// Blokken schuiven zacht in beeld; kaarten naast elkaar net na elkaar
-document.querySelectorAll('.brands, .tiles, .team, .highlights').forEach((groep) => {
-  groep.querySelectorAll('.reveal').forEach((item, i) => item.style.setProperty('--vertraging', `${i * 90}ms`));
+// De vermenigvuldiger: van één tegel naar de hele foto
+const multiplier = document.querySelector('[data-multiplier]');
+
+if (multiplier) {
+  const mosaic = multiplier.querySelector('[data-mosaic]');
+  const range = multiplier.querySelector('[data-multiplier-range]');
+  const waarde = multiplier.querySelector('[data-multiplier-value]');
+  const stappen = [...multiplier.querySelectorAll('[data-stage]')];
+  const bron = mosaic.querySelector('img').getAttribute('src');
+  const tegels = [];
+
+  for (let rij = 0; rij < 10; rij += 1) {
+    for (let kolom = 0; kolom < 10; kolom += 1) {
+      const tegel = document.createElement('i');
+      tegel.className = 'mosaic__tile';
+      tegel.style.backgroundImage = `url("${bron}")`;
+      tegel.style.backgroundPosition = `${(kolom / 9) * 100}% ${(rij / 9) * 100}%`;
+      // De eerste tegel is de man vooraan aan de lopende band; daarna groeit het vanuit hem
+      tegels.push({ el: tegel, afstand: Math.hypot(kolom - 2, rij - 5) + (rij * 7 + kolom * 3) % 5 * 0.1 });
+      mosaic.appendChild(tegel);
+    }
+  }
+  mosaic.classList.add('is-ready');
+  tegels.sort((a, b) => a.afstand - b.afstand);
+
+  function zetWaarde(n) {
+    tegels.forEach((t, i) => t.el.classList.toggle('is-on', i < n));
+    waarde.textContent = String(n);
+    range.value = String(n);
+    range.setAttribute('aria-valuetext', `${n} times`);
+    range.style.setProperty('--vulling', `${n}%`);
+    let actief = stappen[0];
+    stappen.forEach((s) => { if (n >= Number(s.dataset.stage)) actief = s; });
+    stappen.forEach((s) => s.classList.toggle('is-active', s === actief));
+  }
+
+  let aangeraakt = false;
+  range.addEventListener('input', () => {
+    aangeraakt = true;
+    zetWaarde(Number(range.value));
+  });
+
+  if (geenBeweging || !('IntersectionObserver' in window)) {
+    zetWaarde(100);
+  } else {
+    // Speelt één keer af als de sectie in beeld komt, en stopt zodra iemand zelf schuift
+    zetWaarde(1);
+    const kijker = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      kijker.disconnect();
+      const begin = performance.now();
+      const duur = 3200;
+
+      function speel(nu) {
+        if (aangeraakt) return;
+        const v = Math.min((nu - begin) / duur, 1);
+        zetWaarde(Math.max(1, Math.round(100 * v * v)));
+        if (v < 1) requestAnimationFrame(speel);
+      }
+
+      requestAnimationFrame(speel);
+    }, { threshold: 0.4 });
+    kijker.observe(mosaic);
+  }
+}
+
+// Grote namen: de actieve regel bepaalt het beeld rechts
+document.querySelectorAll('[data-index]').forEach((index) => {
+  const links = [...index.querySelectorAll('[data-preview]')];
+  const beelden = [...index.querySelector('.index__frame').children];
+
+  function kies(link) {
+    links.forEach((l) => l.classList.toggle('is-active', l === link));
+    beelden.forEach((b, i) => b.classList.toggle('is-active', i === Number(link.dataset.preview)));
+  }
+
+  links.forEach((link) => {
+    link.addEventListener('pointerenter', () => kies(link));
+    link.addEventListener('focus', () => kies(link));
+  });
 });
 
+// Blokken schuiven zacht in beeld; blokken in dezelfde groep net na elkaar
 const revealItems = document.querySelectorAll('.reveal');
+
+revealItems.forEach((item) => {
+  const broers = [...item.parentElement.children].filter((el) => el.classList.contains('reveal'));
+  item.style.setProperty('--vertraging', `${Math.max(broers.indexOf(item), 0) * 80}ms`);
+});
 
 if ('IntersectionObserver' in window && !geenBeweging) {
   const revealObserver = new IntersectionObserver((entries) => {
@@ -78,11 +195,36 @@ if ('IntersectionObserver' in window && !geenBeweging) {
       entry.target.classList.add('is-visible');
       revealObserver.unobserve(entry.target);
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   revealItems.forEach((item) => revealObserver.observe(item));
 } else {
   revealItems.forEach((item) => item.classList.add('is-visible'));
+}
+
+// Foto's in de werkwoorden schuiven trager dan de pagina
+const verbFotos = [...document.querySelectorAll('.verb__picture')];
+
+if (verbFotos.length && !geenBeweging) {
+  let verbGepland = false;
+
+  function zetVerbs() {
+    verbGepland = false;
+    verbFotos.forEach((foto) => {
+      const r = foto.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      const v = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+      foto.style.transform = `translateY(${v * -8}%) scale(1.2)`;
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!verbGepland) {
+      verbGepland = true;
+      requestAnimationFrame(zetVerbs);
+    }
+  }, { passive: true });
+  zetVerbs();
 }
 
 // Track record: de tijdlijn speelt af terwijl je scrolt (terug scrollen spoelt terug)
@@ -117,7 +259,7 @@ if (tracker) {
       tijdlijnGepland = false;
       const boven = tracker.getBoundingClientRect().top;
       const h = window.innerHeight;
-      const voortgang = Math.min(Math.max((h * 0.85 - boven) / (h * 0.5), 0), 1);
+      const voortgang = beperk((h * 0.85 - boven) / (h * 0.5), 0, 1);
       toonTijdlijn(Math.round(voortgang * blokjes.length));
     }
 
@@ -175,7 +317,7 @@ function telOp(el) {
   const prefix = el.dataset.prefix || '';
   const suffix = el.dataset.suffix || '';
   const decimalen = (el.dataset.counter.split('.')[1] || '').length;
-  const opmaak = (waarde) => prefix + waarde.toLocaleString('en-GB', {
+  const opmaak = (w) => prefix + w.toLocaleString('en-GB', {
     minimumFractionDigits: decimalen,
     maximumFractionDigits: decimalen,
   }) + suffix;
