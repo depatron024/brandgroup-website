@@ -613,6 +613,10 @@ a {
   gap: var(--ruimte-m);
 }
 
+.hidden-brand__copy h2 em {
+  display: block;
+}
+
 .hidden-brand__copy p {
   max-width: var(--tekst-maat);
   font-size: var(--tekst-groot);
