@@ -555,6 +555,83 @@ a {
 }
 
 /* ==========================================================================
+   Anoniem merk: geblurde foto met een doorgestreept oog
+   ========================================================================== */
+.hidden-brand__grid {
+  display: grid;
+  gap: var(--ruimte-xl);
+}
+
+.hidden-brand__picture {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--kleur-kaart);
+}
+
+.hidden-brand__picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: hidden-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes hidden-drift {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1.3) translateX(-4%);
+  }
+}
+
+.hidden-brand__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: var(--ruimte-xxl);
+  height: var(--ruimte-xxl);
+  border-radius: 50%;
+  background: var(--kleur-schaduw-foto);
+  transform: translate(-50%, -50%);
+}
+
+.hidden-brand__icon svg {
+  width: var(--ruimte-l);
+  height: var(--ruimte-l);
+  fill: none;
+  stroke: var(--kleur-tekst);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hidden-brand__copy {
+  display: grid;
+  gap: var(--ruimte-m);
+}
+
+.hidden-brand__copy p {
+  max-width: var(--tekst-maat);
+  font-size: var(--tekst-groot);
+}
+
+.hidden-brand__copy .hidden-brand__note {
+  font-size: var(--tekst-basis);
+  color: var(--kleur-tekst-zacht);
+}
+
+@media (min-width: 960px) {
+  .hidden-brand__grid {
+    grid-template-columns: 7fr 5fr;
+    gap: var(--ruimte-xxl);
+    align-items: center;
+  }
+}
+
+/* ==========================================================================
    Home: de drie werkwoorden
    ========================================================================== */
 .verb {
@@ -1688,6 +1765,7 @@ a {
   }
 
   .js .fly__glyph,
+  .hidden-brand__picture img,
   .band__track.is-looping {
     animation: none;
   }
