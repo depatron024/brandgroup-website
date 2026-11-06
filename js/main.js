@@ -97,22 +97,6 @@ if (fly && !geenBeweging) {
   teken();
 }
 
-// Grote namen: de actieve regel bepaalt het beeld rechts
-document.querySelectorAll('[data-index]').forEach((index) => {
-  const links = [...index.querySelectorAll('[data-preview]')];
-  const beelden = [...index.querySelector('.index__frame').children];
-
-  function kies(link) {
-    links.forEach((l) => l.classList.toggle('is-active', l === link));
-    beelden.forEach((b, i) => b.classList.toggle('is-active', i === Number(link.dataset.preview)));
-  }
-
-  links.forEach((link) => {
-    link.addEventListener('pointerenter', () => kies(link));
-    link.addEventListener('focus', () => kies(link));
-  });
-});
-
 // Blokken schuiven zacht in beeld; blokken in dezelfde groep net na elkaar
 const revealItems = document.querySelectorAll('.reveal');
 
@@ -197,13 +181,30 @@ function kiesTab(tab) {
 tabs.forEach((tab, i) => {
   tab.addEventListener('click', () => kiesTab(tab));
   tab.addEventListener('keydown', (event) => {
-    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
-    const stap = event.key === 'ArrowRight' ? 1 : -1;
+    const vooruit = event.key === 'ArrowRight' || event.key === 'ArrowDown';
+    if (!vooruit && event.key !== 'ArrowLeft' && event.key !== 'ArrowUp') return;
+    event.preventDefault();
+    const stap = vooruit ? 1 : -1;
     const volgende = tabs[(i + stap + tabs.length) % tabs.length];
     kiesTab(volgende);
     volgende.focus();
   });
 });
+
+// Wisselaar: schuift vanzelf door tot iemand hem aanraakt
+const wisselaar = document.querySelector('[data-switch]');
+
+if (wisselaar && tabs.length && !geenBeweging) {
+  let huidig = 0;
+  const klok = setInterval(() => {
+    if (document.hidden) return;
+    const r = wisselaar.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) return;
+    huidig = (huidig + 1) % tabs.length;
+    kiesTab(tabs[huidig]);
+  }, 4500);
+  ['pointerdown', 'pointerenter', 'focusin'].forEach((soort) => wisselaar.addEventListener(soort, () => clearInterval(klok)));
+}
 
 // Tellers: getal loopt op tot de waarde in data-counter (leeg = "—" blijft staan)
 function telOp(el) {
