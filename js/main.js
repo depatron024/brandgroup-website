@@ -24,6 +24,7 @@ if (navToggle && siteNav) {
 
 // Home: vliegen door de tweede nul van 100x.
 // De SVG blijft scherp doordat we de viewBox verzetten in plaats van te schalen.
+// js/chrome.js leest window.honderdX om de iced-out letters op dezelfde plek te tekenen.
 const fly = document.querySelector('[data-fly]');
 
 if (fly && !geenBeweging) {
@@ -31,9 +32,7 @@ if (fly && !geenBeweging) {
   const letterX = fly.querySelector('[data-fly-x]');
   const intro = fly.querySelector('[data-fly-intro]');
   const statement = fly.querySelector('[data-fly-statement]');
-  const shade = fly.querySelector('[data-fly-shade]');
-  const picture = fly.querySelector('.fly__picture');
-  const nul = { x: 939, y: -360, a: 122, b: 342 }; // midden en halve maten van de opening in de nul
+  const nul = { x: 2195, y: -880, a: 87, b: 572 }; // midden en halve maten van de opening in de nul
   let maat = null;
   let gepland = false;
 
@@ -41,24 +40,24 @@ if (fly && !geenBeweging) {
     const b = mark.parentElement.clientWidth;
     const h = mark.parentElement.clientHeight;
     const staand = b < 700; // op de telefoon staat de x onder de 100
-    letterX.setAttribute('transform', staand ? 'translate(-425 560)' : '');
-    const woord = staand ? { links: 5, rechts: 1133, boven: -735, onder: 560 } : { links: 5, rechts: 1558, boven: -735, onder: 9 };
+    letterX.setAttribute('transform', staand ? 'translate(-972 1560)' : '');
+    const woord = staand ? { links: 25, rechts: 2661, boven: -1776, onder: 1560 } : { links: 25, rechts: 3633, boven: -1776, onder: 16 };
     const marge = staand ? 16 : 32;
-    const vrij = h - (staand ? 250 : 210) - marge;
+    const vrij = h - (staand ? 230 : 130) - marge;
     const start = Math.min((b - marge * 2) / (woord.rechts - woord.links), vrij / (woord.onder - woord.boven));
     const breedte = (woord.rechts - woord.links) * start;
     // Waar het midden van de nul op het scherm staat aan het begin
     const beginX = (b - breedte) / 2 + (nul.x - woord.links) * start;
     const beginY = h - marge - (woord.onder - nul.y) * start;
     // Eindschaal: de opening van de nul bedekt het hele scherm
-    const eind = Math.hypot(b / 2 / nul.a, h / 2 / nul.b) * 1.15;
-    maat = { b, h, start, eind, beginX, beginY };
+    const eind = Math.hypot(b / 2 / nul.a, h / 2 / nul.b) * 1.25;
+    maat = { b, h, start, eind, beginX, beginY, staand };
   }
 
   function teken() {
     gepland = false;
     if (!maat) meet();
-    const { b, h, start, eind, beginX, beginY } = maat;
+    const { b, h, start, eind, beginX, beginY, staand } = maat;
     const rect = fly.getBoundingClientRect();
     const p = beperk(-rect.top / (rect.height - h), 0, 1);
     const zoom = beperk(p / 0.72, 0, 1);
@@ -66,19 +65,18 @@ if (fly && !geenBeweging) {
     const schaal = start * Math.pow(eind / start, z);
     const cx = beginX + (b / 2 - beginX) * z;
     const cy = beginY + (h / 2 - beginY) * z;
-    mark.setAttribute('viewBox', `${nul.x - cx / schaal} ${nul.y - cy / schaal} ${b / schaal} ${h / schaal}`);
+    const x0 = nul.x - cx / schaal;
+    const y0 = nul.y - cy / schaal;
+    mark.setAttribute('viewBox', `${x0} ${y0} ${b / schaal} ${h / schaal}`);
     mark.style.visibility = zoom >= 1 ? 'hidden' : 'visible';
-    // Het kind staat eerst precies in de nul; onderweg schuift de foto naar het midden en groeit hij mee
-    const groei = Math.min(z * 2.2, 1);
-    picture.style.transform = `translate(${(beginX - b / 2) * (1 - z)}px, ${(beginY - h / 2 - h * 0.09) * (1 - z)}px) scale(${0.72 + 0.33 * groei})`;
+    window.honderdX = { x0, y0, schaal, staand, klaar: zoom >= 1 };
 
     const introUit = beperk(p / 0.12, 0, 1);
     intro.style.opacity = String(1 - introUit);
     intro.style.visibility = introUit >= 1 ? 'hidden' : 'visible';
-    const tekst = beperk((p - 0.74) / 0.14, 0, 1);
+    const tekst = beperk((p - 0.7) / 0.14, 0, 1);
     statement.style.opacity = String(tekst);
-    statement.style.transform = `translateY(${(1 - tekst) * 32}px)`;
-    shade.style.opacity = String(tekst);
+    statement.style.transform = `translateY(${(1 - tekst) * 32}px) scale(${1.15 - 0.15 * tekst})`;
   }
 
   function vraagTeken() {
@@ -106,21 +104,17 @@ if (multiplier) {
   const range = multiplier.querySelector('[data-multiplier-range]');
   const waarde = multiplier.querySelector('[data-multiplier-value]');
   const stappen = [...multiplier.querySelectorAll('[data-stage]')];
-  const bron = mosaic.querySelector('img').getAttribute('src');
   const tegels = [];
 
+  // 100 diamanten; ze gaan aan vanuit het midden
   for (let rij = 0; rij < 10; rij += 1) {
     for (let kolom = 0; kolom < 10; kolom += 1) {
-      const tegel = document.createElement('i');
-      tegel.className = 'mosaic__tile';
-      tegel.style.backgroundImage = `url("${bron}")`;
-      tegel.style.backgroundPosition = `${(kolom / 9) * 100}% ${(rij / 9) * 100}%`;
-      // De eerste tegel is de man vooraan aan de lopende band; daarna groeit het vanuit hem
-      tegels.push({ el: tegel, afstand: Math.hypot(kolom - 2, rij - 5) + (rij * 7 + kolom * 3) % 5 * 0.1 });
-      mosaic.appendChild(tegel);
+      const steen = document.createElement('i');
+      steen.className = 'mosaic__tile';
+      tegels.push({ el: steen, afstand: Math.hypot(kolom - 4.5, rij - 4.5) + ((rij * 7 + kolom * 3) % 5) * 0.1 });
+      mosaic.appendChild(steen);
     }
   }
-  mosaic.classList.add('is-ready');
   tegels.sort((a, b) => a.afstand - b.afstand);
 
   function zetWaarde(n) {
@@ -202,29 +196,30 @@ if ('IntersectionObserver' in window && !geenBeweging) {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
 
-// Foto's in de werkwoorden schuiven trager dan de pagina
-const verbFotos = [...document.querySelectorAll('.verb__picture')];
+// Grote regels schuiven horizontaal mee met het scrollen
+const loudRijen = [...document.querySelectorAll('[data-loud]')];
 
-if (verbFotos.length && !geenBeweging) {
-  let verbGepland = false;
+if (loudRijen.length && !geenBeweging) {
+  let loudGepland = false;
 
-  function zetVerbs() {
-    verbGepland = false;
-    verbFotos.forEach((foto) => {
-      const r = foto.parentElement.getBoundingClientRect();
+  function zetLoud() {
+    loudGepland = false;
+    loudRijen.forEach((rij) => {
+      const r = rij.getBoundingClientRect();
       if (r.bottom < 0 || r.top > window.innerHeight) return;
-      const v = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
-      foto.style.transform = `translateY(${v * -8}%) scale(1.2)`;
+      const v = (r.top - window.innerHeight) / window.innerHeight;
+      const richting = Number(rij.dataset.loud);
+      rij.style.transform = `translateX(${richting > 0 ? v * 22 : -30 - v * 22}%)`;
     });
   }
 
   window.addEventListener('scroll', () => {
-    if (!verbGepland) {
-      verbGepland = true;
-      requestAnimationFrame(zetVerbs);
+    if (!loudGepland) {
+      loudGepland = true;
+      requestAnimationFrame(zetLoud);
     }
   }, { passive: true });
-  zetVerbs();
+  zetLoud();
 }
 
 // Track record: de tijdlijn speelt af terwijl je scrolt (terug scrollen spoelt terug)

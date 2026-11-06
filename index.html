@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>100x Brands | Brand group</title>
-  <meta name="description" content="100x Brands is a brand group. We launch, acquire and scale consumer brands.">
+  <title>100x Brands | Young. Dutch. Hungry.</title>
+  <meta name="description" content="100x Brands is a young Dutch team building brands that own their niche. Times 100, always.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add('js');</script>
   <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
   <script src="js/main.js" defer></script>
+  <script src="js/chrome.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="logo" href="index.html" aria-current="page">100x <span>Brands</span></a>
+      <a class="logo" href="index.html" aria-current="page">100<span class="x">x</span> <span class="logo__rest">Brands</span></a>
 
       <nav class="site-nav" id="main-menu" aria-label="Main menu">
         <ul>
@@ -37,77 +38,70 @@
   </header>
 
   <main id="content">
-    <!-- Hero: je vliegt tijdens het scrollen door de tweede nul van 100x (js/main.js).
-         Zonder JS of met minder beweging blijft het woordbeeld stilstaan en volgt de tekst eronder. -->
+    <!-- Hero: 100x als iced-out object (js/chrome.js). Bij het scrollen vlieg je door de tweede nul (js/main.js).
+         TODO: zet in .fly__field een eigen video van team en kantoor zodra die er is. -->
     <section class="fly" data-fly>
       <div class="fly__stage">
-        <img class="fly__picture" src="images/window.jpg" width="1455" height="1920" alt="A small child in a white dress looks up at flowers through a shop window" decoding="async">
-        <div class="fly__shade" data-fly-shade aria-hidden="true"></div>
-        <svg class="fly__mark" data-fly-mark viewBox="-30 -760 1620 800" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">
-          <path class="fly__ground" fill-rule="evenodd" d="M-99999 -99999H99999V99999H-99999ZM939 -18Q1002 -18 1031.5 -103.0Q1061 -188 1061 -361Q1061 -534 1031.5 -618.5Q1002 -703 939 -703Q876 -703 846.5 -618.5Q817 -534 817 -361Q817 -188 846.5 -103.0Q876 -18 939 -18Z"/>
-          <g class="fly__glyph fly__glyph--1"><path d="M20 0Q5 0 5 -11Q5 -22 18 -23L57 -27Q78 -29 85.5 -37.0Q93 -45 93 -66V-660Q93 -677 83.5 -682.5Q74 -688 59 -686L23 -682Q5 -681 5 -695Q5 -706 21 -709Q74 -718 99.0 -726.5Q124 -735 136 -735Q157 -735 157 -713V-66Q157 -45 164.5 -37.0Q172 -29 193 -27L226 -23Q239 -22 239 -11Q239 0 224 0Z"/></g>
-          <g class="fly__glyph fly__glyph--2"><path d="M479 9Q421 9 377.0 -40.0Q333 -89 309.0 -173.0Q285 -257 285 -361Q285 -465 309.0 -548.5Q333 -632 377.0 -681.0Q421 -730 479 -730Q537 -730 580.5 -681.0Q624 -632 648.5 -548.5Q673 -465 673 -361Q673 -257 648.5 -173.0Q624 -89 580.5 -40.0Q537 9 479 9ZM479 -18Q542 -18 571.5 -103.0Q601 -188 601 -361Q601 -534 571.5 -618.5Q542 -703 479 -703Q416 -703 386.5 -618.5Q357 -534 357 -361Q357 -188 386.5 -103.0Q416 -18 479 -18Z"/></g>
-          <g class="fly__glyph fly__glyph--2"><path d="M939 9Q881 9 837.0 -40.0Q793 -89 769.0 -173.0Q745 -257 745 -361Q745 -465 769.0 -548.5Q793 -632 837.0 -681.0Q881 -730 939 -730Q997 -730 1040.5 -681.0Q1084 -632 1108.5 -548.5Q1133 -465 1133 -361Q1133 -257 1108.5 -173.0Q1084 -89 1040.5 -40.0Q997 9 939 9ZM939 -18Q1002 -18 1031.5 -103.0Q1061 -188 1061 -361Q1061 -534 1031.5 -618.5Q1002 -703 939 -703Q876 -703 846.5 -618.5Q817 -534 817 -361Q817 -188 846.5 -103.0Q876 -18 939 -18Z"/></g>
-          <g data-fly-x><g class="fly__glyph fly__glyph--3"><path d="M1396 0Q1382 0 1382 -10Q1382 -20 1395 -23L1410 -26Q1440 -33 1426 -59L1355 -199Q1351 -206 1345.5 -206.5Q1340 -207 1336 -199L1271 -77Q1249 -35 1278 -29L1304 -23Q1317 -20 1317 -10Q1317 0 1303 0H1175Q1161 0 1161 -11Q1161 -22 1173 -25L1185 -28Q1204 -33 1217.0 -43.5Q1230 -54 1250 -91L1324 -227Q1332 -242 1326 -256L1231 -443Q1220 -466 1212.5 -474.0Q1205 -482 1195 -484L1180 -487Q1167 -490 1167 -500Q1167 -510 1181 -510H1329Q1343 -510 1343 -500Q1343 -490 1330 -487L1315 -484Q1285 -477 1299 -451L1367 -319Q1371 -312 1376.0 -312.0Q1381 -312 1385 -319L1445 -433Q1467 -475 1438 -481L1412 -487Q1399 -490 1399 -500Q1399 -510 1413 -510H1541Q1555 -510 1555 -499Q1555 -488 1543 -485L1531 -482Q1512 -478 1499.0 -467.5Q1486 -457 1466 -419L1397 -291Q1388 -276 1396 -260L1494 -67Q1506 -43 1513.0 -35.5Q1520 -28 1530 -26L1545 -23Q1558 -20 1558 -10Q1558 0 1544 0Z"/></g></g>
+        <div class="fly__field" aria-hidden="true"></div>
+        <svg class="fly__mark" data-fly-mark viewBox="-40 -1840 3720 1900" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">
+          <path class="fly__ground" fill-rule="evenodd" d="M-99999 -99999H99999V99999H-99999ZM2195 -308Q2236 -308 2259.0 -345.0Q2282 -382 2282 -428V-1297Q2282 -1359 2268.5 -1405.5Q2255 -1452 2195 -1452Q2135 -1452 2121.5 -1405.5Q2108 -1359 2108 -1297V-428Q2108 -382 2131.5 -345.0Q2155 -308 2195 -308Z"/>
+          <g class="fly__glyph fly__glyph--1"><path d="M243 0V-1356Q207 -1313 144.0 -1286.5Q81 -1260 25 -1260V-1541Q78 -1549 139.0 -1575.5Q200 -1602 252.5 -1648.5Q305 -1695 333 -1761H616V0Z"/></g>
+          <g class="fly__glyph fly__glyph--2"><path d="M1183 16Q960 16 838.5 -109.0Q717 -234 717 -469V-1263Q717 -1511 832.5 -1643.5Q948 -1776 1183 -1776Q1419 -1776 1534.0 -1643.5Q1649 -1511 1649 -1263V-469Q1649 -234 1528.0 -109.0Q1407 16 1183 16ZM1183 -308Q1224 -308 1247.0 -345.0Q1270 -382 1270 -428V-1297Q1270 -1359 1256.5 -1405.5Q1243 -1452 1183 -1452Q1123 -1452 1109.5 -1405.5Q1096 -1359 1096 -1297V-428Q1096 -382 1119.5 -345.0Q1143 -308 1183 -308Z"/></g>
+          <g class="fly__glyph fly__glyph--2"><path d="M2195 16Q1972 16 1850.5 -109.0Q1729 -234 1729 -469V-1263Q1729 -1511 1844.5 -1643.5Q1960 -1776 2195 -1776Q2431 -1776 2546.0 -1643.5Q2661 -1511 2661 -1263V-469Q2661 -234 2540.0 -109.0Q2419 16 2195 16ZM2195 -308Q2236 -308 2259.0 -345.0Q2282 -382 2282 -428V-1297Q2282 -1359 2268.5 -1405.5Q2255 -1452 2195 -1452Q2135 -1452 2121.5 -1405.5Q2108 -1359 2108 -1297V-428Q2108 -382 2131.5 -345.0Q2155 -308 2195 -308Z"/></g>
+          <g data-fly-x><g class="fly__glyph fly__glyph--3"><path d="M2709 0 2984 -806 2734 -1501H3099L3228 -1137L3355 -1501H3621L3363 -759L3633 0H3274L3122 -422L2980 0Z"/></g></g>
         </svg>
+        <canvas class="fly__chrome" data-fly-chrome aria-hidden="true"></canvas>
         <div class="container fly__intro" data-fly-intro>
-          <div>
-            <h1 class="fly__title">We launch, acquire and scale consumer brands.</h1>
+          <div class="fly__lead">
+            <h1 class="fly__title">Young. Dutch. Hungry.</h1>
+            <p>We build brands that own their niche.</p>
           </div>
           <a class="button" href="brands.html">See our brands</a>
         </div>
         <div class="container fly__statement" data-fly-statement>
-          <h2>We build brands <em>that last.</em></h2>
-          <p>One team and one engine behind every brand, from first customer to category leader.</p>
+          <h2>Short term is for dumps.</h2>
+          <p>We build what stays.</p>
         </div>
       </div>
     </section>
 
-    <!-- Anoniem merk: naam en beeld bewust verborgen. images/hidden-brand.jpg is vooraf geblurd, dus het origineel staat niet online.
-         TODO: vervang de bron door een eigen merkfoto (ook vooraf blurren, nooit met CSS). Bron en periode van de claim vastleggen. -->
+    <!-- Anoniem merk: naam en beeld bewust verborgen. images/hidden-brand.jpg is een vooraf gemaakte blur.
+         TODO: vervang door een eigen merkfoto (vooraf blurren, nooit met CSS). Bron en periode van de claim vastleggen. -->
     <section class="section hidden-brand">
       <div class="container hidden-brand__grid">
         <div class="hidden-brand__picture reveal">
-          <img src="images/hidden-brand.jpg" width="1400" height="1046" alt="Blurred image of a brand whose name is hidden" loading="lazy" decoding="async">
+          <img src="images/hidden-brand.jpg" width="1400" height="1050" alt="Blurred image of a brand whose name is hidden" loading="lazy" decoding="async">
           <span class="hidden-brand__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false"><path d="M3 3l18 18"/><path d="M10.6 5.2A9.8 9.8 0 0 1 12 5c5.5 0 9 5.5 9.5 7a14 14 0 0 1-3 3.9M6.4 6.5A14 14 0 0 0 2.5 12c.5 1.5 4 7 9.5 7a9.7 9.7 0 0 0 4.6-1.2"/><path d="M9.9 9.9a3 3 0 0 0 4.200 4.200"/></svg>
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M3 3l18 18"/><path d="M10.6 5.2A9.8 9.8 0 0 1 12 5c5.5 0 9 5.5 9.5 7a14 14 0 0 1-3 3.9M6.4 6.5A14 14 0 0 0 2.5 12c.5 1.5 4 7 9.5 7a9.7 9.7 0 0 0 4.6-1.2"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
           </span>
         </div>
         <div class="hidden-brand__copy">
-          <h2 class="reveal">8 figures <em>in the first year.</em></h2>
+          <h2 class="reveal">8 figures in the <em>first year.</em></h2>
           <p class="reveal">Became the biggest in our market. With a small team.</p>
           <p class="hidden-brand__note reveal">Name and visuals hidden.</p>
         </div>
       </div>
     </section>
 
-    <!-- Drie werkwoorden: het woord blijft staan terwijl de foto eronderdoor schuift -->
-    <section class="verb">
-      <img class="verb__picture" src="images/workshop.jpg" width="1503" height="1184" alt="Three men in a small soda-water workshop, 1938, with bottles on the bench" loading="lazy" decoding="async">
-      <div class="verb__hold"><h2 class="verb__word">Launch</h2></div>
-      <div class="container verb__text">
-        <p>We start brands from a name and a first product, and we run the creative, the media and the stock ourselves.</p>
-        <a class="link" href="brands.html">See the brands</a>
-      </div>
+    <!-- Grote regels die meebewegen met het scrollen -->
+    <section class="loud">
+      <h2 class="container loud__head reveal">Everywhere.</h2>
+      <p class="loud__row" data-loud="1">Every shelf · Every channel · Every country · Every shelf · Every channel · Every country</p>
+      <p class="loud__row loud__row--accent" data-loud="-1">In stores · On every feed · Worldwide · In stores · On every feed · Worldwide</p>
+      <p class="loud__row" data-loud="1">Built to stay · No short term · Built to stay · No short term · Built to stay</p>
     </section>
-    <section class="verb">
-      <img class="verb__picture" src="images/benches.jpg" width="1920" height="1326" alt="Workers at their benches in a workshop full of belts and machines, 1920" loading="lazy" decoding="async">
-      <div class="verb__hold"><h2 class="verb__word">Acquire</h2></div>
-      <div class="container verb__text">
-        <p>Some of the best brands were started by someone who now wants a partner, or a way out. We buy the ones that fit.</p>
-        <a class="link" href="work-with-us.html">Sell us your brand</a>
-      </div>
-    </section>
-    <section class="verb">
-      <img class="verb__picture" src="images/line.jpg" width="1920" height="1386" alt="Workers side by side along an assembly line, 1913" loading="lazy" decoding="async">
-      <div class="verb__hold"><h2 class="verb__word">Scale</h2></div>
-      <div class="container verb__text">
-        <p>Every brand plugs into the same engine for growth, operations and brand, so what works once works everywhere.</p>
-        <a class="link" href="how-we-build.html">See how we build</a>
+
+    <section class="section creed">
+      <div class="container creed__grid">
+        <h2 class="reveal">We don't do <em>corporate.</em></h2>
+        <div class="creed__copy">
+          <p class="reveal">One office in the Netherlands. A team of strong young people who go all in. No layers, no decks, no waiting.</p>
+          <p class="reveal">The only thing we take from the old days: companies were built to last. Everything else we do our own way, and we're not shy about showing it.</p>
+        </div>
       </div>
     </section>
 
-    <!-- De vermenigvuldiger: schuif van 1x naar 100x, de foto vult zich tegel voor tegel (js/main.js).
+    <!-- De vermenigvuldiger: schuif van 1x naar 100x en de diamanten gaan aan (js/main.js).
          TODO: teksten per stap samen bevestigen. -->
     <section class="section multiplier" data-multiplier>
       <div class="container multiplier__grid">
@@ -117,38 +111,30 @@
           <label class="multiplier__label" for="multiple">Size of the brand</label>
           <input class="multiplier__range" id="multiple" type="range" min="1" max="100" step="1" value="100" data-multiplier-range>
           <ol class="stages">
-            <li data-stage="1"><b>1x</b> One product that people buy twice.</li>
-            <li data-stage="5"><b>5x</b> Creative volume. The ads that worked stop working, so the studio ships every week.</li>
-            <li data-stage="10"><b>10x</b> Stock and cash. Buying ahead without betting the company.</li>
-            <li data-stage="25"><b>25x</b> A second country. Language, returns and support that hold up.</li>
-            <li data-stage="50"><b>50x</b> A team instead of a founder. Decisions stop waiting for one person.</li>
-            <li data-stage="100"><b>100x</b> A brand. People search for the name, not the offer.</li>
+            <li data-stage="1"><b>1x</b> One product. People buy it twice.</li>
+            <li data-stage="5"><b>5x</b> The studio ships new ads every week. Old ones die fast.</li>
+            <li data-stage="10"><b>10x</b> Stock and cash. Buy ahead, never bet the company.</li>
+            <li data-stage="25"><b>25x</b> New countries. Same machine.</li>
+            <li data-stage="50"><b>50x</b> A team that moves without waiting for one person.</li>
+            <li data-stage="100"><b>100x</b> Every shelf. Every channel. Everywhere.</li>
           </ol>
         </div>
-        <div class="mosaic" data-mosaic>
-          <img class="mosaic__picture" src="images/line.jpg" width="1920" height="1386" alt="Workers side by side along an assembly line, 1913" loading="lazy" decoding="async">
-        </div>
+        <div class="mosaic" data-mosaic aria-hidden="true"></div>
       </div>
     </section>
 
-    <!-- Grote namen als inhoudsopgave: elke regel gaat naar een eigen pagina -->
-    <section class="section index-section">
+    <!-- Het huis van 100x. Alleen Brands is nu actief; de rest komt eraan. -->
+    <section class="section house">
       <div class="container">
-        <h2 class="index-section__head reveal">Where to <em>next</em></h2>
-        <div class="index" data-index>
-          <ul class="index__list">
-            <li><a class="index__link is-active" href="brands.html" data-preview="0"><img class="index__phone" src="images/storefront.jpg" width="1319" height="1920" alt="Two shopkeepers in front of their store, around 1900" loading="lazy" decoding="async"><span class="index__name">Brands</span><span class="index__note">The portfolio and the numbers</span></a></li>
-            <li><a class="index__link" href="how-we-build.html" data-preview="1"><img class="index__phone" src="images/factory.jpg" width="1301" height="1920" alt="A man standing beside a long row of machines, 1920" loading="lazy" decoding="async"><span class="index__name">How we build</span><span class="index__note">One engine, three parts</span></a></li>
-            <li><a class="index__link" href="founders.html" data-preview="2"><img class="index__phone" src="images/sign-painter.jpg" width="1469" height="1920" alt="A sign painter lettering a name on a wall by hand" loading="lazy" decoding="async"><span class="index__name">Founders</span><span class="index__note">Who does the work</span></a></li>
-            <li><a class="index__link" href="work-with-us.html" data-preview="3"><img class="index__phone" src="images/workshop.jpg" width="1503" height="1184" alt="Three men in a small soda-water workshop, 1938, with bottles on the bench" loading="lazy" decoding="async"><span class="index__name">Work with us</span><span class="index__note">Sell, get advice, invest or stock</span></a></li>
-          </ul>
-          <div class="index__frame" aria-hidden="true">
-            <img class="is-active" src="images/storefront.jpg" width="1319" height="1920" alt="" loading="lazy" decoding="async">
-            <img src="images/factory.jpg" width="1301" height="1920" alt="" loading="lazy" decoding="async">
-            <img src="images/sign-painter.jpg" width="1469" height="1920" alt="" loading="lazy" decoding="async">
-            <img src="images/workshop.jpg" width="1503" height="1184" alt="" loading="lazy" decoding="async">
-          </div>
-        </div>
+        <h2 class="house__head reveal">100<span class="x">x</span> is the <em>motto.</em></h2>
+        <p class="house__intro reveal">Times 100, in everything we start. Brands come first.</p>
+        <ul class="house__list">
+          <li class="reveal"><a class="house__row house__row--live" href="brands.html"><span>100<span class="x">x</span> Brands</span><small>Live</small></a></li>
+          <li class="reveal"><div class="house__row"><span>100<span class="x">x</span> Agency</span><small>Next</small></div></li>
+          <li class="reveal"><div class="house__row"><span>100<span class="x">x</span> Real Estate</span><small>Next</small></div></li>
+          <li class="reveal"><div class="house__row"><span>100<span class="x">x</span> Projects</span><small>Next</small></div></li>
+          <li class="reveal"><div class="house__row"><span>100<span class="x">x</span> Investments</span><small>Next</small></div></li>
+        </ul>
       </div>
     </section>
   </main>
@@ -156,7 +142,7 @@
   <footer class="site-footer">
     <div class="container">
       <div class="site-footer__close">
-        <h2>Building something <em>that fits?</em></h2>
+        <h2>Times 100. Always.</h2>
         <a class="button button--dark" href="contact.html">Get in touch</a>
       </div>
       <ul class="site-footer__links">
@@ -165,11 +151,10 @@
         <li><a href="founders.html">Founders</a></li>
         <li><a href="work-with-us.html">Work with us</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="credits.html">Picture credits</a></li>
       </ul>
-      <p class="site-footer__copy">&copy; <span data-year></span> 100x Brands</p>
+      <p class="site-footer__copy">&copy; <span data-year></span> 100x Brands. Built in the Netherlands.</p>
     </div>
-    <svg class="site-footer__mark" viewBox="0 -735 1563 680" aria-hidden="true" focusable="false"><path d="M20 0Q5 0 5 -11Q5 -22 18 -23L57 -27Q78 -29 85.5 -37.0Q93 -45 93 -66V-660Q93 -677 83.5 -682.5Q74 -688 59 -686L23 -682Q5 -681 5 -695Q5 -706 21 -709Q74 -718 99.0 -726.5Q124 -735 136 -735Q157 -735 157 -713V-66Q157 -45 164.5 -37.0Q172 -29 193 -27L226 -23Q239 -22 239 -11Q239 0 224 0Z"/><path d="M479 9Q421 9 377.0 -40.0Q333 -89 309.0 -173.0Q285 -257 285 -361Q285 -465 309.0 -548.5Q333 -632 377.0 -681.0Q421 -730 479 -730Q537 -730 580.5 -681.0Q624 -632 648.5 -548.5Q673 -465 673 -361Q673 -257 648.5 -173.0Q624 -89 580.5 -40.0Q537 9 479 9ZM479 -18Q542 -18 571.5 -103.0Q601 -188 601 -361Q601 -534 571.5 -618.5Q542 -703 479 -703Q416 -703 386.5 -618.5Q357 -534 357 -361Q357 -188 386.5 -103.0Q416 -18 479 -18Z"/><path d="M939 9Q881 9 837.0 -40.0Q793 -89 769.0 -173.0Q745 -257 745 -361Q745 -465 769.0 -548.5Q793 -632 837.0 -681.0Q881 -730 939 -730Q997 -730 1040.5 -681.0Q1084 -632 1108.5 -548.5Q1133 -465 1133 -361Q1133 -257 1108.5 -173.0Q1084 -89 1040.5 -40.0Q997 9 939 9ZM939 -18Q1002 -18 1031.5 -103.0Q1061 -188 1061 -361Q1061 -534 1031.5 -618.5Q1002 -703 939 -703Q876 -703 846.5 -618.5Q817 -534 817 -361Q817 -188 846.5 -103.0Q876 -18 939 -18Z"/><path d="M1396 0Q1382 0 1382 -10Q1382 -20 1395 -23L1410 -26Q1440 -33 1426 -59L1355 -199Q1351 -206 1345.5 -206.5Q1340 -207 1336 -199L1271 -77Q1249 -35 1278 -29L1304 -23Q1317 -20 1317 -10Q1317 0 1303 0H1175Q1161 0 1161 -11Q1161 -22 1173 -25L1185 -28Q1204 -33 1217.0 -43.5Q1230 -54 1250 -91L1324 -227Q1332 -242 1326 -256L1231 -443Q1220 -466 1212.5 -474.0Q1205 -482 1195 -484L1180 -487Q1167 -490 1167 -500Q1167 -510 1181 -510H1329Q1343 -510 1343 -500Q1343 -490 1330 -487L1315 -484Q1285 -477 1299 -451L1367 -319Q1371 -312 1376.0 -312.0Q1381 -312 1385 -319L1445 -433Q1467 -475 1438 -481L1412 -487Q1399 -490 1399 -500Q1399 -510 1413 -510H1541Q1555 -510 1555 -499Q1555 -488 1543 -485L1531 -482Q1512 -478 1499.0 -467.5Q1486 -457 1466 -419L1397 -291Q1388 -276 1396 -260L1494 -67Q1506 -43 1513.0 -35.5Q1520 -28 1530 -26L1545 -23Q1558 -20 1558 -10Q1558 0 1544 0Z"/></svg>
+    <svg class="site-footer__mark" viewBox="0 -1776 3640 1640" aria-hidden="true" focusable="false"><path d="M243 0V-1356Q207 -1313 144.0 -1286.5Q81 -1260 25 -1260V-1541Q78 -1549 139.0 -1575.5Q200 -1602 252.5 -1648.5Q305 -1695 333 -1761H616V0Z"/><path d="M1183 16Q960 16 838.5 -109.0Q717 -234 717 -469V-1263Q717 -1511 832.5 -1643.5Q948 -1776 1183 -1776Q1419 -1776 1534.0 -1643.5Q1649 -1511 1649 -1263V-469Q1649 -234 1528.0 -109.0Q1407 16 1183 16ZM1183 -308Q1224 -308 1247.0 -345.0Q1270 -382 1270 -428V-1297Q1270 -1359 1256.5 -1405.5Q1243 -1452 1183 -1452Q1123 -1452 1109.5 -1405.5Q1096 -1359 1096 -1297V-428Q1096 -382 1119.5 -345.0Q1143 -308 1183 -308Z"/><path d="M2195 16Q1972 16 1850.5 -109.0Q1729 -234 1729 -469V-1263Q1729 -1511 1844.5 -1643.5Q1960 -1776 2195 -1776Q2431 -1776 2546.0 -1643.5Q2661 -1511 2661 -1263V-469Q2661 -234 2540.0 -109.0Q2419 16 2195 16ZM2195 -308Q2236 -308 2259.0 -345.0Q2282 -382 2282 -428V-1297Q2282 -1359 2268.5 -1405.5Q2255 -1452 2195 -1452Q2135 -1452 2121.5 -1405.5Q2108 -1359 2108 -1297V-428Q2108 -382 2131.5 -345.0Q2155 -308 2195 -308Z"/><path d="M2709 0 2984 -806 2734 -1501H3099L3228 -1137L3355 -1501H3621L3363 -759L3633 0H3274L3122 -422L2980 0Z"/></svg>
   </footer>
 </body>
 </html>
