@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brands | 100x Brands</title>
+  <meta name="description" content="The brands of 100x Brands, and the numbers behind them.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="index.html">100<span class="x">x</span> <span class="logo__rest">Brands</span></a>
+
+      <nav class="site-nav" id="main-menu" aria-label="Main menu">
+        <ul>
+          <li><a href="brands.html" aria-current="page">Brands</a></li>
+          <li><a href="how-we-build.html">How we build</a></li>
+          <li><a href="founders.html">Founders</a></li>
+          <li><a href="work-with-us.html">Work with us</a></li>
+        </ul>
+        <a class="button button--small site-nav__cta" href="contact.html">Get in touch</a>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="page-head">
+      <div class="container page-head__inner">
+        <h1 class="reveal">Brands that <em>own</em> their niche</h1>
+        <p class="reveal">Each one with its own name, face and community. Each one built to be number one where it plays.</p>
+      </div>
+    </section>
+
+    <!-- Anoniem merk: naam en beeld bewust verborgen. images/hidden-brand.jpg is een vooraf gemaakte blur.
+         TODO: vervang door een eigen merkfoto (vooraf blurren, nooit met CSS). Bron en periode van de claim vastleggen. -->
+    <section class="section hidden-brand">
+      <div class="container hidden-brand__grid">
+        <div class="hidden-brand__picture reveal">
+          <img src="images/hidden-brand.jpg" width="1400" height="1050" alt="Blurred image of a brand whose name is hidden" loading="lazy" decoding="async">
+          <span class="hidden-brand__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M3 3l18 18"/><path d="M10.6 5.2A9.8 9.8 0 0 1 12 5c5.5 0 9 5.5 9.5 7a14 14 0 0 1-3 3.9M6.4 6.5A14 14 0 0 0 2.5 12c.5 1.5 4 7 9.5 7a9.7 9.7 0 0 0 4.6-1.2"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+          </span>
+        </div>
+        <div class="hidden-brand__copy">
+          <h2 class="reveal">8 figures in the <em>first year.</em></h2>
+          <p class="reveal">Became the biggest in our market. With a small team.</p>
+          <p class="hidden-brand__note reveal">Name and visuals hidden.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO: echte merken invullen: naam, categorie, jaar, beeld (images/) en link naar de merksite -->
+    <section class="section">
+      <div class="container">
+        <h2 class="index-section__head reveal">The <em>portfolio</em></h2>
+        <div class="index" data-index>
+          <ul class="index__list">
+            <li><a class="index__link is-active" href="#" data-preview="0"><span class="poster poster--2" data-name="Two" aria-hidden="true"></span><span class="index__name">Brand Two</span><span class="index__note">[Category] · [since]</span></a></li>
+            <li><a class="index__link" href="#" data-preview="1"><span class="poster poster--3" data-name="Three" aria-hidden="true"></span><span class="index__name">Brand Three</span><span class="index__note">[Category] · [since]</span></a></li>
+            <li><a class="index__link" href="work-with-us.html" data-preview="2"><span class="poster poster--1" data-name="You?" aria-hidden="true"></span><span class="index__name">Yours?</span><span class="index__note">We buy brands that fit</span></a></li>
+          </ul>
+          <div class="index__frame" aria-hidden="true">
+            <span class="poster poster--2 is-active" data-name="Two"></span>
+            <span class="poster poster--3" data-name="Three"></span>
+            <span class="poster poster--1" data-name="You?"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO: echte cijfers. data-counter = eindgetal (alleen cijfers), data-prefix/data-suffix = tekst ervoor/erna.
+         Zolang data-counter leeg is, blijft "—" staan. Altijd bron en periode invullen. -->
+    <section class="section">
+      <div class="container figures">
+        <h2 class="reveal">What we've <em>built</em></h2>
+        <dl class="figures__list">
+          <div class="reveal"><dt data-counter="" data-prefix="€" data-suffix="M">—</dt><dd>Group revenue over the last twelve months.</dd></div>
+          <div class="reveal"><dt data-counter="">—</dt><dd>Brands in the group, built or bought.</dd></div>
+          <div class="reveal"><dt data-counter="" data-suffix="k">—</dt><dd>Customers who have ordered from one of them.</dd></div>
+          <div class="reveal"><dt data-counter="">—</dt><dd>Countries we ship to.</dd></div>
+        </dl>
+        <p class="figures__source">Source and period: [fill in, e.g. "Shopify, Nov 2025 – Oct 2026"]</p>
+      </div>
+    </section>
+
+    <!-- Rollende band. TODO: alleen echte mijlpalen. js/main.js verdubbelt de lijst zodat hij doorloopt. -->
+    <div class="band" aria-label="Recent milestones">
+      <ul class="band__track">
+        <li>[Milestone: e.g. Brand One launched in a new country]</li>
+        <li>[Milestone: e.g. 100,000th order shipped]</li>
+        <li>[Milestone: e.g. Brand Two joined the group]</li>
+        <li>[Milestone: e.g. now in 400 stores]</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__close">
+        <h2>Times 100. Always.</h2>
+        <a class="button button--dark" href="contact.html">Get in touch</a>
+      </div>
+      <ul class="site-footer__links">
+        <li><a href="brands.html">Brands</a></li>
+        <li><a href="how-we-build.html">How we build</a></li>
+        <li><a href="founders.html">Founders</a></li>
+        <li><a href="work-with-us.html">Work with us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="site-footer__copy">&copy; <span data-year></span> 100x Brands. Built in the Netherlands.</p>
+    </div>
+    <svg class="site-footer__mark" viewBox="0 -1776 3640 1640" aria-hidden="true" focusable="false"><path d="M243 0V-1356Q207 -1313 144.0 -1286.5Q81 -1260 25 -1260V-1541Q78 -1549 139.0 -1575.5Q200 -1602 252.5 -1648.5Q305 -1695 333 -1761H616V0Z"/><path d="M1183 16Q960 16 838.5 -109.0Q717 -234 717 -469V-1263Q717 -1511 832.5 -1643.5Q948 -1776 1183 -1776Q1419 -1776 1534.0 -1643.5Q1649 -1511 1649 -1263V-469Q1649 -234 1528.0 -109.0Q1407 16 1183 16ZM1183 -308Q1224 -308 1247.0 -345.0Q1270 -382 1270 -428V-1297Q1270 -1359 1256.5 -1405.5Q1243 -1452 1183 -1452Q1123 -1452 1109.5 -1405.5Q1096 -1359 1096 -1297V-428Q1096 -382 1119.5 -345.0Q1143 -308 1183 -308Z"/><path d="M2195 16Q1972 16 1850.5 -109.0Q1729 -234 1729 -469V-1263Q1729 -1511 1844.5 -1643.5Q1960 -1776 2195 -1776Q2431 -1776 2546.0 -1643.5Q2661 -1511 2661 -1263V-469Q2661 -234 2540.0 -109.0Q2419 16 2195 16ZM2195 -308Q2236 -308 2259.0 -345.0Q2282 -382 2282 -428V-1297Q2282 -1359 2268.5 -1405.5Q2255 -1452 2195 -1452Q2135 -1452 2121.5 -1405.5Q2108 -1359 2108 -1297V-428Q2108 -382 2131.5 -345.0Q2155 -308 2195 -308Z"/><path d="M2709 0 2984 -806 2734 -1501H3099L3228 -1137L3355 -1501H3621L3363 -759L3633 0H3274L3122 -422L2980 0Z"/></svg>
+  </footer>
+</body>
+</html>
