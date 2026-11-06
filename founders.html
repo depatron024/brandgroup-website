@@ -7,7 +7,7 @@
   <meta name="description" content="The founders of 100x Brands and the track record since day one.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Inter:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add('js');</script>
   <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
@@ -18,7 +18,7 @@
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="logo" href="index.html">100x Brands</a>
+      <a class="logo merk" href="index.html">100x Brands</a>
 
       <nav class="site-nav" id="main-menu" aria-label="Main menu">
         <ul>
@@ -37,50 +37,35 @@
   </header>
 
   <main id="content">
-    <!-- TODO: namen, rollen, portretten (images/) en een regel per persoon -->
     <section class="page-head">
       <div class="container page-head__inner">
-        <h1 class="reveal">The <em>founders</em></h1>
+        <h1 class="merk reveal">The founders</h1>
         <p class="reveal">We have taken brands from first product to scale. These are the people who do it.</p>
       </div>
     </section>
-    <section class="people">
-      <div class="container people__list">
-          <article class="person reveal">
-            <div class="person__photo" aria-hidden="true"></div>
-            <h2>Name Surname</h2>
-            <p class="person__role">Growth &amp; ads</p>
-            <p>What this person has built: which brands, what growth, where their strength lies.</p>
-          </article>
-          <article class="person reveal">
-            <div class="person__photo" aria-hidden="true"></div>
-            <h2>Name Surname</h2>
-            <p class="person__role">Product &amp; operations</p>
-            <p>What this person has built: which brands, what growth, where their strength lies.</p>
-          </article>
-          <article class="person reveal">
-            <div class="person__photo" aria-hidden="true"></div>
-            <h2>Name Surname</h2>
-            <p class="person__role">Brand &amp; creative</p>
-            <p>What this person has built: which brands, what growth, where their strength lies.</p>
-          </article>
+    <!-- TODO: namen, rollen, portretten (images/) en een regel per persoon -->
+    <section class="section section--tight">
+      <div class="container team">
+        <article class="person reveal"><div class="person__photo" aria-hidden="true"></div><h3>Name Surname</h3><p class="person__role">Growth &amp; ads</p><p>What this person has built: which brands, what growth, where their strength lies.</p></article>
+        <article class="person reveal"><div class="person__photo" aria-hidden="true"></div><h3>Name Surname</h3><p class="person__role">Product &amp; operations</p><p>What this person has built: which brands, what growth, where their strength lies.</p></article>
+        <article class="person reveal"><div class="person__photo" aria-hidden="true"></div><h3>Name Surname</h3><p class="person__role">Brand &amp; creative</p><p>What this person has built: which brands, what growth, where their strength lies.</p></article>
       </div>
     </section>
 
     <!-- Track record. TODO: één blokje per maand sinds de start en de vier hoogtepunten invullen. De maandnummers zijn voorbeelden. -->
     <section class="section" id="track-record">
       <div class="container">
-        <h2 class="engine__head reveal">Every month <em>since day one</em></h2>
-        <div class="highlights">
-          <article class="highlight" data-month="3"><b>[Month year]</b><p>First brand launched</p></article>
-          <article class="highlight" data-month="8"><b>[Month year]</b><p>First big revenue milestone</p></article>
-          <article class="highlight" data-month="14"><b>[Month year]</b><p>Second brand joined</p></article>
-          <article class="highlight" data-month="24"><b>Now</b><p>[Where we stand today]</p></article>
+        <div class="head reveal"><h2>Every month since day one</h2></div>
+        <div class="record reveal">
+          <div class="tracker" data-tracker aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="tracker__axis"><span>[Start month]</span><span class="tracker__now" data-tracker-label>Month 1</span><span>Now</span></div>
+          <div class="highlights">
+            <article class="highlight" data-month="3"><b>[Month year]</b><p>First brand launched</p></article>
+            <article class="highlight" data-month="8"><b>[Month year]</b><p>First big revenue milestone</p></article>
+            <article class="highlight" data-month="14"><b>[Month year]</b><p>Second brand joined</p></article>
+            <article class="highlight" data-month="24"><b>Now</b><p>[Where we stand today]</p></article>
+          </div>
         </div>
-        <div class="tracker" data-tracker aria-hidden="true">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
-        <div class="tracker__axis"><span>[Start month]</span><span class="tracker__now" data-tracker-label>Month 1</span><span>Now</span></div>
       </div>
     </section>
   </main>
@@ -88,7 +73,7 @@
   <footer class="site-footer">
     <div class="container">
       <div class="site-footer__close">
-        <h2>Building something that fits?</h2>
+        <h2 class="merk">Building something that fits?</h2>
         <a class="button button--dark" href="contact.html">Get in touch</a>
       </div>
       <ul class="site-footer__links">

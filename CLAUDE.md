@@ -9,9 +9,9 @@ Eerste invulling (voorstel, nog te bevestigen).
 - **Naam:** 100x Brands. Gaan we later ook andere dingen doen dan merken, dan wordt het mogelijk "100x Group".
 - **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over en adviseren andere founders met onze systemen. Nog geen branche op de site noemen.
 - **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
-- **Sfeer:** luxe en flex in goud: 100x in gepolijst goud, daarna vlieg je door de nul. Klassieke Didone-koppen, gecentreerd, wisselend warm zwart en ivoor. De flex zit in beeld en resultaten, niet in stoere zinnen.
+- **Sfeer:** luxe en flex in goud: 100x in gepolijst goud, daarna vlieg je door de nul. Klassieke Didone-koppen, gecentreerd, wisselend warm zwart en ivoor. De flex zit in beeld en resultaten, niet in stoere zinnen. Uitleg moet in één oogopslag duidelijk zijn: een groot wisselend scherm en een groepsoverzicht, koppen links (zoals 187n).
 - **Kleuren:** warm zwart (#0c0a07), ivoor (#f4eddf), goud als accent (#c9a45c).
-- **Lettertypes:** Bodoni Moda voor koppen, Inter voor tekst (Google Fonts).
+- **Lettertypes:** Bodoni Moda alleen voor groot merkwerk (logo, paginatitels, grote statements); Inter voor alles wat je moet lezen (Google Fonts).
 - **Toon van de teksten:** kort en feitelijk, zonder slogans of grootspraak. Cijfers alleen met bron en periode.
 - **Niet noemen:** andere bedrijven of merken van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken.
 
@@ -29,6 +29,7 @@ Kijk altijd eerst in de map `/referenties` voordat je iets ontwerpt of de stijl 
 
 - Elke pagina is een eigen `.html` in de root (`index`, `brands`, `how-we-build`, `founders`, `work-with-us`, `contact`); stijlen in `css/style.css`, scripts in `js/`, beelden in `images/`. Header en footer staan op elke pagina: pas ze overal aan.
 - Mobiel eerst: basisstijlen voor mobiel, grotere schermen via `@media (min-width: ...)`.
+- Nagebouwde schermen tonen voorbeelddata en dragen altijd het label "Illustrative". Echte cijfers alleen met bron en periode.
 - Geen frameworks, build-tools of npm-pakketten zonder overleg.
 - Lokaal bekijken: zie README.md.
 
