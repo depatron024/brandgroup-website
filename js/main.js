@@ -1,4 +1,5 @@
 const geenBeweging = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const beperk = (waarde, min, max) => Math.min(Math.max(waarde, min), max);
 
 // Mobiel menu openen en sluiten
 const navToggle = document.querySelector('.nav-toggle');
@@ -16,60 +17,109 @@ if (navToggle && siteNav) {
     zetMenu(!siteNav.classList.contains('is-open'));
   });
 
-  // Menu sluiten na klikken op een link
   siteNav.addEventListener('click', (event) => {
     if (event.target.closest('a')) zetMenu(false);
   });
 }
 
-// Hero: de grote "100x" telt op van 1x naar 100x (zonder JS of met minder beweging blijft "100x" staan)
-const heroTeller = document.querySelector('[data-hero-counter]');
+// Home: vliegen door de tweede nul van 100x.
+// De SVG blijft scherp doordat we de viewBox verzetten in plaats van te schalen.
+// js/chrome.js leest window.honderdX om de iced-out letters op dezelfde plek te tekenen.
+const fly = document.querySelector('[data-fly]');
 
-if (heroTeller && !geenBeweging) {
-  const duur = 2400;
-  const start = performance.now();
-
-  function heroStap(nu) {
-    const voortgang = Math.min((nu - start) / duur, 1);
-    const waarde = Math.max(1, Math.round(100 * (1 - Math.pow(1 - voortgang, 3))));
-    heroTeller.textContent = waarde + 'x';
-    if (voortgang < 1) requestAnimationFrame(heroStap);
-    else heroTeller.classList.add('is-done');
-  }
-
-  heroTeller.textContent = '1x';
-  requestAnimationFrame(heroStap);
-} else if (heroTeller) {
-  heroTeller.classList.add('is-done');
-}
-
-// Hero: de "100x" zakt mee en vervaagt bij het scrollen (parallax)
-const hero = document.querySelector('.hero');
-
-if (heroTeller && hero && !geenBeweging) {
+if (fly && !geenBeweging) {
+  const mark = fly.querySelector('[data-fly-mark]');
+  const letterX = fly.querySelector('[data-fly-x]');
+  const intro = fly.querySelector('[data-fly-intro]');
+  const statement = fly.querySelector('[data-fly-statement]');
+  const vorm = JSON.parse(fly.dataset.maat); // maten van de letters, per lettertype
+  const { nul } = vorm;
+  let maat = null;
   let gepland = false;
 
-  function zetParallax() {
-    gepland = false;
-    const y = Math.min(window.scrollY, hero.offsetHeight);
-    heroTeller.style.transform = `translate(-50%, calc(-52% + ${y * 0.35}px)) scale(${1 + y * 0.0003})`;
-    heroTeller.style.opacity = String(Math.max(0, 1 - y / (hero.offsetHeight * 0.9)));
+  function meet() {
+    const b = mark.parentElement.clientWidth;
+    const h = mark.parentElement.clientHeight;
+    const staand = b < 700; // op de telefoon staat de x onder de 100
+    letterX.setAttribute('transform', staand ? `translate(${vorm.staand.dx} ${vorm.staand.dy})` : '');
+    const woord = staand ? { ...vorm.woord, rechts: vorm.staand.rechts, onder: vorm.staand.onder } : vorm.woord;
+    const marge = staand ? 16 : 32;
+    const vrij = h - (staand ? 230 : vorm.reserve) - marge;
+    const start = Math.min((b - marge * 2) / (woord.rechts - woord.links), vrij / (woord.onder - woord.boven));
+    const breedte = (woord.rechts - woord.links) * start;
+    // Waar het midden van de nul op het scherm staat aan het begin
+    const beginX = (b - breedte) / 2 + (nul.x - woord.links) * start;
+    const beginY = h - marge - (woord.onder - nul.y) * start;
+    // Eindschaal: de opening van de nul bedekt het hele scherm
+    const eind = Math.hypot(b / 2 / nul.a, h / 2 / nul.b) * 1.25;
+    maat = { b, h, start, eind, beginX, beginY, staand };
   }
 
-  window.addEventListener('scroll', () => {
+  function teken() {
+    gepland = false;
+    if (!maat) meet();
+    const { b, h, start, eind, beginX, beginY, staand } = maat;
+    const rect = fly.getBoundingClientRect();
+    const p = beperk(-rect.top / (rect.height - h), 0, 1);
+    const zoom = beperk(p / 0.72, 0, 1);
+    const z = zoom * zoom * (3 - 2 * zoom);
+    const schaal = start * Math.pow(eind / start, z);
+    const cx = beginX + (b / 2 - beginX) * z;
+    const cy = beginY + (h / 2 - beginY) * z;
+    const x0 = nul.x - cx / schaal;
+    const y0 = nul.y - cy / schaal;
+    mark.setAttribute('viewBox', `${x0} ${y0} ${b / schaal} ${h / schaal}`);
+    mark.style.visibility = zoom >= 1 ? 'hidden' : 'visible';
+    window.honderdX = { x0, y0, schaal, staand, klaar: zoom >= 1 };
+
+    const introUit = beperk(p / 0.12, 0, 1);
+    intro.style.opacity = String(1 - introUit);
+    intro.style.visibility = introUit >= 1 ? 'hidden' : 'visible';
+    const tekst = beperk((p - 0.7) / 0.14, 0, 1);
+    statement.style.opacity = String(tekst);
+    statement.style.transform = `translateY(${(1 - tekst) * 24}px)`;
+  }
+
+  function vraagTeken() {
     if (!gepland) {
       gepland = true;
-      requestAnimationFrame(zetParallax);
+      requestAnimationFrame(teken);
     }
-  }, { passive: true });
+  }
+
+  mark.setAttribute('preserveAspectRatio', 'xMinYMin meet');
+  fly.classList.add('is-flying');
+  window.addEventListener('scroll', vraagTeken, { passive: true });
+  window.addEventListener('resize', () => {
+    meet();
+    vraagTeken();
+  });
+  teken();
 }
 
-// Blokken schuiven zacht in beeld; kaarten naast elkaar net na elkaar
-document.querySelectorAll('.brands, .tiles, .team, .highlights').forEach((groep) => {
-  groep.querySelectorAll('.reveal').forEach((item, i) => item.style.setProperty('--vertraging', `${i * 90}ms`));
+// Grote namen: de actieve regel bepaalt het beeld rechts
+document.querySelectorAll('[data-index]').forEach((index) => {
+  const links = [...index.querySelectorAll('[data-preview]')];
+  const beelden = [...index.querySelector('.index__frame').children];
+
+  function kies(link) {
+    links.forEach((l) => l.classList.toggle('is-active', l === link));
+    beelden.forEach((b, i) => b.classList.toggle('is-active', i === Number(link.dataset.preview)));
+  }
+
+  links.forEach((link) => {
+    link.addEventListener('pointerenter', () => kies(link));
+    link.addEventListener('focus', () => kies(link));
+  });
 });
 
+// Blokken schuiven zacht in beeld; blokken in dezelfde groep net na elkaar
 const revealItems = document.querySelectorAll('.reveal');
+
+revealItems.forEach((item) => {
+  const broers = [...item.parentElement.children].filter((el) => el.classList.contains('reveal'));
+  item.style.setProperty('--vertraging', `${Math.max(broers.indexOf(item), 0) * 80}ms`);
+});
 
 if ('IntersectionObserver' in window && !geenBeweging) {
   const revealObserver = new IntersectionObserver((entries) => {
@@ -78,7 +128,7 @@ if ('IntersectionObserver' in window && !geenBeweging) {
       entry.target.classList.add('is-visible');
       revealObserver.unobserve(entry.target);
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   revealItems.forEach((item) => revealObserver.observe(item));
 } else {
@@ -117,7 +167,7 @@ if (tracker) {
       tijdlijnGepland = false;
       const boven = tracker.getBoundingClientRect().top;
       const h = window.innerHeight;
-      const voortgang = Math.min(Math.max((h * 0.85 - boven) / (h * 0.5), 0), 1);
+      const voortgang = beperk((h * 0.85 - boven) / (h * 0.5), 0, 1);
       toonTijdlijn(Math.round(voortgang * blokjes.length));
     }
 
@@ -155,18 +205,6 @@ tabs.forEach((tab, i) => {
   });
 });
 
-// Rollende band: lijst verdubbelen zodat hij naadloos doorloopt
-const band = document.querySelector('.band__track');
-
-if (band && !geenBeweging) {
-  [...band.children].forEach((item) => {
-    const kopie = item.cloneNode(true);
-    kopie.setAttribute('aria-hidden', 'true');
-    band.appendChild(kopie);
-  });
-  band.classList.add('is-looping');
-}
-
 // Tellers: getal loopt op tot de waarde in data-counter (leeg = "—" blijft staan)
 function telOp(el) {
   const doel = Number(el.dataset.counter);
@@ -175,7 +213,7 @@ function telOp(el) {
   const prefix = el.dataset.prefix || '';
   const suffix = el.dataset.suffix || '';
   const decimalen = (el.dataset.counter.split('.')[1] || '').length;
-  const opmaak = (waarde) => prefix + waarde.toLocaleString('en-GB', {
+  const opmaak = (w) => prefix + w.toLocaleString('en-GB', {
     minimumFractionDigits: decimalen,
     maximumFractionDigits: decimalen,
   }) + suffix;
