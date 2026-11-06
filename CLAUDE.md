@@ -7,12 +7,12 @@ Merkwebsite in gewone HTML, CSS en een beetje JavaScript, zonder framework. Taal
 Eerste invulling (voorstel, nog te bevestigen).
 
 - **Naam:** 100x Brands. Gaan we later ook andere dingen doen dan merken, dan wordt het mogelijk "100x Group".
-- **Wat we doen:** een team jonge, hongerige Nederlandse gasten dat eigen consumentenmerken bouwt die elk de nummer één worden in hun niche, passende merken overneemt en andere founders adviseert. 100x (altijd keer 100) is het motto en wordt later een huis: Brands, Agency, Real Estate, Projects, Investments. Nog geen branche op de site noemen.
+- **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over en adviseren andere founders met onze systemen. Nog geen branche op de site noemen.
 - **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
-- **Sfeer:** opvallend en niet corporate. 100x als iced-out object, daarna vlieg je door de nul. Vette hoofdletters, korte harde zinnen, eigen rauw beeld van team en merken. Geen oude foto's en geen rustig-premium. Van vroeger nemen we alleen mee dat bedrijven gebouwd waren om te blijven.
-- **Kleuren:** zwart (#050507), donkergrijze kaarten (#121318), wit, felle oranje accent (#ff4d00).
-- **Lettertypes:** Anton voor koppen, Inter voor tekst (Google Fonts).
-- **Toon van de teksten:** kort, brutaal en zelfverzekerd. Cijfers alleen met bron en periode.
+- **Sfeer:** luxe en flex in platina: 100x bezet met diamanten, daarna vlieg je door de nul. Serif-koppen, veel ruimte, links uitgelijnd. De flex zit in beeld en resultaten, niet in stoere zinnen.
+- **Kleuren:** bijna-zwart (#050507), donkergrijze kaarten (#101114), wit, zilver als accent (#c9ccd4).
+- **Lettertypes:** Instrument Serif voor koppen, Inter voor tekst (Google Fonts).
+- **Toon van de teksten:** kort en feitelijk, zonder slogans of grootspraak. Cijfers alleen met bron en periode.
 - **Niet noemen:** andere bedrijven of merken van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken.
 
 ## Referenties
