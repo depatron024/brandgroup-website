@@ -2,27 +2,28 @@
    Ontwerpvariabelen
    Alle kleuren, fonts en afstanden staan hier. Pas het design aan via deze
    variabelen, niet met losse waarden verderop.
-   Opvallend en niet corporate: zwart, wit, fel oranje en vette hoofdletters.
+   Luxe in goud: warm zwart, ivoor en goud, klassiek en gecentreerd.
    ========================================================================== */
 :root {
   /* Kleuren */
-  --kleur-achtergrond: #050507;
-  --kleur-kaart: #121318;
-  --kleur-kaart-licht: #1f2027;
-  --kleur-tekst: #ffffff;
-  --kleur-tekst-zacht: #a6a9b4;
-  --kleur-accent: #ff4d00;
-  --kleur-accent-tekst: #050507;
-  --kleur-accent-zacht: rgba(255, 77, 0, 0.16);
-  --kleur-accent-gevuld: rgba(255, 77, 0, 0.6);
-  --kleur-positief: #7ee0a1;
-  --kleur-positief-zacht: rgba(126, 224, 161, 0.12);
-  --kleur-primair: #ffffff;
-  --kleur-primair-tekst: #050507;
+  --kleur-achtergrond: #0c0a07;
+  --kleur-kaart: #16130d;
+  --kleur-kaart-licht: #241f16;
+  --kleur-tekst: #f4eddf;
+  --kleur-tekst-zacht: #b5ab98;
+  --kleur-accent: #c9a45c;
+  --kleur-accent-zacht: rgba(201, 164, 92, 0.16);
+  --kleur-accent-gevuld: rgba(201, 164, 92, 0.55);
+  --kleur-positief: #c9a45c;
+  --kleur-positief-zacht: rgba(201, 164, 92, 0.12);
+  --kleur-primair: #f4eddf;
+  --kleur-primair-tekst: #0c0a07;
+  --kleur-veld: #f4eddf;
+  --kleur-veld-tekst: #0c0a07;
   --kleur-schaduw-foto: rgba(5, 5, 7, 0.6);
 
   /* Lettertypes */
-  --font-koppen: "Anton", Impact, "Arial Narrow", sans-serif;
+  --font-koppen: "Bodoni Moda", Didot, Georgia, serif;
   --font-basis: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* Lettergroottes (mobiel; groter vanaf de breakpoints onderaan) */
@@ -30,14 +31,12 @@
   --tekst-basis: 1rem;
   --tekst-groot: 1.125rem;
   --kop-3: 1.75rem;
-  --kop-2: 3rem;
-  --kop-1: 3.25rem;
-  --kop-naam: 11.5vw;
-  --kop-reus: 30vw;
-  --kop-rij: 22vw;
+  --kop-2: 2.5rem;
+  --kop-1: 2.5rem;
+  --kop-naam: 10vw;
   --regelhoogte: 1.55;
-  --regelhoogte-koppen: 1.02;
-  --spatiering-koppen: 0;
+  --regelhoogte-koppen: 1.08;
+  --spatiering-koppen: -0.01em;
 
   /* Afstanden */
   --ruimte-xs: 0.25rem;
@@ -54,11 +53,10 @@
   --tekst-maat: 34rem;
   --fly-hoogte: 300svh;
   --person-breedte: 72%;
-  --steen: 72%;
 
   /* Vormen en beweging */
   --radius-s: 4px;
-  --radius-pill: 999px;
+  --radius-pill: 2px;
   --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
   --overgang: 0.2s ease;
   --overgang-pagina: 0.8s;
@@ -69,12 +67,10 @@
   :root {
     --tekst-basis: 1.0625rem;
     --tekst-groot: 1.25rem;
-    --kop-3: 2.25rem;
-    --kop-2: 6vw;
-    --kop-1: 9vw;
-    --kop-naam: 8vw;
-    --kop-reus: 19vw;
-    --kop-rij: 12vw;
+    --kop-3: 2rem;
+    --kop-2: clamp(2.5rem, 5vw, 4.5rem);
+    --kop-1: 6vw;
+    --kop-naam: 5.5vw;
     --ruimte-sectie: 10rem;
     --container-marge: 2rem;
     --person-breedte: 28vw;
@@ -124,6 +120,7 @@ html {
 
 body {
   margin: 0;
+  font-variation-settings: "opsz" 28; /* stevigere haarlijnen in de koppen */
   overflow-x: clip;
   background: var(--kleur-achtergrond);
   color: var(--kleur-tekst);
@@ -141,7 +138,6 @@ h3 {
   font-weight: 400;
   line-height: var(--regelhoogte-koppen);
   letter-spacing: var(--spatiering-koppen);
-  text-transform: uppercase;
 }
 
 h1 {
@@ -227,7 +223,7 @@ a {
   background: var(--kleur-primair);
   color: var(--kleur-primair-tekst);
   font-size: var(--tekst-basis);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
@@ -235,8 +231,8 @@ a {
 }
 
 .button:hover {
-  background: var(--kleur-accent);
-  color: var(--kleur-accent-tekst);
+  background: var(--kleur-veld);
+  color: var(--kleur-veld-tekst);
   transform: translateY(-2px);
 }
 
@@ -260,7 +256,7 @@ a {
 }
 
 .link {
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 0.25em;
 }
@@ -302,17 +298,8 @@ a {
   font-size: var(--kop-3);
   line-height: 1;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
-.logo__rest {
-  color: var(--kleur-accent);
-}
-
-/* De x in 100x blijft altijd een kleine letter */
-.x {
-  text-transform: none;
-}
 
 .site-nav {
   position: fixed;
@@ -341,7 +328,6 @@ a {
   font-size: var(--kop-2);
   line-height: 1.15;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 .site-nav li a[aria-current="page"] {
@@ -406,7 +392,6 @@ a {
     font-family: var(--font-basis);
     font-size: var(--tekst-basis);
     font-weight: 500;
-    text-transform: none;
     transition: color var(--overgang);
   }
 
@@ -453,7 +438,7 @@ a {
 .fly__field {
   position: absolute;
   inset: 0;
-  background: var(--kleur-accent);
+  background: var(--kleur-veld);
 }
 
 .fly__mark {
@@ -529,8 +514,8 @@ a {
   position: relative;
   margin-top: calc(100svh - var(--header-hoogte));
   padding-block: var(--ruimte-xl);
-  background: var(--kleur-accent);
-  color: var(--kleur-accent-tekst);
+  background: var(--kleur-veld);
+  color: var(--kleur-veld-tekst);
 }
 
 .fly.is-flying .fly__statement {
@@ -547,12 +532,6 @@ a {
 
 .fly__statement h2 {
   font-size: var(--kop-1);
-}
-
-.fly__statement p {
-  margin-top: var(--ruimte-m);
-  font-size: var(--tekst-groot);
-  font-weight: 600;
 }
 
 @media (min-width: 768px) {
@@ -623,6 +602,10 @@ a {
   gap: var(--ruimte-m);
 }
 
+.hidden-brand__copy h2 em {
+  display: block;
+}
+
 .hidden-brand__copy p {
   max-width: var(--tekst-maat);
   font-size: var(--tekst-groot);
@@ -642,249 +625,76 @@ a {
 }
 
 /* ==========================================================================
-   Home: grote regels
+   Home: wat we doen
    ========================================================================== */
-.loud {
-  padding-bottom: var(--ruimte-sectie);
-  overflow: clip;
-}
-
-.loud__head {
-  margin-bottom: var(--ruimte-l);
-}
-
-.loud__row {
-  font-family: var(--font-koppen);
-  font-size: var(--kop-rij);
-  line-height: 1.08;
-  text-transform: uppercase;
-  white-space: nowrap;
-  will-change: transform;
-}
-
-.loud__row--accent {
-  color: var(--kleur-accent);
-}
-
-/* ==========================================================================
-   Home en how we build: harde statements
-   ========================================================================== */
-.creed__grid {
-  display: grid;
-  gap: var(--ruimte-xl);
-}
-
-.creed__copy {
-  display: grid;
-  gap: var(--ruimte-m);
-  align-content: end;
-  font-size: var(--tekst-groot);
-}
-
-.creed__copy p {
-  max-width: var(--tekst-maat);
-}
-
-.creed--accent {
-  background: var(--kleur-accent);
-  color: var(--kleur-accent-tekst);
-}
-
-@media (min-width: 960px) {
-  .creed__grid {
-    grid-template-columns: 7fr 5fr;
-    gap: var(--ruimte-xxl);
-  }
-}
-
-/* ==========================================================================
-   Home: de vermenigvuldiger
-   ========================================================================== */
-.multiplier {
-  background: var(--kleur-kaart);
-}
-
-.multiplier__grid {
-  display: grid;
-  gap: var(--ruimte-xl);
-}
-
-.multiplier__value {
-  margin-top: var(--ruimte-l);
-  font-family: var(--font-koppen);
-  font-size: var(--kop-reus);
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-  color: var(--kleur-accent);
-}
-
-.multiplier__label {
-  display: block;
-  margin-top: var(--ruimte-l);
-  font-size: var(--tekst-klein);
-  color: var(--kleur-tekst-zacht);
-}
-
-.multiplier__range {
-  --vulling: 100%;
-  width: 100%;
-  height: 44px;
-  margin: 0;
-  background: none;
-  cursor: grab;
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-.multiplier__range:active {
-  cursor: grabbing;
-}
-
-.multiplier__range::-webkit-slider-runnable-track {
-  height: 6px;
-  border-radius: var(--radius-pill);
-  background: linear-gradient(to right, var(--kleur-accent) var(--vulling), var(--kleur-kaart-licht) var(--vulling)); /* taste-skill-ignore */
-}
-
-.multiplier__range::-moz-range-track {
-  height: 6px;
-  border-radius: var(--radius-pill);
-  background: var(--kleur-kaart-licht);
-}
-
-.multiplier__range::-moz-range-progress {
-  height: 6px;
-  border-radius: var(--radius-pill);
-  background: var(--kleur-accent);
-}
-
-.multiplier__range::-webkit-slider-thumb {
-  width: 32px;
-  height: 32px;
-  margin-top: -13px;
-  border: 0;
-  border-radius: 50%;
-  background: var(--kleur-primair);
-  appearance: none;
-  -webkit-appearance: none;
-  transition: transform var(--overgang);
-}
-
-.multiplier__range::-moz-range-thumb {
-  width: 32px;
-  height: 32px;
-  border: 0;
-  border-radius: 50%;
-  background: var(--kleur-primair);
-}
-
-.multiplier__range:hover::-webkit-slider-thumb {
-  transform: scale(1.1);
-}
-
-.stages {
-  display: grid;
-  gap: var(--ruimte-s);
-  margin-top: var(--ruimte-m);
-}
-
-.stages li {
-  color: var(--kleur-tekst-zacht);
-  transition: color var(--overgang);
-}
-
-.stages b {
-  display: inline-block;
-  min-width: 3.25rem;
-  font-weight: 600;
-}
-
-.stages li.is-active {
-  color: var(--kleur-tekst);
-}
-
-.stages li.is-active b {
-  color: var(--kleur-accent);
-}
-
-.mosaic {
-  order: -1; /* op de telefoon boven de schuif, zodat je de stenen ziet aangaan */
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  aspect-ratio: 1;
-  place-items: center;
-}
-
-.mosaic__tile {
-  width: var(--steen);
-  aspect-ratio: 1;
-  background: var(--kleur-kaart-licht);
-  transform: rotate(45deg) scale(0.55);
-  transition: transform 0.35s var(--ease), background-color 0.2s ease;
-}
-
-.mosaic__tile.is-on {
-  background: var(--kleur-tekst);
-  transform: rotate(45deg) scale(1);
-}
-
-.mosaic__tile.is-on:nth-child(7n) {
-  background: var(--kleur-accent);
-}
-
-@media (min-width: 960px) {
-  .multiplier__grid {
-    grid-template-columns: 6fr 6fr;
-    align-items: center;
-    gap: var(--ruimte-xxl);
-  }
-
-  .mosaic {
-    order: 0;
-  }
-}
-
-/* ==========================================================================
-   Home: het huis van 100x
-   ========================================================================== */
-.house__head {
-  margin-bottom: var(--ruimte-m);
-}
-
-.house__intro {
+.doing__head {
   margin-bottom: var(--ruimte-xl);
+}
+
+.doing__list {
+  display: grid;
+  gap: var(--ruimte-xl);
+}
+
+.doing__item {
+  display: grid;
+  gap: var(--ruimte-m);
+}
+
+.doing__item h3 {
+  font-size: var(--kop-2);
+}
+
+.doing__item p {
+  max-width: var(--tekst-maat);
+  margin-bottom: var(--ruimte-s);
   font-size: var(--tekst-groot);
 }
 
-.house__row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--ruimte-m);
-  padding-block: var(--ruimte-s);
-  color: var(--kleur-tekst-zacht);
-  text-decoration: none;
+.doing {
+  background: var(--kleur-veld);
+  color: var(--kleur-veld-tekst);
 }
 
-.house__row span {
-  font-family: var(--font-koppen);
-  font-size: var(--kop-naam);
-  line-height: 1.1;
-  text-transform: uppercase;
-  transition: transform 0.35s var(--ease);
+.doing__head,
+.doing__item {
+  text-align: center;
 }
 
-.house__row small {
-  font-size: var(--tekst-basis);
+.doing__item {
+  justify-items: center;
 }
 
-.house__row--live {
-  color: var(--kleur-accent);
+@media (min-width: 768px) {
+  .doing__list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--ruimte-xxl);
+  }
+
+  .doing__item {
+    align-content: start;
+  }
 }
 
-.house__row--live:hover span {
-  transform: translateX(var(--ruimte-m));
+/* ==========================================================================
+   Klassiek en gecentreerd
+   ========================================================================== */
+.fly__intro {
+  align-items: center;
+  text-align: center;
+}
+
+.page-head__inner,
+.fly__lead {
+  justify-items: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .fly__intro {
+    flex-direction: column;
+    gap: var(--ruimte-m);
+  }
 }
 
 /* ==========================================================================
@@ -915,7 +725,6 @@ a {
   font-family: var(--font-koppen);
   font-size: var(--kop-naam);
   line-height: 1.1;
-  text-transform: uppercase;
   transition: color var(--overgang), transform 0.35s var(--ease);
 }
 
@@ -935,7 +744,6 @@ a {
   font-family: var(--font-koppen);
   font-size: var(--kop-1);
   line-height: 1;
-  text-transform: uppercase;
 }
 
 .poster::after {
@@ -943,8 +751,8 @@ a {
 }
 
 .poster--1 {
-  background: var(--kleur-accent);
-  color: var(--kleur-accent-tekst);
+  background: var(--kleur-veld);
+  color: var(--kleur-veld-tekst);
 }
 
 .poster--2 {
@@ -1034,7 +842,7 @@ a {
 }
 
 /* ==========================================================================
-   Brands: cijfers en band
+   Brands: cijfers
    ========================================================================== */
 .figures {
   display: grid;
@@ -1089,38 +897,6 @@ a {
   }
 }
 
-.band {
-  margin-inline: var(--container-marge);
-  margin-bottom: var(--ruimte-sectie);
-  overflow: hidden;
-  padding-block: var(--ruimte-m);
-  background: var(--kleur-kaart);
-}
-
-.band__track {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--ruimte-s) var(--ruimte-xl);
-  padding-inline: var(--container-marge);
-}
-
-.band__track.is-looping {
-  flex-wrap: nowrap;
-  width: max-content;
-  padding-inline: 0;
-  animation: band 40s linear infinite;
-}
-
-.band__track li {
-  white-space: nowrap;
-}
-
-@keyframes band {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 /* ==========================================================================
    How we build: tabs met nagebouwde schermen
    ========================================================================== */
@@ -1142,7 +918,7 @@ a {
   background: var(--kleur-kaart-licht);
   color: var(--kleur-tekst);
   font: inherit;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: background-color var(--overgang), color var(--overgang);
 }
@@ -1152,8 +928,8 @@ a {
 }
 
 .tab[aria-selected="true"] {
-  background: var(--kleur-accent);
-  color: var(--kleur-accent-tekst);
+  background: var(--kleur-primair);
+  color: var(--kleur-primair-tekst);
 }
 
 .panel {
@@ -1180,7 +956,6 @@ a {
   font-family: var(--font-koppen);
   font-size: var(--kop-3);
   line-height: 1.15;
-  text-transform: uppercase;
 }
 
 .screen {
@@ -1220,7 +995,7 @@ a {
 
 .ad--winner {
   background: var(--kleur-accent);
-  color: var(--kleur-accent-tekst);
+  color: var(--kleur-veld-tekst);
 }
 
 .rows {
@@ -1404,7 +1179,7 @@ a {
 
 .tracker i.is-milestone.is-filled,
 .tracker i.is-current {
-  background: var(--kleur-accent);
+  background: var(--kleur-veld);
 }
 
 .tracker__axis {
@@ -1436,7 +1211,6 @@ a {
   font-size: var(--kop-3);
   font-weight: 400;
   line-height: 1.1;
-  text-transform: uppercase;
 }
 
 .highlight.is-active {
@@ -1461,8 +1235,8 @@ a {
 }
 
 .way--card {
-  background: var(--kleur-accent);
-  color: var(--kleur-accent-tekst);
+  background: var(--kleur-veld);
+  color: var(--kleur-veld-tekst);
 }
 
 .way__grid {
@@ -1487,7 +1261,6 @@ a {
   font-family: var(--font-koppen);
   font-size: var(--kop-3);
   line-height: 1.15;
-  text-transform: uppercase;
 }
 
 .way--card .button {
@@ -1510,8 +1283,8 @@ a {
    Contact
    ========================================================================== */
 .contact-page {
-  background: var(--kleur-accent);
-  color: var(--kleur-accent-tekst);
+  background: var(--kleur-veld);
+  color: var(--kleur-veld-tekst);
 }
 
 .contact-page__inner {
@@ -1553,14 +1326,14 @@ a {
 }
 
 /* ==========================================================================
-   Footer: de naam komt terug op de hele breedte, in het oranje
+   Footer: de naam komt terug op de hele breedte, omgekeerd
    ========================================================================== */
 .site-footer {
   position: relative;
   overflow: hidden;
   padding-top: var(--ruimte-xxl);
-  background: var(--kleur-accent);
-  color: var(--kleur-accent-tekst);
+  background: var(--kleur-veld);
+  color: var(--kleur-veld-tekst);
 }
 
 .site-footer__close {

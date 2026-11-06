@@ -32,7 +32,8 @@ if (fly && !geenBeweging) {
   const letterX = fly.querySelector('[data-fly-x]');
   const intro = fly.querySelector('[data-fly-intro]');
   const statement = fly.querySelector('[data-fly-statement]');
-  const nul = { x: 2195, y: -880, a: 87, b: 572 }; // midden en halve maten van de opening in de nul
+  const vorm = JSON.parse(fly.dataset.maat); // maten van de letters, per lettertype
+  const { nul } = vorm;
   let maat = null;
   let gepland = false;
 
@@ -40,10 +41,10 @@ if (fly && !geenBeweging) {
     const b = mark.parentElement.clientWidth;
     const h = mark.parentElement.clientHeight;
     const staand = b < 700; // op de telefoon staat de x onder de 100
-    letterX.setAttribute('transform', staand ? 'translate(-972 1560)' : '');
-    const woord = staand ? { links: 25, rechts: 2661, boven: -1776, onder: 1560 } : { links: 25, rechts: 3633, boven: -1776, onder: 16 };
+    letterX.setAttribute('transform', staand ? `translate(${vorm.staand.dx} ${vorm.staand.dy})` : '');
+    const woord = staand ? { ...vorm.woord, rechts: vorm.staand.rechts, onder: vorm.staand.onder } : vorm.woord;
     const marge = staand ? 16 : 32;
-    const vrij = h - (staand ? 230 : 130) - marge;
+    const vrij = h - (staand ? 230 : vorm.reserve) - marge;
     const start = Math.min((b - marge * 2) / (woord.rechts - woord.links), vrij / (woord.onder - woord.boven));
     const breedte = (woord.rechts - woord.links) * start;
     // Waar het midden van de nul op het scherm staat aan het begin
@@ -76,7 +77,7 @@ if (fly && !geenBeweging) {
     intro.style.visibility = introUit >= 1 ? 'hidden' : 'visible';
     const tekst = beperk((p - 0.7) / 0.14, 0, 1);
     statement.style.opacity = String(tekst);
-    statement.style.transform = `translateY(${(1 - tekst) * 32}px) scale(${1.15 - 0.15 * tekst})`;
+    statement.style.transform = `translateY(${(1 - tekst) * 24}px)`;
   }
 
   function vraagTeken() {
@@ -94,68 +95,6 @@ if (fly && !geenBeweging) {
     vraagTeken();
   });
   teken();
-}
-
-// De vermenigvuldiger: van één tegel naar de hele foto
-const multiplier = document.querySelector('[data-multiplier]');
-
-if (multiplier) {
-  const mosaic = multiplier.querySelector('[data-mosaic]');
-  const range = multiplier.querySelector('[data-multiplier-range]');
-  const waarde = multiplier.querySelector('[data-multiplier-value]');
-  const stappen = [...multiplier.querySelectorAll('[data-stage]')];
-  const tegels = [];
-
-  // 100 diamanten; ze gaan aan vanuit het midden
-  for (let rij = 0; rij < 10; rij += 1) {
-    for (let kolom = 0; kolom < 10; kolom += 1) {
-      const steen = document.createElement('i');
-      steen.className = 'mosaic__tile';
-      tegels.push({ el: steen, afstand: Math.hypot(kolom - 4.5, rij - 4.5) + ((rij * 7 + kolom * 3) % 5) * 0.1 });
-      mosaic.appendChild(steen);
-    }
-  }
-  tegels.sort((a, b) => a.afstand - b.afstand);
-
-  function zetWaarde(n) {
-    tegels.forEach((t, i) => t.el.classList.toggle('is-on', i < n));
-    waarde.textContent = String(n);
-    range.value = String(n);
-    range.setAttribute('aria-valuetext', `${n} times`);
-    range.style.setProperty('--vulling', `${n}%`);
-    let actief = stappen[0];
-    stappen.forEach((s) => { if (n >= Number(s.dataset.stage)) actief = s; });
-    stappen.forEach((s) => s.classList.toggle('is-active', s === actief));
-  }
-
-  let aangeraakt = false;
-  range.addEventListener('input', () => {
-    aangeraakt = true;
-    zetWaarde(Number(range.value));
-  });
-
-  if (geenBeweging || !('IntersectionObserver' in window)) {
-    zetWaarde(100);
-  } else {
-    // Speelt één keer af als de sectie in beeld komt, en stopt zodra iemand zelf schuift
-    zetWaarde(1);
-    const kijker = new IntersectionObserver((entries) => {
-      if (!entries[0].isIntersecting) return;
-      kijker.disconnect();
-      const begin = performance.now();
-      const duur = 3200;
-
-      function speel(nu) {
-        if (aangeraakt) return;
-        const v = Math.min((nu - begin) / duur, 1);
-        zetWaarde(Math.max(1, Math.round(100 * v * v)));
-        if (v < 1) requestAnimationFrame(speel);
-      }
-
-      requestAnimationFrame(speel);
-    }, { threshold: 0.4 });
-    kijker.observe(mosaic);
-  }
 }
 
 // Grote namen: de actieve regel bepaalt het beeld rechts
@@ -194,32 +133,6 @@ if ('IntersectionObserver' in window && !geenBeweging) {
   revealItems.forEach((item) => revealObserver.observe(item));
 } else {
   revealItems.forEach((item) => item.classList.add('is-visible'));
-}
-
-// Grote regels schuiven horizontaal mee met het scrollen
-const loudRijen = [...document.querySelectorAll('[data-loud]')];
-
-if (loudRijen.length && !geenBeweging) {
-  let loudGepland = false;
-
-  function zetLoud() {
-    loudGepland = false;
-    loudRijen.forEach((rij) => {
-      const r = rij.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > window.innerHeight) return;
-      const v = (r.top - window.innerHeight) / window.innerHeight;
-      const richting = Number(rij.dataset.loud);
-      rij.style.transform = `translateX(${richting > 0 ? v * 22 : -30 - v * 22}%)`;
-    });
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!loudGepland) {
-      loudGepland = true;
-      requestAnimationFrame(zetLoud);
-    }
-  }, { passive: true });
-  zetLoud();
 }
 
 // Track record: de tijdlijn speelt af terwijl je scrolt (terug scrollen spoelt terug)
@@ -291,18 +204,6 @@ tabs.forEach((tab, i) => {
     volgende.focus();
   });
 });
-
-// Rollende band: lijst verdubbelen zodat hij naadloos doorloopt
-const band = document.querySelector('.band__track');
-
-if (band && !geenBeweging) {
-  [...band.children].forEach((item) => {
-    const kopie = item.cloneNode(true);
-    kopie.setAttribute('aria-hidden', 'true');
-    band.appendChild(kopie);
-  });
-  band.classList.add('is-looping');
-}
 
 // Tellers: getal loopt op tot de waarde in data-counter (leeg = "—" blijft staan)
 function telOp(el) {

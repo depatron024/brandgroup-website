@@ -1,4 +1,4 @@
-// Het iced-out 100x op home: chromen randen en een pavé van diamanten die reageren op de muis.
+// 100x op home in goud: gepolijste randen en geborsteld metaal dat reageert op de muis.
 // Gewone WebGL2 zonder bibliotheek. Werkt het niet, dan blijven de witte letters uit de SVG staan.
 (() => {
   const canvas = document.querySelector('[data-fly-chrome]');
@@ -8,6 +8,7 @@
   const gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: false });
   if (!gl) return;
 
+  const vorm = JSON.parse(document.querySelector('[data-fly]').dataset.maat);
   const stil = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const vert = `#version 300 es
@@ -27,6 +28,10 @@
   uniform float tijd;
   uniform vec3 opkomst;     // de 1, de nullen, de x
   uniform float staand;
+  uniform float eenheid;    // lettereenheden ten opzichte van 2048 per em
+  uniform vec2 grens;       // einde van de 1, begin van de x
+  uniform float afschuining;
+  uniform float steenMaat;
   out vec4 kleur;
 
   float hash(vec2 v) { return fract(sin(dot(v, vec2(127.1, 311.7))) * 43758.5453); }
@@ -50,43 +55,28 @@
     float dekking = smoothstep(-aa, aa, d);
     if (dekking <= 0.0) { kleur = vec4(0.0); return; }
 
-    bool isX = staand > 0.5 ? g.y > 40.0 : g.x > 2701.0;
-    float op = isX ? opkomst.z : (g.x < 702.0 ? opkomst.x : opkomst.y);
+    bool isX = staand > 0.5 ? g.y > 20.0 : g.x > grens.y;
+    float op = isX ? opkomst.z : (g.x < grens.x ? opkomst.x : opkomst.y);
 
-    vec2 e = 4.0 / textuur;
+    vec2 e = 2.5 / textuur;
     vec2 helling = vec2(
       texture(afstand, uv + vec2(e.x, 0.0)).r - texture(afstand, uv - vec2(e.x, 0.0)).r,
       texture(afstand, uv + vec2(0.0, e.y)).r - texture(afstand, uv - vec2(0.0, e.y)).r
     );
     vec2 buiten = length(helling) > 0.0001 ? -normalize(helling) : vec2(0.0);
 
-    float rand = clamp(d / 58.0, 0.0, 1.0);
+    float rand = clamp(d / afschuining, 0.0, 1.0);
     vec3 n = normalize(vec3(buiten * pow(1.0 - rand, 1.2) * 1.5, 1.0));
     vec2 kijk = (muis - 0.5) * 1.5;
-    vec3 c = omgeving(n.xy * 1.6 + kijk + g * 0.00035);
+    vec3 c;
 
-    // Pavé: rijen stenen met een briljant geslepen patroon; elk vlak vangt het licht op zijn eigen moment
-    float maat = 46.0;
-    vec2 q = g / vec2(maat, maat * 0.866);
-    float rij = floor(q.y);
-    q.x += mod(rij, 2.0) * 0.5;
-    vec2 id = vec2(floor(q.x), rij);
-    vec2 f = fract(q) - 0.5;
-    f.y *= 0.866;
-    float r = length(f);
-    float steen = 1.0 - smoothstep(0.41, 0.48, r);
-    float h = hash(id);
-    float vlak = floor((atan(f.y, f.x) + 3.1416 + h * 6.0) / 6.2832 * 8.0);
-    float b = hash(id + vlak * 3.17);
-    float golf = sin(tijd * (0.6 + h * 1.5) + b * 30.0 + dot(muis, vec2(13.0, 9.0)) * 4.0);
-    float licht = mix(0.3, 1.0, smoothstep(-0.25, 0.75, golf * 0.5 + b * 0.5));
-    licht = mix(licht, licht * 0.8 + 0.14, 1.0 - smoothstep(0.13, 0.17, r));
-    float flits = pow(max(0.0, golf), 24.0) * step(0.55, b);
-    vec3 regenboog = 0.5 + 0.5 * cos(6.2832 * (b + vec3(0.0, 0.33, 0.67)));
-    vec3 sc = vec3(0.92, 0.95, 1.0) * licht + vec3(1.0) * flits * 1.2 + regenboog * flits * 0.35;
-    vec3 vlakKleur = mix(vec3(0.05, 0.05, 0.06), sc, steen);
-
-    c = mix(c, vlakKleur, smoothstep(0.82, 1.0, rand));
+    // Goud: warme overgang met een geborstelde glans die meebeweegt
+    vec2 v = n.xy * 1.7 + kijk + g * 0.0009 / eenheid;
+    float a = 0.5 + 0.5 * sin(v.y * 4.5 + v.x * 2.0 + sin(v.x * 2.6 + tijd * 0.18) * 1.3);
+    vec3 goud = mix(vec3(0.27, 0.16, 0.06), vec3(0.79, 0.61, 0.3), smoothstep(0.0, 0.6, a));
+    goud = mix(goud, vec3(1.0, 0.93, 0.74), smoothstep(0.78, 1.0, a));
+    goud *= 0.97 + 0.03 * sin(g.y / eenheid * 1.4 + hash(vec2(floor(g.y / eenheid * 0.5), 3.0)) * 6.0);
+    c = goud;
     kleur = vec4(c * dekking * op, dekking * op);
   }`;
 
@@ -112,7 +102,7 @@
   gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
 
   const u = {};
-  ['afstand', 'scherm', 'oorsprong', 'schaal', 'kaart', 'textuur', 'bereik', 'muis', 'tijd', 'opkomst', 'staand'].forEach((n) => {
+  ['afstand', 'scherm', 'oorsprong', 'schaal', 'kaart', 'textuur', 'bereik', 'muis', 'tijd', 'opkomst', 'staand', 'eenheid', 'grens', 'afschuining', 'steenMaat'].forEach((n) => {
     u[n] = gl.getUniformLocation(prog, n);
   });
   gl.enable(gl.BLEND);
@@ -164,13 +154,36 @@
     return { binnen, buiten };
   }
 
+  // Haalt de trapjes uit het afstandsveld, zodat de gepolijste randen glad blijven
+  function verzacht(veld, w, h) {
+    const hulp = new Float32Array(veld.length);
+    const straal = 2;
+    for (let ronde = 0; ronde < 3; ronde += 1) {
+      for (let y = 0; y < h; y += 1) {
+        for (let x = 0; x < w; x += 1) {
+          let som = 0;
+          for (let i = -straal; i <= straal; i += 1) som += veld[y * w + Math.min(w - 1, Math.max(0, x + i))];
+          hulp[y * w + x] = som / (straal * 2 + 1);
+        }
+      }
+      for (let y = 0; y < h; y += 1) {
+        for (let x = 0; x < w; x += 1) {
+          let som = 0;
+          for (let i = -straal; i <= straal; i += 1) som += hulp[Math.min(h - 1, Math.max(0, y + i)) * w + x];
+          veld[y * w + x] = som / (straal * 2 + 1);
+        }
+      }
+    }
+  }
+
   let kaart = null;
   let bereik = 48;
 
   function maakTextuur(staand) {
     const paden = [...mark.querySelectorAll('.fly__glyph path')].map((p) => new Path2D(p.getAttribute('d')));
     const klein = window.innerWidth < 900;
-    const b = staand ? { x0: 25, x1: 2661, y0: -1776, y1: 1560 } : { x0: 25, x1: 3633, y0: -1776, y1: 16 };
+    const w = vorm.woord;
+    const b = staand ? { x0: w.links, x1: vorm.staand.rechts, y0: w.boven, y1: vorm.staand.onder } : { x0: w.links, x1: w.rechts, y0: w.boven, y1: w.onder };
     const breedte = klein ? 1024 : 2048;
     bereik = klein ? 40 : 64;
     const s = (breedte - bereik * 2 - 4) / (b.x1 - b.x0);
@@ -185,7 +198,7 @@
     paden.forEach((p, i) => {
       if (i === 3 && staand) {
         c.save();
-        c.translate(-972, 1560);
+        c.translate(vorm.staand.dx, vorm.staand.dy);
         c.fill(p);
         c.restore();
       } else {
@@ -201,6 +214,7 @@
       const d = Math.sqrt(buiten[i]) - Math.sqrt(binnen[i]);
       uit[i] = Math.max(0, Math.min(1, (d / bereik) * 0.5 + 0.5));
     }
+    verzacht(uit, breedte, hoogte);
     const tex = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, tex);
     gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
@@ -239,8 +253,9 @@
     let beeld = window.honderdX;
     if (!beeld) {
       const r = canvas.getBoundingClientRect();
-      const schaal = Math.min(r.width / 3720, r.height / 1900); // zelfde kader als de viewBox van de SVG
-      beeld = { schaal, x0: -40 - (r.width / schaal - 3720) / 2, y0: -1840 - (r.height / schaal - 1900), staand: false, klaar: false };
+      const [vx, vy, vb, vh] = mark.getAttribute('viewBox').split(' ').map(Number); // zelfde kader als de SVG
+      const schaal = Math.min(r.width / vb, r.height / vh);
+      beeld = { schaal, x0: vx - (r.width / schaal - vb) / 2, y0: vy - (r.height / schaal - vh), staand: false, klaar: false };
     }
     if (!kaart || kaart.staand !== beeld.staand) maakTextuur(beeld.staand);
 
@@ -264,6 +279,10 @@
     gl.uniform1f(u.tijd, tijd);
     gl.uniform3f(u.opkomst, opkomst(nu, 0), opkomst(nu, 350), opkomst(nu, 700));
     gl.uniform1f(u.staand, beeld.staand ? 1 : 0);
+    gl.uniform1f(u.eenheid, vorm.upm / 2048);
+    gl.uniform2f(u.grens, vorm.grens[0], vorm.grens[1]);
+    gl.uniform1f(u.afschuining, vorm.bevel);
+    gl.uniform1f(u.steenMaat, vorm.steen || 1);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
