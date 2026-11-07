@@ -31,11 +31,17 @@ In Netlify: *Add new site* → *Import an existing project* → kies deze GitHub
 
 ```
 .
-├── index.html        Homepage
+├── index.html        Home
+├── brands.html       Merken en cijfers
+├── how-we-build.html De motor achter de merken
+├── founders.html     Oprichters en track record
+├── work-with-us.html Verkopen, advies, investeren of inkopen
+├── contact.html      Contact
 ├── css/
 │   └── style.css     Alle stijlen; ontwerpvariabelen bovenaan
 ├── js/
-│   └── main.js       Kleine scripts (mobiel menu, jaartal)
+│   ├── main.js       Kleine scripts (menu, scrollen, schuif)
+│   └── chrome.js     Het iced-out 100x op home (WebGL)
 ├── images/           Beelden die op de site komen
 ├── referenties/      Inspiratiebeelden en designvoorbeelden (niet op de site gelinkt)
 ├── netlify.toml      Netlify-instellingen
