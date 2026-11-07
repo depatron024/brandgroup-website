@@ -70,7 +70,7 @@ if (fly && !geenBeweging) {
     const y0 = nul.y - cy / schaal;
     mark.setAttribute('viewBox', `${x0} ${y0} ${b / schaal} ${h / schaal}`);
     mark.style.visibility = zoom >= 1 ? 'hidden' : 'visible';
-    window.honderdX = { x0, y0, schaal, staand, klaar: zoom >= 1, zoom };
+    window.honderdX = { x0, y0, schaal, staand, klaar: zoom >= 1 };
 
     const introUit = beperk(p / 0.12, 0, 1);
     intro.style.opacity = String(1 - introUit);
