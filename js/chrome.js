@@ -32,6 +32,9 @@
   uniform vec2 grens;       // einde van de 1, begin van de x
   uniform float afschuining;
   uniform float steenMaat;
+  uniform vec3 loep;        // midden (schermpixels) en straal; straal 0 = uit
+  uniform vec3 glas;
+  uniform vec3 tint;
   out vec4 kleur;
 
   float hash(vec2 v) { return fract(sin(dot(v, vec2(127.1, 311.7))) * 43758.5453); }
@@ -43,17 +46,16 @@
     return c + vec3(0.28) * pow(b, 6.0);
   }
 
-  void main() {
-    vec2 px = vec2(gl_FragCoord.x, scherm.y - gl_FragCoord.y);
+  vec4 letters(vec2 px) {
     vec2 g = oorsprong + px / schaal;
     vec2 uv = (g * kaart.x + kaart.yz) / textuur;
-    if (uv.x < 0.0 || uv.y < 0.0 || uv.x > 1.0 || uv.y > 1.0) { kleur = vec4(0.0); return; }
+    if (uv.x < 0.0 || uv.y < 0.0 || uv.x > 1.0 || uv.y > 1.0) { return vec4(0.0); }
 
     float t = texture(afstand, uv).r;
     float d = (t - 0.5) * 2.0 * bereik / kaart.x;
     float aa = max(fwidth(d), 0.001);
     float dekking = smoothstep(-aa, aa, d);
-    if (dekking <= 0.0) { kleur = vec4(0.0); return; }
+    if (dekking <= 0.0) { return vec4(0.0); }
 
     bool isX = staand > 0.5 ? g.y > 20.0 : g.x > grens.y;
     float op = isX ? opkomst.z : (g.x < grens.x ? opkomst.x : opkomst.y);
@@ -77,7 +79,23 @@
     goud = mix(goud, vec3(1.0, 0.93, 0.74), smoothstep(0.78, 1.0, a));
     goud *= 0.97 + 0.03 * sin(g.y / eenheid * 1.4 + hash(vec2(floor(g.y / eenheid * 0.5), 3.0)) * 6.0);
     c = goud;
-    kleur = vec4(c * dekking * op, dekking * op);
+    return vec4(c * dekking * op, dekking * op);
+  }
+
+  // De loep: binnen de cirkel zie je de letters vergroot, met een metalen rand
+  void main() {
+    vec2 px = vec2(gl_FragCoord.x, scherm.y - gl_FragCoord.y);
+    vec2 dl = px - loep.xy;
+    float r = length(dl);
+    if (loep.z <= 0.0 || r > loep.z + 4.0) { kleur = letters(px); return; }
+    float t = r / loep.z;
+    vec4 l = letters(loep.xy + dl * (0.55 + 0.15 * t * t));
+    vec4 binnen = l + vec4(glas, 1.0) * 0.92 * (1.0 - l.a);
+    float w = max(loep.z * 0.045, 3.0);
+    float ring = smoothstep(loep.z - w, loep.z - w * 0.5, r) * (1.0 - smoothstep(loep.z - 1.0, loep.z + 1.0, r));
+    float binnenMasker = 1.0 - smoothstep(loep.z - w * 0.5 - 1.0, loep.z - w * 0.5, r);
+    vec3 rand = omgeving(dl / loep.z * 1.4 + (muis - 0.5) * 2.0) * tint;
+    kleur = binnen * binnenMasker + vec4(rand, 1.0) * ring;
   }`;
 
   function bouw(type, bron) {
@@ -102,7 +120,7 @@
   gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
 
   const u = {};
-  ['afstand', 'scherm', 'oorsprong', 'schaal', 'kaart', 'textuur', 'bereik', 'muis', 'tijd', 'opkomst', 'staand', 'eenheid', 'grens', 'afschuining', 'steenMaat'].forEach((n) => {
+  ['afstand', 'scherm', 'oorsprong', 'schaal', 'kaart', 'textuur', 'bereik', 'muis', 'tijd', 'opkomst', 'staand', 'eenheid', 'grens', 'afschuining', 'steenMaat', 'loep', 'glas', 'tint'].forEach((n) => {
     u[n] = gl.getUniformLocation(prog, n);
   });
   gl.enable(gl.BLEND);
@@ -236,6 +254,14 @@
   }
 
   const muis = { x: 0.5, y: 0.5, doelX: 0.5, doelY: 0.5 };
+  const lens = { x: 0, y: 0, px: NaN, py: NaN, binnen: false };
+  window.addEventListener('pointermove', (e) => {
+    const r = canvas.getBoundingClientRect();
+    lens.x = e.clientX - r.left;
+    lens.y = e.clientY - r.top;
+    lens.binnen = lens.x >= 0 && lens.y >= 0 && lens.x <= r.width && lens.y <= r.height && r.bottom > 0;
+  }, { passive: true });
+  document.addEventListener('pointerleave', () => { lens.binnen = false; });
   window.addEventListener('pointermove', (e) => {
     muis.doelX = e.clientX / window.innerWidth;
     muis.doelY = e.clientY / window.innerHeight;
@@ -283,6 +309,25 @@
     gl.uniform2f(u.grens, vorm.grens[0], vorm.grens[1]);
     gl.uniform1f(u.afschuining, vorm.bevel);
     gl.uniform1f(u.steenMaat, vorm.steen || 1);
+    gl.uniform3f(u.glas, 0.06, 0.045, 0.025);
+    gl.uniform3f(u.tint, 1.0, 0.8, 0.45);
+
+    // Loep: volgt de muis boven het woordbeeld, anders glijdt hij rustig over de letters
+    const r = canvas.getBoundingClientRect();
+    const w = vorm.woord;
+    const rechts = beeld.staand ? vorm.staand.rechts : w.rechts;
+    const onder = beeld.staand ? vorm.staand.onder : w.onder;
+    const midX = (((w.links + rechts) / 2) - beeld.x0) * beeld.schaal;
+    const midY = (((w.boven + onder) / 2) - beeld.y0) * beeld.schaal;
+    const breed = (rechts - w.links) * beeld.schaal;
+    const doelX = lens.binnen ? lens.x : midX + Math.sin(tijd * 0.35) * breed * 0.38;
+    const doelY = lens.binnen ? lens.y : midY + Math.sin(tijd * 0.6) * breed * 0.08;
+    lens.px += ((Number.isNaN(lens.px) ? doelX : doelX) - (Number.isNaN(lens.px) ? doelX : lens.px)) * 0.12;
+    lens.py += ((Number.isNaN(lens.py) ? doelY : doelY) - (Number.isNaN(lens.py) ? doelY : lens.py)) * 0.12;
+    if (Number.isNaN(lens.px)) { lens.px = doelX; lens.py = doelY; }
+    const zichtbaar = stil || (beeld.zoom || 0) > 0.02 ? 0 : Math.min(1, (nu - start - 1600) / 600);
+    const straal = Math.min(r.width, r.height) * (r.width < 700 ? 0.2 : 0.14) * Math.max(0, zichtbaar);
+    gl.uniform3f(u.loep, lens.px * dpr, lens.py * dpr, straal * dpr);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
