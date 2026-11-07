@@ -330,16 +330,20 @@
     // Loep: volgt de muis boven het woordbeeld, anders glijdt hij rustig over de letters
     const r = canvas.getBoundingClientRect();
     const w = vorm.woord;
-    const rechts = beeld.staand ? vorm.staand.rechts : w.rechts;
-    const onder = beeld.staand ? vorm.staand.onder : w.onder;
-    const midX = (((w.links + rechts) / 2) - beeld.x0) * beeld.schaal;
-    const midY = (((w.boven + onder) / 2) - beeld.y0) * beeld.schaal;
-    const breed = (rechts - w.links) * beeld.schaal;
-    const doelX = lens.binnen ? lens.x : midX + Math.sin(tijd * 0.35) * breed * 0.38;
-    const doelY = lens.binnen ? lens.y : midY + Math.sin(tijd * 0.6) * breed * 0.08;
-    lens.px += ((Number.isNaN(lens.px) ? doelX : doelX) - (Number.isNaN(lens.px) ? doelX : lens.px)) * 0.12;
-    lens.py += ((Number.isNaN(lens.py) ? doelY : doelY) - (Number.isNaN(lens.py) ? doelY : lens.py)) * 0.12;
+    // Zonder muis gaat de loep langs drie plekken met metaal: de 1, de rand van de tweede 0 en het kruis van de x
+    const hoogte = w.onder - w.boven;
+    const plekken = [
+      [(w.links + vorm.grens[0]) / 2, w.boven + hoogte * 0.5],
+      [vorm.nul.x - vorm.nul.a * 1.3, vorm.nul.y],
+      [(vorm.grens[1] + w.rechts) / 2 + (beeld.staand ? vorm.staand.dx : 0), w.onder - hoogte * 0.32 + (beeld.staand ? vorm.staand.dy : 0)],
+    ];
+    const [gx, gy] = plekken[Math.floor(Math.max(tijd, 0) / 3) % 3];
+    const doelX = lens.binnen ? lens.x : (gx - beeld.x0) * beeld.schaal;
+    const doelY = lens.binnen ? lens.y : (gy - beeld.y0) * beeld.schaal;
     if (Number.isNaN(lens.px)) { lens.px = doelX; lens.py = doelY; }
+    const tempo = lens.binnen ? 0.18 : 0.05;
+    lens.px += (doelX - lens.px) * tempo;
+    lens.py += (doelY - lens.py) * tempo;
     const zichtbaar = stil || (beeld.zoom || 0) > 0.02 ? 0 : Math.min(1, (nu - start - 1600) / 600);
     const straal = Math.min(r.width, r.height) * (r.width < 700 ? 0.2 : 0.14) * Math.max(0, zichtbaar);
     gl.uniform3f(u.loep, lens.px * dpr, lens.py * dpr, straal * dpr);
