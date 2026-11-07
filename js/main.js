@@ -70,7 +70,7 @@ if (fly && !geenBeweging) {
     const y0 = nul.y - cy / schaal;
     mark.setAttribute('viewBox', `${x0} ${y0} ${b / schaal} ${h / schaal}`);
     mark.style.visibility = zoom >= 1 ? 'hidden' : 'visible';
-    window.honderdX = { x0, y0, schaal, staand, klaar: zoom >= 1 };
+    window.honderdX = { x0, y0, schaal, staand, klaar: zoom >= 1, zoom };
 
     const introUit = beperk(p / 0.12, 0, 1);
     intro.style.opacity = String(1 - introUit);
@@ -251,6 +251,117 @@ if ('IntersectionObserver' in window) {
 } else {
   tellers.forEach(telOp);
 }
+
+// Golf van merkkaarten: de kaarten bij je muis (of vinger) komen omhoog en draaien naar je toe
+document.querySelectorAll('[data-cardwall]').forEach((wand) => {
+  const rij = wand.querySelector('[data-cardwall-row]');
+  const kaarten = [...rij.children];
+  kaarten.forEach((k, i) => k.style.setProperty('--i', i));
+  if (geenBeweging) return;
+
+  let doelX = null; // muispositie ten opzichte van het midden, in pixels
+  let x = 0;
+  let zichtbaar = false;
+  const start = performance.now();
+
+  wand.addEventListener('pointermove', (e) => {
+    const r = wand.getBoundingClientRect();
+    doelX = e.clientX - r.left - r.width / 2;
+  });
+  wand.addEventListener('pointerleave', () => { doelX = null; });
+
+  function stap(nu) {
+    if (!zichtbaar) return;
+    const afstand = parseFloat(getComputedStyle(wand).getPropertyValue('--kaart-afstand-px')) || 64;
+    const t = (nu - start) / 1000;
+    // Zonder muis komen de vier echte kaarten (de middelste) om de beurt naar voren
+    const beurt = 5 + (Math.floor(t / 2.6) % 4);
+    const doel = doelX ?? (beurt - 6.5) * afstand;
+    x += (doel - x) * 0.08;
+    kaarten.forEach((k, i) => {
+      const pos = (i - 6.5) * afstand;
+      const d = (pos - x) / (afstand * 1.6);
+      const til = Math.exp(-d * d);
+      // De kaarten naast de gekozen kaart schuiven opzij, zodat hij helemaal vrij komt
+      const opzij = afstand * 1.3 * Math.tanh((pos - x) / (afstand * 0.9));
+      k.style.transform = `translateX(${pos + opzij}px) translateX(-50%) translateY(${-til * 60}px) rotateY(${-30 + til * 30}deg) scale(${1 + til * 0.1})`;
+      k.style.zIndex = String(Math.round(til * 100));
+    });
+    requestAnimationFrame(stap);
+  }
+
+  new IntersectionObserver((entries) => {
+    zichtbaar = entries[0].isIntersecting;
+    if (zichtbaar) requestAnimationFrame(stap);
+  }).observe(wand);
+});
+
+// Draaiend wiel: tabs links bepalen welke kaart vooraan staat; slepen draait het wiel ook
+document.querySelectorAll('[data-revolver]').forEach((blok) => {
+  const wiel = blok.querySelector('[data-wheel]');
+  const knoppen = [...blok.querySelectorAll('.revolver__tab')];
+  [...wiel.children].forEach((k, i) => k.style.setProperty('--i', i));
+  let hoek = 0;
+  let doelHoek = 0;
+  let actief = 0;
+  let aangeraakt = false;
+
+  function kies(i, focus) {
+    actief = (i + knoppen.length) % knoppen.length;
+    knoppen.forEach((k, j) => {
+      const aan = j === actief;
+      k.setAttribute('aria-selected', String(aan));
+      k.tabIndex = aan ? 0 : -1;
+      document.getElementById(k.getAttribute('aria-controls')).hidden = !aan;
+    });
+    if (focus) knoppen[actief].focus();
+    // Kortste weg naar de gekozen kaart
+    const gewenst = -actief * 120;
+    doelHoek = gewenst + Math.round((doelHoek - gewenst) / 360) * 360;
+  }
+
+  knoppen.forEach((k, i) => {
+    k.addEventListener('click', () => { aangeraakt = true; kies(i); });
+    k.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      aangeraakt = true;
+      kies(actief + (e.key === 'ArrowRight' ? 1 : -1), true);
+    });
+  });
+
+  // Slepen over het wiel
+  const podium = blok.querySelector('.revolver__stage');
+  let sleepVan = null;
+  podium.addEventListener('pointerdown', (e) => { sleepVan = e.clientX; aangeraakt = true; podium.setPointerCapture(e.pointerId); });
+  podium.addEventListener('pointermove', (e) => {
+    if (sleepVan === null) return;
+    doelHoek += (e.clientX - sleepVan) * 0.4;
+    sleepVan = e.clientX;
+  });
+  podium.addEventListener('pointerup', () => {
+    sleepVan = null;
+    kies(Math.round(-doelHoek / 120));
+  });
+
+  if (geenBeweging) {
+    wiel.style.transform = 'rotateX(-14deg) rotateY(0deg)';
+    return;
+  }
+
+  setInterval(() => {
+    if (aangeraakt || document.hidden) return;
+    const r = blok.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) return;
+    kies(actief + 1);
+  }, 4500);
+
+  function draai() {
+    hoek += (doelHoek - hoek) * 0.08;
+    wiel.style.transform = `rotateX(-14deg) rotateY(${hoek}deg)`;
+    requestAnimationFrame(draai);
+  }
+  requestAnimationFrame(draai);
+});
 
 // Huidig jaar in de footer
 document.querySelectorAll('[data-year]').forEach((el) => {

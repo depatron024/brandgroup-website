@@ -61,6 +61,22 @@
   --tekst-maat: 38rem;
   --fly-hoogte: 300svh;
 
+  /* Kaarten (golf en wiel) */
+  --kaart-breedte: 7.5rem;
+  --kaart-afstand: 3rem;
+  --kaart-afstand-px: 48;
+  --golf-hoogte: 17rem;
+  --wiel-kaart: 13rem;
+  --wiel-straal: 7.5rem;
+  --wiel-hoogte: 16rem;
+  --radius-kaart: 14px;
+  --schaduw-kaart: 0 30px 60px rgba(0, 0, 0, 0.5);
+  --glans-kaart: linear-gradient(115deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.08) 70%, rgba(255, 255, 255, 0) 85%);
+  --kaart-zwart: #121214;
+  --kaart-grafiet: #2a2b31;
+  --kaart-goud: #c8cbd3;
+  --kaart-ivoor: #f1f1ef;
+
   /* Vormen en beweging */
   --radius-s: 8px;
   --radius: 20px;
@@ -82,6 +98,13 @@
     --kop-cijfer: 3.25rem;
     --ruimte-sectie: 8rem;
     --container-marge: 2rem;
+    --kaart-breedte: 11rem;
+    --kaart-afstand: 5.5rem;
+    --kaart-afstand-px: 88;
+    --golf-hoogte: 26rem;
+    --wiel-kaart: 26rem;
+    --wiel-straal: 15rem;
+    --wiel-hoogte: 30rem;
   }
 }
 
@@ -1354,6 +1377,318 @@ a {
     grid-column: 2;
     grid-row: 1 / span 3;
     align-self: center;
+  }
+}
+
+/* ==========================================================================
+   Golf van merkkaarten
+   De glans op de kaarten is een getekend materiaal (metaal), geen sfeerverloop.
+   ========================================================================== */
+.cardwall {
+  padding-top: var(--ruimte-sectie);
+  overflow: clip;
+}
+
+.cardwall__head {
+  display: grid;
+  justify-items: center;
+  gap: var(--ruimte-m);
+  text-align: center;
+}
+
+.cardwall__head h2 {
+  font-size: var(--kop-1);
+}
+
+.cardwall__head p {
+  max-width: var(--tekst-maat);
+  font-size: var(--tekst-groot);
+  color: var(--kleur-tekst-zacht);
+}
+
+.cardwall__stage {
+  position: relative;
+  height: var(--golf-hoogte);
+  perspective: 1600px;
+}
+
+.cardwall__row {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform-style: preserve-3d;
+}
+
+.mcard {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: var(--kaart-breedte);
+  aspect-ratio: 5 / 8;
+  padding: var(--ruimte-m);
+  overflow: hidden;
+  border-radius: var(--radius-kaart);
+  color: var(--kleur-tekst);
+  text-decoration: none;
+  transform-origin: 50% 100%;
+  box-shadow: var(--schaduw-kaart);
+  will-change: transform;
+}
+
+.mcard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--glans-kaart); /* taste-skill-ignore */
+  pointer-events: none;
+}
+
+.mcard--zwart { background: var(--kaart-zwart); }
+.mcard--grafiet { background: var(--kaart-grafiet); }
+.mcard--goud { background: var(--kaart-goud); color: var(--kleur-veld-tekst); }
+.mcard--ivoor { background: var(--kaart-ivoor); color: var(--kleur-veld-tekst); }
+
+.mcard__naam {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-merk);
+  font-size: var(--kop-3);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.mcard small {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--ruimte-xs);
+  font-size: var(--tekst-klein);
+  opacity: 0.8;
+}
+
+.cardwall__mono {
+  position: absolute;
+  left: var(--ruimte-m);
+  bottom: var(--ruimte-m);
+  width: 45%;
+  fill: currentColor;
+  opacity: 0.55;
+}
+
+.mcard--verborgen {
+  justify-content: flex-end;
+  background: var(--kleur-kaart);
+  color: var(--kleur-wit);
+}
+
+.mcard--verborgen img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mcard--verborgen .eye {
+  width: var(--ruimte-xl);
+  height: var(--ruimte-xl);
+}
+
+.mcard--verborgen .eye svg {
+  width: var(--ruimte-m);
+  height: var(--ruimte-m);
+}
+
+/* Zonder JS: een vaste, schuin geplaatste rij */
+.mcard {
+  transform: translateX(calc((var(--i) - 6.5) * var(--kaart-afstand) - 50%)) rotateY(-28deg);
+}
+
+.cardwall__list {
+  display: grid;
+  gap: var(--ruimte-s);
+  margin-top: var(--ruimte-xl);
+}
+
+.cardwall__list li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ruimte-m);
+  padding-block: var(--ruimte-s);
+}
+
+.cardwall__list a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cardwall__list a:hover {
+  color: var(--kleur-accent);
+}
+
+.cardwall__list span {
+  color: var(--kleur-tekst-zacht);
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .cardwall__list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--ruimte-l);
+  }
+
+  .cardwall__list li {
+    flex-direction: column;
+  }
+
+  .cardwall__list span {
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   Draaiend wiel met drie kaarten
+   ========================================================================== */
+.revolver__grid {
+  display: grid;
+  gap: var(--ruimte-xl);
+  align-items: center;
+}
+
+.revolver__copy {
+  display: grid;
+  gap: var(--ruimte-l);
+  justify-items: start;
+}
+
+.revolver__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ruimte-s);
+}
+
+.revolver__tab {
+  padding: 0.625rem 1.125rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--kleur-kaart-licht);
+  color: var(--kleur-tekst-zacht);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--overgang), color var(--overgang);
+}
+
+.revolver__tab:hover {
+  color: var(--kleur-tekst);
+}
+
+.revolver__tab[aria-selected="true"] {
+  background: var(--kleur-primair);
+  color: var(--kleur-primair-tekst);
+}
+
+.revolver__panel {
+  display: grid;
+  gap: var(--ruimte-l);
+  justify-items: start;
+}
+
+.revolver__panel[hidden] {
+  display: none;
+}
+
+.revolver__panel > p {
+  max-width: var(--tekst-maat);
+  font-size: var(--tekst-groot);
+  color: var(--kleur-tekst-zacht);
+}
+
+.revolver__stage {
+  display: grid;
+  place-items: center;
+  height: var(--wiel-hoogte);
+  perspective: 1400px;
+}
+
+.wheel {
+  position: relative;
+  width: var(--wiel-kaart);
+  aspect-ratio: 8 / 5;
+  transform-style: preserve-3d;
+  transform: rotateX(-14deg) rotateY(0deg);
+}
+
+.wheel__card {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateY(calc(var(--i) * 120deg)) translateZ(var(--wiel-straal));
+}
+
+.wheel__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--ruimte-l);
+  overflow: hidden;
+  border-radius: var(--radius-kaart);
+  backface-visibility: hidden;
+  box-shadow: var(--schaduw-kaart);
+}
+
+.wheel__face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--glans-kaart); /* taste-skill-ignore */
+}
+
+.wheel__face--back {
+  transform: rotateY(180deg);
+}
+
+.wheel__card--zwart .wheel__face { background: var(--kaart-zwart); color: var(--kleur-tekst); }
+.wheel__card--goud .wheel__face { background: var(--kaart-goud); color: var(--kleur-veld-tekst); }
+.wheel__card--ivoor .wheel__face { background: var(--kaart-ivoor); color: var(--kleur-veld-tekst); }
+
+.wheel__face b {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-merk);
+  font-size: var(--kop-merk-2);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.wheel__face .cardwall__mono {
+  left: auto;
+  right: var(--ruimte-l);
+  top: var(--ruimte-l);
+  bottom: auto;
+  width: 22%;
+}
+
+.wheel__face--back .cardwall__mono {
+  inset: 0;
+  width: 60%;
+  margin: auto;
+  opacity: 0.35;
+}
+
+@media (min-width: 960px) {
+  .revolver__grid {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mcard {
+    transition: none;
   }
 }
 

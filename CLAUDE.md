@@ -7,7 +7,7 @@ Merkwebsite in gewone HTML, CSS en een beetje JavaScript, zonder framework. Taal
 Eerste invulling (voorstel, nog te bevestigen).
 
 - **Naam:** 100x Brands. Gaan we later ook andere dingen doen dan merken, dan wordt het mogelijk "100x Group".
-- **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over en adviseren andere founders met onze systemen. Nog geen branche op de site noemen.
+- **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over en adviseren andere founders met onze systemen en investeren in merken van anderen. Nog geen branche op de site noemen.
 - **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
 - **Sfeer:** luxe en flex in platina: 100x bezet met diamanten, daarna vlieg je door de nul. Serif-koppen, veel ruimte, links uitgelijnd. De flex zit in beeld en resultaten, niet in stoere zinnen. Uitleg moet in één oogopslag duidelijk zijn: een groot wisselend scherm en een groepsoverzicht, koppen links (zoals 187n).
 - **Kleuren:** bijna-zwart (#050507), donkergrijze kaarten (#101114), wit, zilver als accent (#c9ccd4).
