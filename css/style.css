@@ -77,6 +77,9 @@
   --kaart-goud: #c8cbd3;
   --kaart-ivoor: #f1f1ef;
 
+  --pin-hoogte: 220svh;
+  --dots-hoogte: 260svh;
+
   /* Vormen en beweging */
   --radius-s: 8px;
   --radius: 20px;
@@ -695,6 +698,7 @@ a {
   border-radius: var(--radius-s);
   background: var(--kleur-ui);
   box-shadow: var(--schaduw-ui);
+  color: var(--kleur-tekst);
   font-size: var(--tekst-ui);
   line-height: 1.35;
 }
@@ -1689,6 +1693,177 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .mcard {
     transition: none;
+  }
+}
+
+/* ==========================================================================
+   Hero: na de nul landt je op het groepsoverzicht
+   ========================================================================== */
+.fly--x .fly__field {
+  background: var(--kleur-veld) url("../images/backdrop.jpg") center / cover;
+}
+
+.fly.is-flying .fly__statement--hq {
+  display: grid;
+  justify-items: center;
+  gap: var(--ruimte-l);
+}
+
+.fly__statement--hq [data-ui].ui--hq {
+  width: 100%;
+  max-width: 68rem;
+  text-align: left;
+}
+
+.fly__statement--hq [data-ui] .hq__panel:nth-child(n + 3) {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .fly__statement--hq [data-ui] .hq__panel:nth-child(n + 3) {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   Bewijs: de kaart blijft staan, het beeld erachter schuift door
+   ========================================================================== */
+.pin {
+  position: relative;
+  height: var(--pin-hoogte);
+}
+
+.pin__stage {
+  position: sticky;
+  top: var(--header-hoogte);
+  height: calc(100svh - var(--header-hoogte));
+  overflow: hidden;
+}
+
+.pin__beeld {
+  position: absolute;
+  inset: -20% 0;
+  will-change: transform;
+}
+
+.pin__beeld img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pin__inner {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.pin__card {
+  display: grid;
+  gap: var(--ruimte-m);
+  justify-items: center;
+  width: 100%;
+  max-width: 34rem;
+  padding: var(--ruimte-l);
+  border-radius: var(--radius);
+  background: var(--kleur-kaart);
+  box-shadow: var(--schaduw-ui);
+  text-align: center;
+}
+
+.pin__card h2 {
+  font-size: var(--kop-merk-2);
+}
+
+.pin__card > p {
+  color: var(--kleur-tekst-zacht);
+}
+
+.pin__card [data-ui].ui--proof {
+  text-align: left;
+}
+
+.pin__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ruimte-s);
+  font-size: var(--tekst-klein);
+  color: var(--kleur-tekst-zacht);
+}
+
+.eye--klein {
+  position: static;
+  width: var(--ruimte-l);
+  height: var(--ruimte-l);
+  transform: none;
+}
+
+.eye--klein svg {
+  width: var(--ruimte-m);
+  height: var(--ruimte-m);
+}
+
+@media (min-width: 768px) {
+  .pin__card {
+    padding: var(--ruimte-xl);
+  }
+}
+
+/* ==========================================================================
+   100x uit puntjes
+   ========================================================================== */
+.dots {
+  position: relative;
+  height: var(--dots-hoogte);
+}
+
+.dots__stage {
+  position: sticky;
+  top: var(--header-hoogte);
+  display: grid;
+  height: calc(100svh - var(--header-hoogte));
+  overflow: hidden;
+}
+
+.dots__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dots__bron {
+  display: none;
+}
+
+.dots__text {
+  position: relative;
+  align-self: end;
+  display: grid;
+  justify-items: center;
+  gap: var(--ruimte-s);
+  padding-bottom: var(--ruimte-xl);
+  text-align: center;
+}
+
+.dots__text p {
+  max-width: var(--tekst-maat);
+  font-size: var(--tekst-groot);
+  color: var(--kleur-tekst-zacht);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pin,
+  .dots {
+    height: auto;
+  }
+
+  .pin__stage,
+  .dots__stage {
+    position: relative;
+    top: 0;
+    min-height: 100svh;
   }
 }
 
