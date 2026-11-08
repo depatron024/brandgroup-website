@@ -363,6 +363,121 @@ document.querySelectorAll('[data-revolver]').forEach((blok) => {
   requestAnimationFrame(draai);
 });
 
+// Bewijs: het beeld achter de vaste kaart schuift door terwijl je scrolt
+const pin = document.querySelector('[data-pin]');
+
+if (pin && !geenBeweging) {
+  const beeld = pin.querySelector('[data-pin-beeld]');
+  let pinGepland = false;
+
+  function zetPin() {
+    pinGepland = false;
+    const r = pin.getBoundingClientRect();
+    const p = beperk(-r.top / Math.max(r.height - window.innerHeight, 1), 0, 1);
+    beeld.style.transform = `translateY(${(0.5 - p) * 30}%) scale(${1.05 + p * 0.15})`;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!pinGepland) {
+      pinGepland = true;
+      requestAnimationFrame(zetPin);
+    }
+  }, { passive: true });
+  zetPin();
+}
+
+// 100x bouwt zich op uit duizenden puntjes, in het tempo van het scrollen
+const dotsBlok = document.querySelector('[data-dots]');
+
+if (dotsBlok) {
+  const canvas = dotsBlok.querySelector('[data-dots-canvas]');
+  const bron = dotsBlok.querySelector('[data-dots-bron]');
+  const ctx = canvas.getContext('2d');
+  const kleur = getComputedStyle(document.documentElement).getPropertyValue('--kleur-accent').trim();
+  let punten = [];
+  let breedte = 0;
+  let hoogte = 0;
+  let dpr = 1;
+
+  function maakPunten() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    breedte = canvas.clientWidth;
+    hoogte = canvas.clientHeight;
+    canvas.width = breedte * dpr;
+    canvas.height = hoogte * dpr;
+
+    // Waar staan de letters? Teken ze klein en lees de pixels uit
+    const [vx, vy, vb, vh] = bron.getAttribute('viewBox').split(' ').map(Number);
+    const doelB = Math.min(breedte * 0.86, (hoogte * 0.55) * (vb / vh));
+    const s = doelB / vb;
+    const ox = (breedte - doelB) / 2;
+    const oy = hoogte * 0.38 - (vh * s) / 2;
+    const stap = 3;
+    const proef = document.createElement('canvas');
+    proef.width = Math.ceil(breedte / stap);
+    proef.height = Math.ceil(hoogte / stap);
+    const pc = proef.getContext('2d');
+    pc.setTransform(s / stap, 0, 0, s / stap, (ox - vx * s) / stap, (oy - vy * s) / stap);
+    bron.querySelectorAll('path').forEach((p) => pc.fill(new Path2D(p.getAttribute('d'))));
+    const data = pc.getImageData(0, 0, proef.width, proef.height).data;
+    const doelen = [];
+    for (let y = 0; y < proef.height; y += 1) {
+      for (let x = 0; x < proef.width; x += 1) {
+        if (data[(y * proef.width + x) * 4 + 3] > 128) doelen.push([x * stap, y * stap]);
+      }
+    }
+
+    // Startpunten: zachte golven over de hele breedte
+    punten = doelen.map(([tx, ty], i) => {
+      const sx = Math.random() * breedte;
+      const golf = Math.sin(sx / breedte * Math.PI * 3 + (i % 5)) * hoogte * 0.18;
+      return {
+        sx,
+        sy: hoogte * 0.45 + golf + (Math.random() - 0.5) * hoogte * 0.25,
+        tx,
+        ty,
+        wacht: Math.random() * 0.35,
+        r: 1 + Math.random() * 1.2,
+      };
+    });
+  }
+
+  function teken(p, t) {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, breedte, hoogte);
+    ctx.fillStyle = kleur;
+    punten.forEach((pt) => {
+      const q = beperk((p - pt.wacht) / 0.55, 0, 1);
+      const e = q * q * (3 - 2 * q);
+      const tril = (1 - e) * Math.sin(t * 1.5 + pt.sx) * 6;
+      const x = pt.sx + (pt.tx - pt.sx) * e;
+      const y = pt.sy + (pt.ty - pt.sy) * e + tril;
+      ctx.globalAlpha = 0.45 + e * 0.55;
+      ctx.fillRect(x, y, pt.r, pt.r);
+    });
+  }
+
+  maakPunten();
+  window.addEventListener('resize', maakPunten);
+
+  if (geenBeweging) {
+    teken(1, 0);
+  } else {
+    let zichtbaar = false;
+    function lus(nu) {
+      if (!zichtbaar) return;
+      const r = dotsBlok.getBoundingClientRect();
+      const p = beperk(-r.top / Math.max(r.height - window.innerHeight, 1) * 1.25, 0, 1);
+      teken(p, nu / 1000);
+      requestAnimationFrame(lus);
+    }
+    new IntersectionObserver((entries) => {
+      zichtbaar = entries[0].isIntersecting;
+      if (zichtbaar) requestAnimationFrame(lus);
+    }).observe(dotsBlok);
+  }
+}
+
 // Huidig jaar in de footer
 document.querySelectorAll('[data-year]').forEach((el) => {
   el.textContent = new Date().getFullYear();
