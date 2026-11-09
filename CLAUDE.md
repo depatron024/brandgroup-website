@@ -7,11 +7,11 @@ Merkwebsite in gewone HTML, CSS en een beetje JavaScript, zonder framework. Taal
 Eerste invulling (voorstel, nog te bevestigen).
 
 - **Naam:** 100x Brands. Gaan we later ook andere dingen doen dan merken, dan wordt het mogelijk "100x Group".
-- **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over en adviseren andere founders met onze systemen en investeren in merken van anderen. Nog geen branche op de site noemen.
+- **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over, adviseren andere founders met onze systemen en investeren in merken van anderen. Nog geen branche op de site noemen.
 - **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
-- **Sfeer:** luxe en flex in platina: 100x bezet met diamanten, daarna vlieg je door de nul. Serif-koppen, veel ruimte, links uitgelijnd. De flex zit in beeld en resultaten, niet in stoere zinnen. Uitleg moet in één oogopslag duidelijk zijn: bento-tegels met nagebouwde schermen, gecentreerde koppen (zoals Slash).
-- **Kleuren:** bijna-zwart (#050507), donkergrijze kaarten (#101114), wit, zilver als accent (#c9ccd4).
-- **Lettertypes:** Instrument Serif alleen voor groot merkwerk (logo, paginatitels, grote statements); Inter voor alles wat je moet lezen (Google Fonts).
+- **Sfeer:** de site is een prive-kluis. Op home scrol je de kluisdeur open (100x in diamant op de deur, het wiel draait, de deur zwaait open); de merken zitten in kluisjes. Warm in plaats van kil, geen SaaS-tegels of nagebouwde schermen. De flex zit in beeld en resultaten, niet in stoere zinnen.
+- **Kleuren:** warm zwart (#141110), warme vlakken (#1d1917), bot-wit (#efe9df) en diamant. Geen goud.
+- **Lettertypes:** Instrument Serif voor groot merkwerk (logo, titels, statements); Inter voor alles wat je moet lezen (Google Fonts).
 - **Toon van de teksten:** kort en feitelijk, zonder slogans of grootspraak. Cijfers alleen met bron en periode.
 - **Niet noemen:** andere bedrijven of merken van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken.
 
@@ -27,9 +27,8 @@ Kijk altijd eerst in de map `/referenties` voordat je iets ontwerpt of de stijl 
 
 ## Techniek
 
-- Elke pagina is een eigen `.html` in de root (`index`, `brands`, `how-we-build`, `founders`, `work-with-us`, `contact`); stijlen in `css/style.css`, scripts in `js/`, beelden in `images/`. Header en footer staan op elke pagina: pas ze overal aan.
+- Elke pagina is een eigen `.html` in de root (`index`, `brands`, `how-we-build`, `founders`, `work-with-us`, `contact`); stijlen in `css/style.css`, scripts in `js/` (`chrome.js` tekent het diamanten 100x), beelden in `images/`. Header en footer staan op elke pagina: pas ze overal aan.
 - Mobiel eerst: basisstijlen voor mobiel, grotere schermen via `@media (min-width: ...)`.
-- Nagebouwde schermen tonen voorbeelddata en dragen altijd het label "Illustrative". Echte cijfers alleen met bron en periode.
 - Geen frameworks, build-tools of npm-pakketten zonder overleg.
 - Lokaal bekijken: zie README.md.
 

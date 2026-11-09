@@ -2,13 +2,13 @@
 // Gewone WebGL2 zonder bibliotheek. Werkt het niet, dan blijven de witte letters uit de SVG staan.
 (() => {
   const canvas = document.querySelector('[data-fly-chrome]');
-  const mark = document.querySelector('[data-fly-mark]');
+  const mark = canvas && canvas.parentElement.querySelector('[data-fly-mark]');
   if (!canvas || !mark) return;
 
   const gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: false });
   if (!gl) return;
 
-  const vorm = JSON.parse(document.querySelector('[data-fly]').dataset.maat);
+  const vorm = JSON.parse(canvas.closest('[data-maat]').dataset.maat);
   const stil = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const vert = `#version 300 es
@@ -244,9 +244,9 @@
   let dpr = 1;
   function maatCanvas() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const r = canvas.getBoundingClientRect();
-    canvas.width = Math.round(r.width * dpr);
-    canvas.height = Math.round(r.height * dpr);
+    // clientWidth in plaats van getBoundingClientRect: de kaart en de deur staan schuin in 3D
+    canvas.width = Math.round(canvas.clientWidth * dpr);
+    canvas.height = Math.round(canvas.clientHeight * dpr);
     gl.viewport(0, 0, canvas.width, canvas.height);
   }
 
@@ -267,10 +267,10 @@
     // Zonder scrollscène (minder beweging) past het woordbeeld onderaan in het scherm
     let beeld = window.honderdX;
     if (!beeld) {
-      const r = canvas.getBoundingClientRect();
-      const [vx, vy, vb, vh] = mark.getAttribute('viewBox').split(' ').map(Number); // zelfde kader als de SVG
+      const r = { width: canvas.clientWidth, height: canvas.clientHeight };
+      const [vx, vy, vb, vh] = mark.getAttribute('viewBox').split(' ').map(Number); // zelfde kader als de SVG, gecentreerd
       const schaal = Math.min(r.width / vb, r.height / vh);
-      beeld = { schaal, x0: vx - (r.width / schaal - vb) / 2, y0: vy - (r.height / schaal - vh), staand: false, klaar: false };
+      beeld = { schaal, x0: vx - (r.width / schaal - vb) / 2, y0: vy - (r.height / schaal - vh) / 2, staand: false, klaar: false };
     }
     if (!kaart || kaart.staand !== beeld.staand) maakTextuur(beeld.staand);
 
@@ -304,7 +304,7 @@
   function lus(nu) {
     const r = canvas.getBoundingClientRect();
     const beeld = window.honderdX;
-    if (r.bottom > 0 && !(beeld && beeld.klaar)) teken(nu);
+    if (r.bottom > 0 && r.top < window.innerHeight && !(beeld && beeld.klaar)) teken(nu);
     else gl.clear(gl.COLOR_BUFFER_BIT);
     requestAnimationFrame(lus);
   }
