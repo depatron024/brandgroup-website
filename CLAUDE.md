@@ -9,8 +9,8 @@ Eerste invulling (voorstel, nog te bevestigen).
 - **Naam:** 100x Brands. Gaan we later ook andere dingen doen dan merken, dan wordt het mogelijk "100x Group".
 - **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over en adviseren andere founders met onze systemen en investeren in merken van anderen. Nog geen branche op de site noemen.
 - **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
-- **Sfeer:** luxe en flex in goud: 100x in gepolijst goud, daarna vlieg je door de nul. Klassieke Didone-koppen, gecentreerd, wisselend warm zwart en ivoor. De flex zit in beeld en resultaten, niet in stoere zinnen. Uitleg moet in één oogopslag duidelijk zijn: bento-tegels met nagebouwde schermen, gecentreerde koppen (zoals Slash).
-- **Kleuren:** warm zwart (#0c0a07), ivoor (#f4eddf), goud als accent (#c9a45c).
+- **Sfeer:** licht en luchtig, zoals Commas: wit met goud, 100x in gepolijst goud, daarna vlieg je door de nul en land je op het groepsoverzicht. Veel lucht, zachte kaarten, de flex zit in beeld en resultaten. Uitleg moet in één oogopslag duidelijk zijn: bento-tegels met nagebouwde schermen, gecentreerde koppen (zoals Slash).
+- **Kleuren:** wit (#ffffff), zacht ivoor voor kaarten (#f7f5f1), bijna zwart voor tekst (#14110c), goud als accent (#a87f2f).
 - **Lettertypes:** Bodoni Moda alleen voor groot merkwerk (logo, paginatitels, grote statements); Inter voor alles wat je moet lezen (Google Fonts).
 - **Toon van de teksten:** kort en feitelijk, zonder slogans of grootspraak. Cijfers alleen met bron en periode.
 - **Niet noemen:** andere bedrijven of merken van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken.
