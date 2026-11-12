@@ -2,7 +2,7 @@
    Ontwerpvariabelen
    Alle kleuren, fonts en afstanden staan hier. Pas het design aan via deze
    variabelen, niet met losse waarden verderop.
-   Richting Imperium: Rome in stippen. Elk beeld is een museumfoto die als
+   Richting Imperium: Rome in stippen, met een diamanten touch. Elk beeld is een museumfoto die als
    halftoon in keizerlijk rood is gedrukt; koppen in een dot-matrixletter.
    ========================================================================== */
 :root {
@@ -15,6 +15,8 @@
   --kleur-inkt-zacht: #6a5f57;
   --kleur-bot-zacht: #e8d9cc;
   --kleur-wit: #ffffff;
+  --kleur-diamant: #e9ecf2;
+  --kleur-glinster: rgba(255, 255, 255, 0.9);
   --kleur-lijn: rgba(29, 23, 20, 0.12);
   --kleur-lijn-licht: rgba(243, 236, 226, 0.3);
   --kleur-schaduw: rgba(29, 23, 20, 0.6);
@@ -512,6 +514,78 @@ a {
   object-fit: contain;
   object-position: bottom;
   will-change: transform;
+}
+
+/* Diamanten ketting met 100x-hanger over de buste */
+.hero__beeld {
+  position: relative;
+}
+
+.hanger {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ketting {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ketting__schaduw {
+  fill: none;
+  stroke: var(--kleur-inkt);
+  stroke-width: 7;
+  stroke-dasharray: 0.01 9;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.55;
+}
+
+.ketting__lijn {
+  fill: none;
+  stroke: var(--kleur-diamant);
+  stroke-width: 5;
+  stroke-dasharray: 0.01 9;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 3px var(--kleur-glinster));
+  animation: glinster 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes glinster {
+  to {
+    stroke: var(--kleur-wit);
+  }
+}
+
+.diamant {
+  position: absolute;
+  left: 25%;
+  top: 80%;
+  width: 50%;
+  height: 17%;
+  filter: drop-shadow(0 10px 16px var(--kleur-schaduw));
+}
+
+.diamant__mark,
+.diamant__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.diamant__mark {
+  fill: var(--kleur-diamant);
+}
+
+.diamant__mark.has-chrome .fly__glyph {
+  visibility: hidden;
 }
 
 .band {
@@ -1110,7 +1184,8 @@ a {
     animation: none !important;
   }
 
-  .band__track {
+  .band__track,
+  .ketting__lijn {
     animation: none;
   }
 
