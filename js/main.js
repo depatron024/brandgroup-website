@@ -39,7 +39,16 @@ if ('IntersectionObserver' in window && !geenBeweging) {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
 
-// Hero: de buste zakt iets mee bij het scrollen
+// Home: de header is doorzichtig boven het beeld en wordt vol zodra je verder scrolt
+const header = document.querySelector('.site-header');
+
+if (header && document.body.classList.contains('is-home')) {
+  const zet = () => header.classList.toggle('is-vast', window.scrollY > window.innerHeight * 0.6);
+  window.addEventListener('scroll', zet, { passive: true });
+  zet();
+}
+
+// Hero: het beeld zakt iets mee bij het scrollen
 const heroFoto = document.querySelector('.hero__foto');
 
 if (heroFoto && !geenBeweging) {
@@ -49,9 +58,26 @@ if (heroFoto && !geenBeweging) {
     gepland = true;
     requestAnimationFrame(() => {
       gepland = false;
-      heroFoto.style.transform = `translateY(${Math.min(window.scrollY, 800) * 0.12}px)`;
+      heroFoto.style.transform = `translateY(${Math.min(window.scrollY, 800) * 0.2}px) scale(1.05)`;
     });
   }, { passive: true });
+}
+
+// Kleurkiezer om kleuren te vergelijken (tijdelijk). De keuze blijft bewaard in deze browser.
+const kleurKnoppen = [...document.querySelectorAll('[data-kleur]')];
+
+function zetKleur(naam) {
+  if (naam === 'blauw') delete document.documentElement.dataset.kleur;
+  else document.documentElement.dataset.kleur = naam;
+  kleurKnoppen.forEach((k) => k.setAttribute('aria-pressed', String(k.dataset.kleur === naam)));
+  try { localStorage.setItem('100x-kleur', naam); } catch (e) { /* geen opslag beschikbaar */ }
+}
+
+if (kleurKnoppen.length) {
+  let bewaard = 'blauw';
+  try { bewaard = localStorage.getItem('100x-kleur') || 'blauw'; } catch (e) { /* geen opslag beschikbaar */ }
+  zetKleur(bewaard);
+  kleurKnoppen.forEach((k) => k.addEventListener('click', () => zetKleur(k.dataset.kleur)));
 }
 
 // Huidig jaar in de footer
