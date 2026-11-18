@@ -83,10 +83,10 @@ a { color: inherit; text-decoration: none; }
 }
 
 .bewijs { display: grid; gap: 40px; align-items: center; }
-.bewijs__beeld { position: relative; aspect-ratio: 1; max-width: 520px; width: 100%; }
-.bewijs__beeld img { width: 100%; height: 100%; object-fit: contain; }
-.bewijs__beeld::after { content: 'Name hidden'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 16px; border-radius: 999px; font: 500 11px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; background: var(--bg); color: var(--fg); border: 1px solid var(--lijn); }
-.bewijs__beeld--wazig img { filter: blur(14px) grayscale(1); opacity: .8; }
+.verborgen { position: relative; aspect-ratio: 4 / 3; width: 100%; border-radius: 6px; overflow: hidden; border: 1px solid var(--lijn); background: radial-gradient(circle, var(--fg) 1.3px, transparent 1.8px) 0 0 / 12px 12px; display: grid; place-items: center; }
+.verborgen::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, transparent 10%, var(--bg) 75%); }
+.verborgen__balk { position: relative; width: 62%; height: 18%; border-radius: 4px; background: var(--fg); filter: blur(10px); opacity: .85; }
+.verborgen__pil { position: absolute; padding: 10px 16px; border-radius: 999px; font: 500 11px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; background: var(--bg); color: var(--fg); border: 1px solid var(--lijn); }
 .bewijs h2 { font: 400 clamp(44px, 6.4vw, 96px)/.95 var(--kop-font); letter-spacing: -.02em; margin: 18px 0; }
 .bewijs p { font-size: 18px; color: var(--zacht); max-width: 36ch; }
 .feiten { display: flex; gap: 48px; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--lijn); }
@@ -98,8 +98,15 @@ a { color: inherit; text-decoration: none; }
 .merk { position: relative; aspect-ratio: 4 / 5; border-radius: 4px; overflow: hidden; background: var(--kaart); border: 1px solid var(--lijn); display: flex; flex-direction: column; justify-content: space-between; padding: 22px; }
 .merk__balk { display: block; height: .9em; width: 70%; background: var(--fg); border-radius: 2px; font-size: 30px; }
 .merk__balk--kort { width: 46%; }
-.merk__veld { position: absolute; inset: 0; z-index: -1; opacity: .9; }
-.merk__veld img { width: 100%; height: 100%; object-fit: cover; }
+.merk__veld { position: absolute; inset: 0; z-index: -1; opacity: .5; }
+.ht { background: var(--fg); -webkit-mask: var(--beeld) center / cover no-repeat; mask: var(--beeld) center / cover no-repeat; }
+.ht--diamanten { --beeld: url(../images/diamanten.webp); }
+.ht--ring { --beeld: url(../images/ring.webp); }
+.ht--ketting { --beeld: url(../images/ketting.webp); }
+.ht--steen { --beeld: url(../images/steen.webp); }
+.ht--skyline { --beeld: url(../images/skyline.webp); }
+.ht--stad { --beeld: url(../images/stad.webp); }
+.ht--brug { --beeld: url(../images/brug.webp); }
 .merk__onder { display: flex; justify-content: space-between; font: 500 11px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--zacht); }
 .merk--leeg { border-style: dashed; justify-content: center; align-items: center; text-align: center; gap: 14px; }
 .merk--leeg h3 { font: 400 34px/1 var(--kop-font); }
@@ -129,7 +136,7 @@ a { color: inherit; text-decoration: none; }
 .voet__merk .logo { font-size: 44px; }
 .voet__klein { display: flex; justify-content: space-between; padding-block: 18px; border-top: 1px solid var(--lijn); font-size: 12px; color: var(--zacht); }
 .voet__strook { display: flex; height: clamp(160px, 24vw, 340px); gap: 2px; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 40%); mask-image: linear-gradient(to bottom, transparent, #000 40%); }
-.voet__strook img { flex: 1; min-width: 0; height: 100%; object-fit: cover; }
+.voet__strook div { flex: 1; min-width: 0; height: 100%; opacity: .75; }
 @media (min-width: 900px) { .voet__rooster { grid-template-columns: 2fr 1fr 1fr 1fr; } .voet__merk { grid-column: auto; } }
 
 /* Zacht in beeld schuiven */
@@ -137,41 +144,31 @@ a { color: inherit; text-decoration: none; }
 .js .rv.is-in { opacity: 1; transform: none; }
 
 /* ======================================================================
-   A · Stardust: donker, alles van stippen
+   A · Stardust: donker, het 100x zelf van duizenden stippen
    ====================================================================== */
-.ha .held { position: relative; height: 100svh; min-height: 640px; overflow: hidden; background: radial-gradient(ellipse at 64% 50%, #121318, var(--zwart) 70%); }
+.ha .held { position: relative; height: 100svh; min-height: 640px; overflow: hidden; background: radial-gradient(ellipse at 40% 50%, #121318, var(--zwart) 70%); }
 .ha .held canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.ha .held::after { content: ''; position: absolute; inset: 45% 0 0; z-index: 4; pointer-events: none; background: linear-gradient(to bottom, transparent, rgba(5, 5, 6, .85) 70%); }
-@media (min-width: 900px) { .ha .held::after { display: none; } }
-.ha .held__tekst { position: absolute; z-index: 5; left: var(--rand); bottom: clamp(40px, 9vh, 96px); display: grid; gap: 20px; }
-.ha .held__100x { font: 400 clamp(120px, 21vw, 340px)/.78 var(--font-serif); letter-spacing: -.04em; }
+.ha .held__tekst { position: absolute; z-index: 5; left: var(--rand); right: var(--rand); bottom: clamp(32px, 7vh, 80px); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; }
 .ha .held__regel { max-width: 32ch; font-size: 17px; color: var(--zacht); }
 .ha .held__knoppen { display: flex; gap: 10px; flex-wrap: wrap; }
-.ha .wegen { border-top: 0; }
-.ha .weg { position: relative; }
 .ha .weg::before { content: ''; display: block; width: 44px; height: 44px; margin-bottom: 18px; background: radial-gradient(circle, var(--platina) 2px, transparent 2.6px) 0 0 / 11px 11px; opacity: .7; }
-.ha .merk__veld { opacity: .35; }
+.ha .wegen { border-top: 0; }
 
 /* ======================================================================
-   B · Night gallery: echte foto bij nacht, diamanten 100x
+   B · Night gallery: de stad bij nacht in stippen, diamanten 100x erboven
    ====================================================================== */
-.hb .held { position: relative; height: 100svh; min-height: 680px; overflow: hidden; background: #000; --x: 50%; --y: 35%; }
-.hb .held__licht { position: absolute; inset: 0; z-index: 1; background: radial-gradient(circle 48vmax at var(--x) var(--y), rgba(255, 255, 255, .14), transparent 62%); }
-.hb .held__buste { position: absolute; z-index: 2; left: 50%; bottom: -6%; height: 100%; aspect-ratio: 1000 / 1500; transform: translateX(-50%); }
-.hb .held__buste img { width: 100%; height: 100%; filter: brightness(.78) contrast(1.15); -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 96%); mask-image: linear-gradient(to bottom, #000 70%, transparent 96%); }
-.hb .held__diamant { position: absolute; z-index: 3; left: 50%; bottom: 13%; width: min(94vw, 1180px); aspect-ratio: 1593 / 784; transform: translateX(-50%); }
+.hb .held { position: relative; height: 100svh; min-height: 680px; overflow: hidden; background: #000; --x: 50%; --y: 40%; }
+.hb .held__stad { position: absolute; inset: 0; z-index: 1; --fg: var(--platina); opacity: .55; -webkit-mask-size: cover; }
+.hb .held__licht { position: absolute; inset: 0; z-index: 2; background: radial-gradient(circle 46vmax at var(--x) var(--y), rgba(255, 255, 255, .12), transparent 62%), linear-gradient(to bottom, rgba(0, 0, 0, .55), transparent 30%, transparent 60%, #000); }
+.hb .held__diamant { position: absolute; z-index: 3; left: 50%; top: 46%; width: min(94vw, 1240px); aspect-ratio: 1593 / 784; transform: translate(-50%, -50%); }
 .hb .held__diamant .diamant { position: absolute; inset: 0; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .7)); }
 .hb .held__onder { position: absolute; z-index: 4; left: var(--rand); right: var(--rand); bottom: 28px; display: flex; justify-content: space-between; align-items: end; gap: 24px; font-size: 14px; color: var(--zacht); }
 .hb .held__onder p { max-width: 34ch; }
-.hb .sectie--licht { position: relative; }
-.hb .sectie--licht::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255, 255, 255, .06), transparent 70%); }
-.hb .bewijs__beeld img { filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .8)); }
 .hb .kopje, .hb .slot h2 { font-family: var(--font-caps); font-weight: 500; letter-spacing: .04em; text-transform: uppercase; font-size: clamp(32px, 4.6vw, 68px); line-height: 1.05; }
 .hb .slot h2 { font-size: clamp(36px, 6vw, 92px); }
-.hb .merk__veld img { filter: grayscale(1) brightness(.5); }
 
 /* ======================================================================
-   C · Paper: beige, redactioneel, inktstippen
+   C · Paper: beige, redactioneel, wereldbol van inktstippen
    ====================================================================== */
 .hc .kop { position: relative; border-bottom: 1px solid var(--inkt); }
 .hc .kop__in { padding-block: 14px; font-size: 13px; }
@@ -180,9 +177,8 @@ a { color: inherit; text-decoration: none; }
 .hc .kopblad__100x { font: 400 clamp(130px, 24vw, 400px)/.74 var(--font-serif); letter-spacing: -.05em; }
 .hc .kopblad__onder { display: flex; justify-content: space-between; border-top: 1px solid var(--inkt); margin-top: 10px; padding-top: 10px; font: 500 11px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
 .hc .held { display: grid; gap: 32px; padding-block: 40px 64px; border-bottom: 1px solid var(--inkt); }
-.hc .held__beeld { position: relative; justify-self: center; width: min(100%, 520px); aspect-ratio: 1000 / 1500; }
+.hc .held__beeld { position: relative; justify-self: center; width: min(100%, 520px); aspect-ratio: 1; }
 .hc .held__beeld canvas { width: 100%; height: 100%; }
-.hc .held__beeld svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .hc .held__kolom { display: grid; gap: 18px; align-content: start; font-size: 15px; }
 .hc .held__kolom h2 { font: 400 clamp(36px, 3.8vw, 56px)/1 var(--font-serif); }
 .hc .held__kolom h2 + p::first-letter { font: 400 3.4em/.8 var(--font-serif); float: left; margin: 6px 8px 0 0; }
@@ -191,29 +187,32 @@ a { color: inherit; text-decoration: none; }
 .hc .wegen { border-top: 1px solid var(--inkt); }
 .hc .weg h3 { font-style: italic; }
 .hc .merk { background: var(--been-donker); border-color: transparent; }
-.hc .merk__balk { background: var(--inkt); }
-.hc .merk__veld { opacity: .5; mix-blend-mode: multiply; }
 
 /* ======================================================================
-   D · Gallery wall: beige met de echte buste als object
+   D · Gallery wall: beige, een gigantische 100x met een iced-out ketting eroverheen
    ====================================================================== */
-.hd .held { position: relative; height: 100svh; min-height: 680px; overflow: hidden; background: radial-gradient(ellipse at 50% 60%, #f6f3ee, var(--been) 55%, var(--been-donker)); }
-.hd .held__100x { position: absolute; z-index: 1; left: 50%; top: 52%; transform: translate(-50%, -50%); font: 400 clamp(220px, 46vw, 820px)/.7 var(--font-serif); letter-spacing: -.06em; color: var(--inkt); white-space: nowrap; }
-.hd .held__buste { position: absolute; z-index: 2; left: 50%; bottom: -4%; height: 92%; aspect-ratio: 1000 / 1500; transform: translateX(-50%); filter: drop-shadow(0 40px 50px rgba(60, 45, 30, .35)); }
-.hd .held__buste img { width: 100%; height: 100%; filter: grayscale(1) contrast(1.05) brightness(1.03); }
-.hd .held__buste svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hd .held { position: relative; height: 100svh; min-height: 680px; overflow: hidden; background: radial-gradient(ellipse at 50% 60%, #f6f3ee, var(--been) 55%, var(--been-donker)); display: grid; place-items: center; }
+.hd .held__beeld { width: min(96vw, 1500px); margin-top: 2vh; }
+.hd .held__beeld svg { width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 30px 40px rgba(60, 45, 30, .18)); }
 .hd .held__onder { position: absolute; z-index: 3; left: var(--rand); right: var(--rand); bottom: 28px; display: flex; justify-content: space-between; align-items: end; gap: 24px; font-size: 14px; }
 .hd .held__onder p { max-width: 30ch; }
 .hd .held__plaatje { font: 500 11px/1.6 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; text-align: right; }
-.hd .sectie--donker { background: var(--inkt); color: var(--been); --fg: var(--been); --zacht: #b8b0a4; --lijn: rgba(239, 235, 228, .16); --kaart: rgba(239, 235, 228, .05); --knop-bg: var(--been); --knop-fg: var(--inkt); }
-.hd .merk__veld img { filter: grayscale(1); }
+.hd .sectie--donker { background: var(--inkt); color: var(--been); --fg: var(--been); --bg: var(--inkt); --zacht: #b8b0a4; --lijn: rgba(239, 235, 228, .16); --kaart: rgba(239, 235, 228, .05); --knop-bg: var(--been); --knop-fg: var(--inkt); }
+.woord100x { font: 400 760px/1 var(--font-serif); fill: var(--inkt); letter-spacing: -30px; }
+.schakel { fill: none; stroke: url(#zilver); stroke-width: 15; stroke-linecap: round; }
+.schakel-gat { fill: none; stroke: #8b919c; stroke-width: 5; stroke-dasharray: 12 19; stroke-dashoffset: 6; }
+.schakel-licht { fill: none; stroke: #fff; stroke-width: 3; stroke-dasharray: 5 21; opacity: .9; }
+.glinster { animation: glans 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.glinster--2 { animation-delay: 1.1s; }
+.glinster--3 { animation-delay: 2.2s; }
+@keyframes glans { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1); } }
 
 /* ======================================================================
-   E · Platinum: diamanten 100x groot, stippenbuste als sfeer
+   E · Platinum: diamanten 100x groot, wereldbol van stippen erachter
    ====================================================================== */
 .he .held { position: relative; height: 100svh; min-height: 680px; overflow: hidden; background: radial-gradient(ellipse at 50% 40%, #171b26, var(--grafiet) 65%); }
-.he .held canvas[data-wolk] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .5; }
-.he .held__diamant { position: absolute; z-index: 3; left: 50%; top: 50%; width: min(94vw, 1280px); aspect-ratio: 1593 / 784; transform: translate(-50%, -54%); }
+.he .held canvas[data-bol] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .95; }
+.he .held__diamant { position: absolute; z-index: 3; left: 50%; top: 62%; width: min(88vw, 820px); aspect-ratio: 1593 / 784; transform: translate(-50%, -50%); }
 .he .held__diamant .diamant { position: absolute; inset: 0; filter: drop-shadow(0 30px 50px rgba(0, 0, 0, .6)); }
 .he .held__onder { position: absolute; z-index: 4; left: var(--rand); right: var(--rand); bottom: 32px; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; font-size: 15px; color: var(--zacht); }
 .he .held__onder p { max-width: 36ch; }
@@ -227,12 +226,6 @@ a { color: inherit; text-decoration: none; }
 .diamant__mark, .diamant__canvas { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
 .diamant__mark { fill: var(--platina); }
 .diamant__mark.has-chrome .fly__glyph { visibility: hidden; }
-
-/* Ketting over een buste */
-.schakel { fill: none; stroke: url(#zilver); stroke-width: 11; }
-.hanger-tekst { font: 400 150px/1 var(--font-serif); }
-.pave-glans { animation: glans 3.6s ease-in-out infinite; }
-@keyframes glans { 0%, 100% { opacity: .2; } 50% { opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
