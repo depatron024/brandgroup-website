@@ -1,27 +1,28 @@
 /* Vier homepage-richtingen (A-D), donker of in kleur. Alleen om te kiezen. */
 :root {
-  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --rand: clamp(20px, 4vw, 64px);
   --sectie: clamp(96px, 12vw, 180px);
+  --goud: #c9a45c;
 
-  --bg: #060a1f;
-  --bg-2: #0b1130;
-  --fg: #eef1ff;
-  --zacht: #9aa3c9;
-  --lijn: rgba(200, 210, 255, .14);
-  --knop-bg: #eef1ff;
-  --knop-fg: #060a1f;
+  /* A · Noir */
+  --bg: #050403;
+  --bg-2: #0f0c09;
+  --fg: #f1e6d0;
+  --zacht: #9c8f7a;
+  --lijn: rgba(201, 164, 92, .22);
+  --knop-bg: #f1e6d0;
+  --knop-fg: #050403;
   --kop: var(--font-serif);
 }
-.hb { --bg: #000; --bg-2: #0c0c0d; --fg: #f2f2f2; --zacht: #8e8f94; --lijn: rgba(255, 255, 255, .13); --knop-bg: #f2f2f2; --knop-fg: #000; --kop: var(--font-sans); }
-.hc { --bg: #2b2bd9; --bg-2: #1f1fae; --fg: #ffffff; --zacht: #c9cbff; --lijn: rgba(255, 255, 255, .22); --knop-bg: #ffffff; --knop-fg: #1f1fae; --kop: var(--font-sans); }
-.hd { --bg: #04170f; --bg-2: #072116; --fg: #e9f3ee; --zacht: #8fb2a3; --lijn: rgba(200, 240, 220, .14); --knop-bg: #e9f3ee; --knop-fg: #04170f; }
+.hb { --bg: #160e08; --bg-2: #21160d; --fg: #f5e6cc; --zacht: #b39a7c; --lijn: rgba(201, 164, 92, .24); --knop-bg: #c9a45c; --knop-fg: #160e08; }
+.hc { --bg: #6e4c2e; --bg-2: #5c3e24; --fg: #fbf1de; --zacht: #e3cfae; --lijn: rgba(251, 241, 222, .22); --knop-bg: #fbf1de; --knop-fg: #3a2414; }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--font-sans); background: var(--bg); color: var(--fg); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+body { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; font-family: var(--font-sans); background: var(--bg); color: var(--fg); line-height: 1.5; -webkit-font-smoothing: antialiased; }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
@@ -29,7 +30,6 @@ ul, ol { list-style: none; }
 .label { font: 500 11px/1.4 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--zacht); }
 .zacht { color: var(--zacht); }
 .kopje { font: 400 clamp(40px, 5.4vw, 80px)/.95 var(--kop); letter-spacing: -.02em; }
-.hb .kopje, .hc .kopje { font-weight: 800; letter-spacing: -.045em; }
 .knoppen { display: flex; flex-wrap: wrap; gap: 10px; }
 .knop { display: inline-flex; align-items: center; padding: 14px 22px; border-radius: 999px; background: var(--knop-bg); color: var(--knop-fg); font-size: 14px; font-weight: 500; white-space: nowrap; transition: transform .2s; }
 .knop:hover { transform: translateY(-2px); }
@@ -53,11 +53,6 @@ ul, ol { list-style: none; }
 .menu a:hover { opacity: 1; }
 @media (min-width: 900px) { .menu { display: flex; } }
 
-/* Buste met ketting */
-.buste { position: relative; aspect-ratio: 1100 / 1584; }
-.buste--groot { aspect-ratio: 1100 / 1703; }
-.buste img { width: 100%; height: 100%; }
-.buste .ketting { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .hanger { font-family: var(--font-serif); }
 .glans { animation: glans 3.4s ease-in-out infinite; }
 @keyframes glans { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
@@ -65,7 +60,6 @@ ul, ol { list-style: none; }
 /* ---------- Gedeelde secties ---------- */
 .zin { padding-block: var(--sectie); }
 .zin__tekst { margin-top: 28px; font: 400 clamp(32px, 4.6vw, 70px)/1.12 var(--kop); letter-spacing: -.02em; max-width: 26ch; }
-.hb .zin__tekst, .hc .zin__tekst { font-weight: 600; letter-spacing: -.04em; }
 .chip { display: inline-block; width: 1.9em; height: .95em; border-radius: 999px; overflow: hidden; vertical-align: -.08em; margin-inline: .08em; background: var(--bg-2); }
 .chip img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -82,7 +76,6 @@ ul, ol { list-style: none; }
 .weg__beeld--hanger svg { width: 100%; }
 .weg b { font: 500 12px/1 var(--font-mono); color: var(--zacht); }
 .weg h3 { font: 400 34px/1 var(--kop); }
-.hb .weg h3, .hc .weg h3 { font-weight: 700; font-size: 28px; letter-spacing: -.03em; }
 .weg p { color: var(--zacht); font-size: 15px; max-width: 30ch; }
 @media (min-width: 900px) {
   .wegen__kop { grid-template-columns: 1fr 1fr; align-items: end; }
@@ -94,7 +87,6 @@ ul, ol { list-style: none; }
 .bewijs::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 0%, transparent 55%), linear-gradient(to right, var(--bg) 0%, transparent 50%); }
 .bewijs__in { position: relative; z-index: 2; padding-block: var(--sectie) 72px; width: 100%; display: grid; gap: 18px; }
 .bewijs h2 { font: 400 clamp(52px, 8vw, 128px)/.92 var(--kop); letter-spacing: -.03em; max-width: 12ch; }
-.hb .bewijs h2, .hc .bewijs h2 { font-weight: 800; letter-spacing: -.05em; }
 .bewijs__in > p:last-child { font-size: 18px; max-width: 34ch; }
 
 .werk { padding-block: var(--sectie); }
@@ -105,7 +97,6 @@ ul, ol { list-style: none; }
 .werk__lijst li { display: grid; grid-template-columns: 56px 1fr; gap: 6px 20px; padding: 32px 0; border-top: 1px solid var(--lijn); }
 .werk__lijst span { font: 500 12px/2.6 var(--font-mono); color: var(--zacht); grid-row: span 2; }
 .werk__lijst h3 { font: 400 clamp(30px, 3vw, 44px)/1 var(--kop); }
-.hb .werk__lijst h3, .hc .werk__lijst h3 { font-weight: 700; letter-spacing: -.03em; }
 .werk__lijst p { color: var(--zacht); max-width: 46ch; }
 @media (min-width: 900px) { .werk__in { grid-template-columns: 1fr 1.1fr; gap: 96px; } .werk__links { position: sticky; top: 96px; } }
 
@@ -113,7 +104,6 @@ ul, ol { list-style: none; }
 .slot__in { display: grid; gap: 48px; align-items: center; }
 .slot__in > div:first-child { display: grid; gap: 22px; }
 .slot h2 { font: 400 clamp(44px, 6vw, 96px)/.95 var(--kop); letter-spacing: -.025em; max-width: 14ch; }
-.hb .slot h2, .hc .slot h2 { font-weight: 800; letter-spacing: -.05em; }
 .slot__beeld svg { width: min(100%, 520px); margin-inline: auto; }
 @media (min-width: 900px) { .slot__in { grid-template-columns: 1.3fr 1fr; } }
 
@@ -133,61 +123,61 @@ ul, ol { list-style: none; }
 .js .rv { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .8, .2, 1); }
 .js .rv.is-in { opacity: 1; transform: none; }
 
-/* ======================================================================
-   A · Midnight: nachtblauw, tekst links, buste rechts
-   ====================================================================== */
-.ha .held { position: relative; min-height: 100svh; overflow: hidden; background: radial-gradient(ellipse 60% 70% at 72% 55%, #1a2766, var(--bg) 70%); }
-.ha .held__in { min-height: 100svh; display: grid; align-items: end; }
-.ha .held__tekst { position: relative; z-index: 3; padding-block: 120px 56px; display: grid; gap: 24px; max-width: 560px; }
-.ha h1 { font: 400 clamp(64px, 8.4vw, 132px)/.9 var(--font-serif); letter-spacing: -.03em; }
-.ha .held__regel { font-size: 18px; color: var(--zacht); max-width: 34ch; }
-.ha .held__vier { display: flex; gap: 22px; padding-top: 22px; border-top: 1px solid var(--lijn); font: 500 12px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--zacht); }
-.ha .buste { position: absolute; z-index: 2; right: -4vw; bottom: -2%; height: 82svh; opacity: .55; }
-@media (min-width: 900px) { .ha .buste { right: 4vw; height: 98svh; opacity: 1; } }
+/* Gouden sieraad */
+.sieraad { width: 100%; height: auto; overflow: visible; }
+.hanger { font-family: var(--font-serif); font-weight: 500; font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+.hanger-groep { transform-origin: 500px 606px; animation: zwaai 6s ease-in-out infinite; }
+@keyframes zwaai { 0%, 100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.6deg); } }
+.label { color: var(--goud); }
+.kopje, .slot h2, .bewijs h2, .zin__tekst, .weg h3, .werk__lijst h3 { font-weight: 400; }
+.zin__tekst em, h1 em { font-style: italic; color: var(--goud); }
 
 /* ======================================================================
-   B · Black: zwart, buste in het midden onder een lichtbundel
+   A · Noir: zwart, de ketting hangt vanaf de bovenrand in een lichtbundel
    ====================================================================== */
-.hb .held { position: relative; height: 100svh; min-height: 700px; overflow: hidden; background: #000; --x: 50%; --y: 35%; }
-.hb .held__licht { position: absolute; inset: 0; z-index: 1; background: radial-gradient(circle 44vmax at var(--x) var(--y), rgba(255, 255, 255, .16), transparent 62%); }
-.hb .buste { position: absolute; z-index: 2; left: 50%; bottom: -1%; height: 96%; transform: translateX(-50%); }
-.hb .buste img { -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 95%); mask-image: linear-gradient(to bottom, #000 70%, transparent 95%); }
-.hb .held__boven { position: absolute; z-index: 3; left: 0; right: 0; top: 112px; display: flex; justify-content: space-between; align-items: start; gap: 24px; }
-.hb h1 { font: 800 clamp(34px, 4.4vw, 64px)/.95 var(--font-sans); letter-spacing: -.05em; text-transform: uppercase; }
-.hb .held__regel { max-width: 26ch; text-align: right; color: var(--zacht); font-size: 15px; }
-.hb .held__onder { position: absolute; z-index: 3; left: 0; right: 0; bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+.ha .held { position: relative; height: 100svh; min-height: 700px; overflow: hidden; --x: 50%; --y: 55%; background: var(--bg); }
+.ha .held__licht { position: absolute; inset: 0; background: radial-gradient(circle 40vmax at var(--x) var(--y), rgba(201, 164, 92, .16), transparent 64%); }
+.ha .held__sieraad { position: absolute; left: 50%; top: 0; width: min(92vh, 100vw); transform: translateX(-50%); }
+.ha .held__boven { position: absolute; z-index: 3; left: 0; right: 0; top: 104px; display: flex; justify-content: space-between; align-items: start; gap: 24px; }
+.ha h1 { font: 400 clamp(44px, 5vw, 76px)/.95 var(--font-serif); letter-spacing: -.01em; }
+.ha .held__regel { max-width: 26ch; text-align: right; color: var(--zacht); font-size: 15px; }
+.ha .held__onder { position: absolute; z-index: 3; left: 0; right: 0; bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
 
 /* ======================================================================
-   C · Electric: elektrisch blauw, buste groot over het hele scherm
+   B · Espresso: donkerbruin, tekst links, de diamant in een boog
    ====================================================================== */
-.hc .held { position: relative; height: 100svh; min-height: 700px; overflow: hidden; background: radial-gradient(ellipse at 60% 40%, #4545ff, var(--bg) 60%, #1a1a9a); }
-.hc .buste--groot { position: absolute; z-index: 1; left: 50%; top: 4%; height: 118%; transform: translateX(-30%); }
-.hc .held::after { content: ''; position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(26, 26, 154, .9), transparent 45%); }
-.hc .held__onder { position: absolute; z-index: 3; left: 0; right: 0; bottom: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 28px; }
-.hc h1 { font: 900 clamp(72px, 12vw, 200px)/.82 var(--font-sans); letter-spacing: -.065em; text-transform: uppercase; }
-.hc .held__rechts { display: grid; gap: 18px; justify-items: start; max-width: 320px; }
-.hc .held__regel { font-size: 16px; }
+.hb .held { position: relative; min-height: 100svh; overflow: hidden; background: radial-gradient(ellipse at 75% 50%, #2c1c10, var(--bg) 65%); }
+.hb .held__in { min-height: 100svh; display: grid; gap: 40px; align-items: center; padding-block: 120px 60px; }
+.hb .held__tekst { display: grid; gap: 24px; }
+.hb h1 { font: 400 clamp(76px, 10vw, 160px)/.86 var(--font-serif); letter-spacing: -.02em; }
+.hb .held__regel { font-size: 18px; color: var(--zacht); max-width: 34ch; }
+.hb .held__boog { position: relative; justify-self: center; width: min(100%, 520px); aspect-ratio: 3 / 4; border-radius: 999px 999px 0 0; overflow: hidden; border: 1px solid var(--lijn); }
+.hb .held__boog > img { width: 100%; height: 100%; object-fit: cover; }
+.hb .held__boog-sieraad { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 12% 6%; background: linear-gradient(to top, rgba(22, 14, 8, .85), transparent); }
+@media (min-width: 900px) { .hb .held__in { grid-template-columns: 1.1fr 1fr; } }
 
 /* ======================================================================
-   D · Emerald: diepgroen, als een tijdschriftcover
+   C · Cognac: warm cognacbruin, een gouden 100x als kop, de ketting eroverheen
    ====================================================================== */
-.hd .held { position: relative; height: 100svh; min-height: 720px; overflow: hidden; background: radial-gradient(ellipse at 50% 70%, #0f3b29, var(--bg) 70%); }
-.hd .held__kop { position: absolute; z-index: 4; left: 0; right: 0; top: 92px; display: flex; justify-content: space-between; }
-.hd .held__mast { position: absolute; z-index: 1; left: 50%; top: 110px; transform: translateX(-50%); font: 400 clamp(180px, 30vw, 460px)/.8 var(--font-serif); letter-spacing: -.05em; color: var(--fg); white-space: nowrap; }
-.hd .buste { position: absolute; z-index: 2; left: 50%; bottom: 0; height: 76%; transform: translateX(-50%); }
-.hd .held__regels { position: absolute; z-index: 3; left: 0; right: 0; bottom: 44px; display: flex; justify-content: space-between; gap: 24px; pointer-events: none; }
-.hd .held__regels ul { display: grid; gap: 20px; max-width: 220px; }
-.hd .held__regels ul:last-child { text-align: right; }
-.hd .held__regels li { display: grid; gap: 4px; font-size: 14px; color: var(--zacht); }
-.hd .held__regels b { font: 400 34px/1 var(--font-serif); color: var(--fg); }
+.hc .held { position: relative; height: 100svh; min-height: 720px; overflow: hidden; background: radial-gradient(ellipse at 50% 60%, #8a6240, var(--bg) 60%, #4a301b); }
+.hc .held__kop { position: absolute; z-index: 4; left: 0; right: 0; top: 92px; display: flex; justify-content: space-between; }
+.hc .held__kop .label { color: var(--fg); }
+.hc .held__foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+.hc .held::after { content: ''; position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse at 50% 55%, transparent 20%, rgba(46, 28, 14, .85) 75%); }
+.hc .held__titel { position: absolute; z-index: 3; left: var(--rand); top: 150px; font: 400 clamp(40px, 4.6vw, 72px)/1 var(--font-serif); }
+.hc .held__sieraad { position: absolute; z-index: 2; filter: drop-shadow(0 20px 30px rgba(0, 0, 0, .5)); left: 50%; top: 0; width: min(96vh, 100vw); transform: translateX(-50%); }
+.hc .held__regels { position: absolute; z-index: 3; left: 0; right: 0; bottom: 40px; display: flex; justify-content: space-between; gap: 24px; }
+.hc .held__regels ul { display: grid; gap: 18px; max-width: 220px; }
+.hc .held__regels ul:last-child { text-align: right; }
+.hc .held__regels li { display: grid; gap: 4px; font-size: 14px; color: var(--zacht); }
+.hc .held__regels b { font: 400 34px/1 var(--font-serif); color: var(--fg); }
+.hc .label { color: var(--fg); }
+@media (max-width: 759px) { .hc .held__regels { display: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .rv { opacity: 1; transform: none; }
 }
 
-/* Mobiel: coverregels van D wijken voor de buste */
-@media (max-width: 759px) {
-  .hd .held__regels { display: none; }
-  .hd .buste { height: 70%; }
-}
+/* Cormorant heeft standaard mediaeval-cijfers: 100x moet rechte cijfers hebben */
+body * { font-variant-numeric: lining-nums !important; }
