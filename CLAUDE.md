@@ -7,7 +7,7 @@ Merkwebsite in gewone HTML, CSS en een beetje JavaScript, zonder framework. Taal
 Eerste invulling (voorstel, nog te bevestigen).
 
 - **Naam:** 100x Brands. Gaan we later ook andere dingen doen dan merken, dan wordt het mogelijk "100x Group".
-- **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over, adviseren andere founders met onze systemen en investeren in merken van anderen. Nog geen branche op de site noemen.
+- **Wat we doen:** brandgroup met drie routes: **Build** (eigen consumentenmerken bouwen), **Buy** (passende merken overnemen) en **Invest** (onze systemen achter het merk van een founder zetten en zo mede-eigenaar worden). Geen advies of coaching. Nog geen branche op de site noemen.
 - **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
 - **Sfeer:** één beeldstijl op de hele site: elke foto is een halftoon van witte stippen op de merkkleur (zoals de voorbeelden Nelson en Orbit). Onderwerpen passen bij onze visie: diamanten, sieraden, de stad 's nachts, wereldwijd verkopen; geen oude of klassieke beelden. De hero vult het hele scherm met het diamanten 100x erboven. Koppen in de dot-matrixletter Doto; kleine nagebouwde schermen op de beelden. Footer licht met onderaan een strook beeld.
 - **Kleuren:** merkkleur nog te kiezen; nu elektrisch blauw (#2b2bd9) met papier (#fbf7f1) en inkt (#1d1714). Op de site staat tijdelijk een kleurkiezer (nachtblauw, zwart, groen, oranje); weghalen zodra er gekozen is.
