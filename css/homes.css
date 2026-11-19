@@ -256,3 +256,75 @@ h2 { font: 400 clamp(36px, 4.6vw, 64px)/1.02 var(--kop); letter-spacing: -.035em
 .hb h1 { font-size: clamp(64px, 8.4vw, 136px); white-space: nowrap; }
 @media (min-width: 1000px) { .hb .held__kop { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
 .hb h1 { font-size: clamp(56px, 7vw, 124px); }
+
+/* ======================================================================
+   D · Ooak x Slash: zwevende menubalk, serif met cursief accent, lichtbundel
+   ====================================================================== */
+.hd { --bg: #000; --bg-2: #0b0b0d; --kaart: #141418; --fg: #f5f5f7; --zacht: #a6a8b0; --lijn: rgba(255, 255, 255, .1); --kop: 'Newsreader', Georgia, serif; }
+.hd em { font-style: italic; }
+.d-pil { display: inline-flex; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--lijn); background: rgba(255, 255, 255, .04); font-size: 12px; color: var(--zacht); }
+.d-nav { position: fixed; z-index: 60; top: 16px; left: 50%; transform: translateX(-50%); width: min(92vw, 640px); display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 8px 8px 18px; border-radius: 14px; border: 1px solid var(--lijn); background: rgba(10, 10, 12, .72); backdrop-filter: blur(16px); }
+.d-nav nav { display: none; gap: 20px; font-size: 13px; color: var(--zacht); }
+.d-nav nav .is-aan { color: var(--fg); }
+.d-nav nav .is-aan::before { content: '◆ '; font-size: 9px; vertical-align: 1px; }
+@media (min-width: 700px) { .d-nav nav { display: flex; } }
+
+.d-held { position: relative; min-height: 100svh; display: grid; align-items: center; overflow: hidden; --x: 70%; --y: 40%; }
+.d-held__straal { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, .07) 48%, transparent 60%), radial-gradient(circle 36vmax at var(--x) var(--y), rgba(255, 255, 255, .09), transparent 65%); pointer-events: none; }
+.d-held__in { position: relative; display: grid; gap: 40px; align-items: center; padding-block: 120px 64px; width: 100%; }
+.d-held__tekst { display: grid; gap: 20px; justify-items: start; }
+.hd h1 { font: 300 clamp(48px, 6vw, 88px)/1 var(--kop); letter-spacing: -.03em; }
+.d-held__regel { max-width: 40ch; color: var(--zacht); font-size: 17px; }
+.d-invoer { display: flex; gap: 6px; padding: 6px; border-radius: 12px; border: 1px solid var(--lijn); background: var(--bg-2); width: min(100%, 420px); }
+.d-invoer input { flex: 1; min-width: 0; font: inherit; font-size: 14px; color: var(--fg); background: none; border: 0; padding: 0 10px; outline: 0; }
+.d-invoer .knop { border-radius: 8px; padding: 10px 16px; }
+@media (min-width: 1000px) { .d-held__in { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); } }
+
+.d-sectie { padding-block: var(--sectie); text-align: center; }
+.d-kop { font: 300 clamp(40px, 5vw, 72px)/1.02 var(--kop); letter-spacing: -.03em; max-width: none; margin-inline: auto; }
+.d-kop--links { margin-inline: 0; }
+.d-onder { color: var(--zacht); margin: 16px auto 0; max-width: 46ch; }
+.d-onder--klein { font: 500 10px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+
+.d-carrousel { margin-top: 56px; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); }
+.d-carrousel__spoor { display: flex; gap: 14px; width: max-content; animation: loop 50s linear infinite; }
+.d-carrousel:hover .d-carrousel__spoor { animation-play-state: paused; }
+.d-merk { position: relative; width: 300px; aspect-ratio: 4 / 3; border-radius: 10px; overflow: hidden; background: #111; }
+.d-merk__beeld { position: absolute; inset: -10%; --fg: #d9dbe2; filter: blur(9px); opacity: .7; }
+.d-merk__oog { position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%); width: 26px; color: #fff; opacity: .85; }
+.d-merk__onder { position: absolute; left: 14px; right: 14px; bottom: 12px; display: flex; justify-content: space-between; font-size: 13px; }
+.d-merk__onder span { color: var(--zacht); }
+
+.d-cijfers { display: grid; gap: 12px; margin-top: 56px; text-align: left; }
+@media (min-width: 900px) { .d-cijfers { grid-template-columns: repeat(4, 1fr); } }
+.d-cijfer { padding: 24px; border-radius: 16px; border: 1px solid var(--lijn); background: linear-gradient(180deg, var(--kaart), var(--bg-2)); display: grid; gap: 14px; justify-items: start; }
+.d-cijfer b { font: 300 52px/1 var(--kop); letter-spacing: -.03em; }
+.d-cijfer p { color: var(--zacht); font-size: 14px; }
+
+.d-bento { display: grid; gap: 14px; margin-top: 56px; text-align: left; }
+@media (min-width: 900px) { .d-bento { grid-template-columns: 1fr 1fr; } .d-kaart--breed { grid-column: 1 / -1; } }
+.d-kaart { padding: 24px; border-radius: 18px; border: 1px solid var(--lijn); background: linear-gradient(180deg, var(--kaart), var(--bg-2)); display: grid; gap: 10px; align-content: start; }
+.d-kaart__ui { display: grid; gap: 12px; margin-bottom: 14px; }
+.d-kaart__ui--ring { justify-items: center; padding-block: 20px; }
+.d-kaart h3 { font: 300 32px/1 var(--kop); }
+.d-kaart p { color: var(--zacht); }
+
+.d-band { margin-top: 48px; overflow: hidden; }
+.d-band__spoor { display: flex; gap: 14px; width: max-content; animation: loop 40s linear infinite; }
+.d-mijl { width: 300px; padding: 22px; border-radius: 14px; border: 1px solid var(--lijn); background: var(--bg-2); display: grid; gap: 12px; justify-items: start; text-align: left; }
+
+.d-plan { display: grid; gap: 40px; text-align: left; }
+.d-plan > div { display: grid; gap: 18px; justify-items: start; align-content: start; }
+.d-plan ol { display: grid; gap: 10px; }
+.d-plan li { padding: 22px; border-radius: 14px; border: 1px solid var(--lijn); background: var(--bg-2); display: grid; gap: 6px; }
+.d-plan li b { font: 300 26px/1.1 var(--kop); }
+.d-plan li span { color: var(--zacht); }
+@media (min-width: 900px) { .d-plan { grid-template-columns: 1fr 1.2fr; gap: 72px; } }
+.d-slot .rand { display: grid; justify-items: center; gap: 28px; }
+.ht { background: var(--fg); -webkit-mask: var(--beeld) center / cover no-repeat; mask: var(--beeld) center / cover no-repeat; }
+.ht--diamanten { --beeld: url(../images/diamanten.webp); }
+.ht--ring { --beeld: url(../images/ring.webp); }
+.ht--ketting { --beeld: url(../images/ketting.webp); }
+.ht--steen { --beeld: url(../images/steen.webp); }
+.d-merk::after { content: ''; position: absolute; inset: 0; backdrop-filter: blur(10px); background: linear-gradient(to top, rgba(0, 0, 0, .55), transparent 50%); }
+.d-merk__oog, .d-merk__onder { z-index: 2; }
