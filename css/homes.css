@@ -254,3 +254,5 @@ h2 { font: 400 clamp(36px, 4.6vw, 64px)/1.02 var(--kop); letter-spacing: -.035em
 .hc .held__diamant { width: 100%; }
 .c-scherm { margin-top: 24px; }
 .hb h1 { font-size: clamp(64px, 8.4vw, 136px); white-space: nowrap; }
+@media (min-width: 1000px) { .hb .held__kop { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.hb h1 { font-size: clamp(56px, 7vw, 124px); }
