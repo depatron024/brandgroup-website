@@ -9,9 +9,9 @@ Eerste invulling (voorstel, nog te bevestigen).
 - **Naam:** 100x Brands. Gaan we later ook andere dingen doen dan merken, dan wordt het mogelijk "100x Group".
 - **Wat we doen:** brandgroup met drie routes: **Build** (eigen consumentenmerken bouwen), **Buy** (passende merken overnemen) en **Invest** (onze systemen achter het merk van een founder zetten en zo mede-eigenaar worden). Geen advies of coaching. Nog geen branche op de site noemen.
 - **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
-- **Sfeer:** één beeldstijl op de hele site: elke foto is een halftoon van witte stippen op de merkkleur (zoals de voorbeelden Nelson en Orbit). Onderwerpen passen bij onze visie: diamanten, sieraden, de stad 's nachts, wereldwijd verkopen; geen oude of klassieke beelden. De hero vult het hele scherm met het diamanten 100x erboven. Koppen in de dot-matrixletter Doto; kleine nagebouwde schermen op de beelden. Footer licht met onderaan een strook beeld.
-- **Kleuren:** merkkleur nog te kiezen; nu elektrisch blauw (#2b2bd9) met papier (#fbf7f1) en inkt (#1d1714). Op de site staat tijdelijk een kleurkiezer (nachtblauw, zwart, groen, oranje); weghalen zodra er gekozen is.
-- **Lettertypes:** Doto (dot-matrix) alleen voor groot werk; Inter voor alles wat je moet lezen (Google Fonts).
+- **Sfeer:** nog niet definitief. Kijk eerst in `referenties/smaak.md` (wat Maza wel en niet mooi vindt). Nu: donker en premium zoals ooakbrands en slash, met het diamanten 100x (`js/chrome.js`) groot in beeld en nagebouwde schermen van onze systemen. Geen oude beelden of iconen, geen goud, geen beige.
+- **Kleuren:** donker: (bijna) zwart, wit en grijze bijtekst. De merkkleur is nog te kiezen.
+- **Lettertypes:** nog te kiezen. Nu een elegante serif voor koppen (met cursief accent) en Inter voor alles wat je moet lezen (Google Fonts).
 - **Toon van de teksten:** kort, direct en zelfverzekerd, zonder grootspraak. Cijfers alleen met bron en periode.
 - **Niet noemen:** andere bedrijven of merken van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken.
 
@@ -20,7 +20,8 @@ Eerste invulling (voorstel, nog te bevestigen).
 Kijk altijd eerst in de map `/referenties` voordat je iets ontwerpt of de stijl aanpast, en volg die stijl.
 
 - `ooakbrands-com.md` = **concept**: het soort bedrijf dat we zijn (brandgroup). Niet het design of de teksten overnemen.
-- `slash-com.md` en `187n-ai.md` = **stijl**: hier komt het design vandaan.
+- `slash-com.md` en `187n-ai.md` = **stijl**: hier komt het design vandaan. Favoriet: ooak en slash.
+- `smaak.md` = **wat Maza wel en niet mooi vindt**, met de stand van de richting. Lees dit altijd eerst.
 - `bouwblokken.md` = **bouwblokken**: bibliotheken en galerijen (Tremor, ReUI, Rare UI, Morphin, Mobbin) om losse onderdelen uit te halen. Alleen de vorm lenen, nabouwen in gewone HTML/CSS.
 - Nooit een referentie 1-op-1 overnemen: geen opbouw, teksten of beelden kopiëren.
  Staat er iets in wat botst met deze CLAUDE.md, vraag het dan na. Is de map nog leeg, zeg dat dan en ga uit van de velden onder "Merk".
@@ -30,7 +31,8 @@ Kijk altijd eerst in de map `/referenties` voordat je iets ontwerpt of de stijl 
 - `index.html` in de root, stijlen in `css/style.css`, scripts in `js/` (`chrome.js` tekent het diamanten 100x), beelden in `images/`.
 - Mobiel eerst: basisstijlen voor mobiel, grotere schermen via `@media (min-width: ...)`.
 - Geen frameworks, build-tools of npm-pakketten zonder overleg.
-- Beelden: halftoon (witte stippen op transparant, de merkkleur komt uit CSS), gemaakt van open-licentie foto's. Bron en licentie staan op `credits.html`; zet een nieuw beeld daar ook bij.
+- Beelden: open-licentie foto's. Bron en licentie staan op `credits.html`; zet een nieuw beeld daar ook bij.
+- Richtingen om te kiezen staan als `home-a.html` t/m `home-d.html` (PR #21), met `css/homes.css` en `js/homes.js`. Zet na elke wijziging het versienummer (`?v=`) achter css/js hoger, anders laadt Chrome de oude opmaak.
 - Nagebouwde schermen tonen voorbeelddata en dragen altijd het label "Illustrative".
 - Lokaal bekijken: zie README.md.
 
