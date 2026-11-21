@@ -7,11 +7,11 @@ Merkwebsite in gewone HTML, CSS en een beetje JavaScript, zonder framework. Taal
 Eerste invulling (voorstel, nog te bevestigen).
 
 - **Naam:** 100x Brands. Gaan we later ook andere dingen doen dan merken, dan wordt het mogelijk "100x Group".
-- **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over en adviseren andere founders met onze systemen. Nog geen branche op de site noemen; eerst alleen de basis.
+- **Wat we doen:** brandgroup met drie routes: **Build** (eigen consumentenmerken bouwen), **Buy** (passende merken overnemen) en **Invest** (onze systemen achter het merk van een founder zetten en zo mede-eigenaar worden). Geen advies of coaching. Nog geen branche op de site noemen.
 - **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
-- **Sfeer:** stijl A, rustig premium: elegante serif-koppen met een cursief accent, veel ruimte, gecentreerde hero (gekozen op 3-11-2026).
-- **Kleuren:** origineel palet: koel bijna-zwart (#050507), donkergrijze kaarten (#121318), witte tekst, grijze bijtekst (#a6a9b4), perzik-accent (#ffb37a). Diepgroen is geprobeerd en afgewezen.
-- **Lettertypes:** Instrument Serif voor koppen, Inter voor tekst, JetBrains Mono voor kleine labels (Google Fonts).
+- **Sfeer:** nog niet definitief. Kijk eerst in `referenties/smaak.md` (wat Maza wel en niet mooi vindt). Nu: donker en premium zoals ooakbrands en slash, met het diamanten 100x (`js/chrome.js`) groot in beeld en nagebouwde schermen van onze systemen. Geen oude beelden of iconen, geen goud, geen beige.
+- **Kleuren:** donker: (bijna) zwart, wit en grijze bijtekst. De merkkleur is nog te kiezen.
+- **Lettertypes:** nog te kiezen. Nu een elegante serif voor koppen (met cursief accent) en Inter voor alles wat je moet lezen (Google Fonts).
 - **Toon van de teksten:** kort, direct en zelfverzekerd, zonder grootspraak. Cijfers alleen met bron en periode.
 - **Niet noemen:** andere bedrijven of merken van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken.
 
@@ -20,16 +20,20 @@ Eerste invulling (voorstel, nog te bevestigen).
 Kijk altijd eerst in de map `/referenties` voordat je iets ontwerpt of de stijl aanpast, en volg die stijl.
 
 - `ooakbrands-com.md` = **concept**: het soort bedrijf dat we zijn (brandgroup). Niet het design of de teksten overnemen.
-- `slash-com.md` en `187n-ai.md` = **stijl**: hier komt het design vandaan.
+- `slash-com.md` en `187n-ai.md` = **stijl**: hier komt het design vandaan. Favoriet: ooak en slash.
+- `smaak.md` = **wat Maza wel en niet mooi vindt**, met de stand van de richting. Lees dit altijd eerst.
 - `bouwblokken.md` = **bouwblokken**: bibliotheken en galerijen (Tremor, ReUI, Rare UI, Morphin, Mobbin) om losse onderdelen uit te halen. Alleen de vorm lenen, nabouwen in gewone HTML/CSS.
 - Nooit een referentie 1-op-1 overnemen: geen opbouw, teksten of beelden kopiëren.
  Staat er iets in wat botst met deze CLAUDE.md, vraag het dan na. Is de map nog leeg, zeg dat dan en ga uit van de velden onder "Merk".
 
 ## Techniek
 
-- `index.html` in de root, stijlen in `css/style.css`, scripts in `js/`, beelden in `images/`.
+- `index.html` in de root, stijlen in `css/style.css`, scripts in `js/` (`chrome.js` tekent het diamanten 100x), beelden in `images/`.
 - Mobiel eerst: basisstijlen voor mobiel, grotere schermen via `@media (min-width: ...)`.
 - Geen frameworks, build-tools of npm-pakketten zonder overleg.
+- Beelden: open-licentie foto's. Bron en licentie staan op `credits.html`; zet een nieuw beeld daar ook bij.
+- Richtingen om te kiezen staan als `home-a.html` t/m `home-d.html` (PR #21), met `css/homes.css` en `js/homes.js`. Zet na elke wijziging het versienummer (`?v=`) achter css/js hoger, anders laadt Chrome de oude opmaak.
+- Nagebouwde schermen tonen voorbeelddata en dragen altijd het label "Illustrative".
 - Lokaal bekijken: zie README.md.
 
 ## Werkafspraken
