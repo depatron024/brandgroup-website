@@ -96,7 +96,7 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
 }
 .hero__media { position: absolute; inset: 0; }
-.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 80%; }
 .hero__text {
   position: relative; z-index: 1;
   flex: 1;
@@ -113,7 +113,7 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
   background: var(--bg);
 }
-.slot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.slot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
 .hero__lead {
   margin-top: 40px;
   align-self: flex-start;
