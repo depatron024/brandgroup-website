@@ -4,16 +4,16 @@ Merkwebsite in gewone HTML, CSS en een beetje JavaScript, zonder framework. Taal
 
 ## Merk
 
-Eerste invulling (voorstel, nog te bevestigen).
+Bijgewerkt op 22-11-2026 na de visie-vragenlijst (`vragenlijst-visie.md`).
 
-- **Naam:** 100x Brands. Gaan we later ook andere dingen doen dan merken, dan wordt het mogelijk "100x Group".
-- **Wat we doen:** brandgroup: we bouwen eigen consumentenmerken, nemen passende merken over en adviseren andere founders met onze systemen. Nog geen branche op de site noemen; eerst alleen de basis.
-- **Doelgroep:** founders, investeerders en partners (retailers); klanten van de merken zelf zitten op de merksites.
-- **Sfeer:** stijl A, rustig premium: elegante serif-koppen met een cursief accent, veel ruimte, gecentreerde hero (gekozen op 3-11-2026).
-- **Kleuren:** origineel palet: koel bijna-zwart (#050507), donkergrijze kaarten (#121318), witte tekst, grijze bijtekst (#a6a9b4), perzik-accent (#ffb37a). Diepgroen is geprobeerd en afgewezen.
-- **Lettertypes:** Instrument Serif voor koppen, Inter voor tekst, JetBrains Mono voor kleine labels (Google Fonts).
+- **Naam:** 100x Group. 100x wordt het huis; later komen er ook 100x Marketing, 100x Investments enz.
+- **Wat we doen:** e-commerce-merken bouwen (Build), merken van anderen kopen en groter maken (Buy), en onze systemen achter een merk zetten voor mede-eigendom (Invest). Geen advies.
+- **Doelgroep:** jonge e-commerce-ondernemers van 20 tot 28 die al groot zijn (high scalers), geen beginners.
+- **Sfeer:** donker, dik en zelfverzekerd: grote cijfers, 100x als echt object (auto-wrap, ketting), founder anoniem. Niets wat AI-achtig oogt.
+- **Kleuren:** bijna zwart (#050507), donkergrijs (#15161b), gebroken wit (#ecebe7), grijze bijtekst (#9b978f). Geen fel accent.
+- **Lettertypes:** Anton voor koppen, Work Sans voor tekst (Google Fonts).
 - **Toon van de teksten:** kort, direct en zelfverzekerd, zonder grootspraak. Cijfers alleen met bron en periode.
-- **Niet noemen:** andere bedrijven of merken van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken.
+- **Niet noemen:** merknamen en andere bedrijven van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken. Wel afgesproken (21-11-2026): de niches (pet-supplementen, sieraden) en de cijfers uit `vragenlijst-visie.md`.
 
 ## Referenties
 
