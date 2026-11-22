@@ -16,6 +16,9 @@
   --field: #ecebe7;
   --field-ink: #050507;
   --scrim: rgba(5, 5, 7, 0.72);
+  --glass: rgba(21, 22, 27, 0.62);
+  --glass-line: rgba(236, 235, 231, 0.09);
+  --header-bar: rgba(5, 5, 7, 0.78);
 
   /* Letters */
   --font-display: "Newsreader", "Playfair Display", Georgia, serif;
@@ -89,8 +92,109 @@ em { font-style: italic; }
 }
 .wordmark { font-size: 1.625rem; line-height: 1; }
 .site-nav { display: flex; gap: clamp(16px, 2.4vw, 40px); font-size: var(--step-small); font-weight: 500; color: var(--muted); }
-.site-nav a { padding: 8px 0; transition: opacity 200ms; }
+.site-nav a { padding: 8px 0; transition: opacity 200ms, color 200ms; }
 .site-nav a:hover { opacity: 0.6; }
+.site-nav a[aria-current="true"] { color: var(--ink); }
+
+/* Menuknop: alleen op de telefoon */
+.menu-button {
+  display: none;
+  font: 500 var(--step-small) / 1 var(--font-text);
+  color: var(--bg); background: var(--ink);
+  border: 0; border-radius: 9999px;
+  padding: 12px 18px; min-height: 44px; cursor: pointer;
+}
+@media (max-width: 759px) {
+  .menu-button { display: inline-flex; align-items: center; margin-left: auto; }
+  .site-nav { display: none; }
+  .site-header.is-open .site-nav {
+    display: grid; gap: 0;
+    position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+    padding: 8px 20px;
+    border-radius: 16px;
+    background: var(--surface);
+    font-size: var(--step-lead); color: var(--ink);
+  }
+  .site-header.is-open .site-nav a { display: block; padding: 14px 0; }
+}
+
+/* ---------- Header-demo's (tijdelijk): kies er één, de rest gaat eruit ---------- */
+[data-header] .site-header { position: fixed; transition: transform 400ms var(--ease-out), background 300ms, height 300ms var(--ease-out), box-shadow 300ms; }
+[data-header] .site-header.is-hidden { transform: translateY(-120%); }
+
+/* A · Pill: één dikke zwevende pil in het midden */
+[data-header="pill"] .site-header {
+  inset: 16px auto auto 50%; transform: translateX(-50%);
+  width: min(calc(100% - 2 * var(--margin)), 760px); height: 64px;
+  padding: 0 8px 0 24px;
+  border-radius: 9999px;
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: inset 0 0 0 1px var(--glass-line);
+}
+[data-header="pill"] .site-header.is-hidden { transform: translate(-50%, -140%); }
+[data-header="pill"] .wordmark { font-size: 1.375rem; }
+[data-header="pill"] .site-nav { align-items: center; gap: 4px; }
+[data-header="pill"] .site-nav a { display: block; padding: 12px 16px; border-radius: 9999px; }
+[data-header="pill"] .site-nav a:hover { opacity: 1; background: var(--surface-hover); color: var(--ink); }
+[data-header="pill"] .site-nav li:last-child a { background: var(--ink); color: var(--bg); padding: 14px 22px; margin-left: 4px; }
+
+/* B · Split: logo en menu elk in een eigen zwevend blok */
+[data-header="split"] .site-header { inset: 16px 0 auto 0; height: 56px; }
+[data-header="split"] .wordmark,
+[data-header="split"] .site-nav {
+  height: 56px; padding: 0 24px;
+  border-radius: 9999px;
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: inset 0 0 0 1px var(--glass-line);
+}
+[data-header="split"] .wordmark { display: flex; align-items: center; font-size: 1.375rem; }
+[data-header="split"] .site-nav { align-items: center; }
+[data-header="split"] .site-nav a { position: relative; }
+[data-header="split"] .site-nav a[aria-current="true"]::after { content: ""; position: absolute; left: 50%; bottom: -2px; width: 4px; height: 4px; margin-left: -2px; border-radius: 9999px; background: var(--ink); }
+
+/* C · Center: het diamanten 100x in het midden, menu links en rechts; verdwijnt bij naar beneden scrollen */
+[data-header="center"] .site-header { inset: 0 0 auto 0; height: 88px; }
+[data-header="center"] .site-header.is-scrolled { height: 68px; background: var(--header-bar); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+[data-header="center"] .wordmark { position: absolute; left: 50%; transform: translateX(-50%); }
+[data-header="center"] .wordmark { font-size: 1.875rem; }
+[data-header="center"] nav { width: 100%; }
+[data-header="center"] .site-nav { width: 100%; color: var(--ink); }
+[data-header="center"] .site-nav li:nth-child(3) { margin-left: auto; }
+
+/* D · Bar: rustig aan de bovenkant, wordt een dunne glazen balk zodra je scrolt */
+[data-header="bar"] .site-header { inset: 0 0 auto 0; height: 80px; }
+[data-header="bar"] .site-header.is-scrolled { height: 56px; background: var(--header-bar); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 1px 0 var(--glass-line); }
+[data-header="bar"] .site-nav a { position: relative; }
+[data-header="bar"] .site-nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform 400ms var(--ease-out); }
+[data-header="bar"] .site-nav a[aria-current="true"]::after { transform: scaleX(1); }
+
+@media (max-width: 759px) {
+  [data-header="pill"] .site-header { padding: 0 6px 0 20px; height: 58px; }
+  [data-header="split"] .site-header { padding: 0 var(--margin); }
+  [data-header="split"] .menu-button { height: 56px; padding: 0 22px; }
+  [data-header="center"] .wordmark { position: static; transform: none; font-size: 1.5rem; }
+  [data-header="center"] .site-nav li:nth-child(3) { margin-left: 0; }
+  [data-header="center"] nav { width: auto; }
+  [data-header="pill"] .site-header.is-open .site-nav { top: calc(100% + 10px); }
+  [data-header="pill"] .site-nav li:last-child a { background: none; color: inherit; margin: 0; padding: 14px 0; }
+  [data-header="split"] .site-header.is-open .site-nav { height: auto; padding: 8px 20px; border-radius: 16px; background: var(--surface); box-shadow: none; align-items: stretch; }
+}
+
+/* Wisselaar voor de demo's */
+.header-switch {
+  position: fixed; left: 50%; bottom: 16px; z-index: 30; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 4px;
+  padding: 6px; border-radius: 9999px;
+  background: var(--ink); color: var(--bg);
+  font-size: var(--step-small); font-weight: 500; white-space: nowrap;
+}
+.header-switch[hidden] { display: none; }
+.header-switch span { padding: 0 10px; opacity: 0.6; }
+.header-switch a { padding: 8px 12px; border-radius: 9999px; }
+.header-switch a[aria-current="true"] { background: var(--bg); color: var(--ink); }
+@media (max-width: 759px) { .header-switch span { display: none; } .header-switch a { padding: 8px 10px; } }
 
 /* ---------- Hero: zin met het diamanten 100x ---------- */
 .hero {

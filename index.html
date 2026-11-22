@@ -16,9 +16,17 @@
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
 
-  <header class="site-header">
+  <!-- Header-demo's: kies met ?header=pill | split | center | bar (tijdelijk, tot er een gekozen is) -->
+  <script>
+    (function () {
+      var keuze = new URLSearchParams(location.search).get('header');
+      if (keuze) document.documentElement.setAttribute('data-header', keuze);
+    })();
+  </script>
+  <header class="site-header" data-header-bar>
     <a class="wordmark" href="/">100x Group</a>
-    <nav aria-label="Main menu">
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-button>Menu</button>
+    <nav id="site-nav" aria-label="Main menu">
       <ul class="site-nav">
         <li><a href="#brands">Brands</a></li>
         <li><a href="#how">How we work</a></li>
@@ -27,6 +35,15 @@
       </ul>
     </nav>
   </header>
+
+  <!-- Wisselaar voor de header-demo's, alleen zichtbaar met ?header= in de link -->
+  <div class="header-switch" data-header-switch hidden>
+    <span>Header</span>
+    <a href="?header=pill">A · Pill</a>
+    <a href="?header=split">B · Split</a>
+    <a href="?header=center">C · Center</a>
+    <a href="?header=bar">D · Bar</a>
+  </div>
 
   <main id="content">
 
