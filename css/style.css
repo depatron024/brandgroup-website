@@ -67,7 +67,7 @@ a { color: inherit; text-decoration: none; }
 .skip-link:focus { top: var(--margin); }
 
 /* Koppen in de smalle zware letter */
-.display, .hero__title, .ledger__title, .brands__title, .verb__word,
+.display, .hero__title, .ledger__title, .brands__title, .routes__title,
 .founder__title, .site-footer__title, .site-footer__name, .ledger__figure, .wordmark {
   font-family: var(--font-display);
   font-weight: 400;
@@ -88,41 +88,27 @@ a { color: inherit; text-decoration: none; }
 .site-nav a { padding: 8px 0; transition: opacity 200ms; }
 .site-nav a:hover { opacity: 0.6; }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero: zin met het diamanten 100x ---------- */
 .hero {
   position: relative;
   min-height: 100svh;
-  display: flex; flex-direction: column;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  gap: clamp(28px, 4vw, 48px);
+  padding: calc(var(--header) + 24px) var(--margin) 64px;
+  text-align: center;
   overflow: hidden;
 }
-.hero__media { position: absolute; inset: 0; }
-.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 80%; }
-.hero__text {
-  position: relative; z-index: 1;
-  flex: 1;
-  display: flex; flex-direction: column; justify-content: space-between;
-  padding: calc(var(--header) + 24px) var(--margin) var(--margin);
-}
-.hero__title { font-size: min(13.2vw, 10.5rem); }
+.hero__title { display: grid; justify-items: center; gap: clamp(8px, 1.4vw, 20px); font-size: min(13vw, 6rem, 9svh); }
 .hero__line { display: block; white-space: nowrap; }
-/* De ketting staat in de zin, zo hoog als een regel */
-.slot {
-  display: inline-block;
-  width: 1.55em; height: 0.86em;
-  vertical-align: -0.02em;
-  overflow: hidden;
-  background: var(--bg);
-}
-.slot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
-.hero__lead {
-  margin-top: 40px;
-  align-self: flex-start;
-  max-width: 32ch;
-  padding: 16px 20px;
-  background: var(--scrim);
-  font-size: var(--step-lead);
-  line-height: 1.3;
-}
+.hero__diamond { display: block; width: min(92vw, 1000px, (100svh - 430px) * 2); }
+.hero__lead { max-width: 34ch; font-size: var(--step-lead); line-height: 1.3; color: var(--muted); }
+
+/* Het diamanten 100x (js/chrome.js); zonder WebGL blijven de witte letters staan */
+.held__diamant { position: relative; aspect-ratio: 1593 / 784; }
+.held__diamant .diamant { position: absolute; inset: 0; }
+.diamant__mark, .diamant__canvas { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+.diamant__mark { fill: var(--ink); }
+.diamant__mark.has-chrome .fly__glyph { visibility: hidden; }
 
 /* ---------- Cijfers ---------- */
 .ledger {
@@ -140,7 +126,7 @@ a { color: inherit; text-decoration: none; }
 }
 .ledger__caption { font-size: var(--step-body); max-width: 32ch; }
 
-/* ---------- Merken: doorlopende carousel ---------- */
+/* ---------- Merken: doorlopende carousel, verborgen achter blur ---------- */
 .brands { padding-top: var(--section); }
 .brands__head {
   display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 32px;
@@ -148,61 +134,36 @@ a { color: inherit; text-decoration: none; }
 }
 .brands__title { font-size: var(--step-head); }
 .brands__note { color: var(--muted); font-size: var(--step-body); }
-.carousel {
-  overflow-x: auto;
-  scrollbar-width: none;
-  overscroll-behavior-x: contain;
-}
+.carousel { overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
 .carousel::-webkit-scrollbar { display: none; }
-.carousel__track {
-  display: flex; gap: 16px;
-  width: max-content;
-  padding: 0 var(--margin);
-}
-.brand-card {
+.carousel__track { display: flex; gap: 16px; width: max-content; padding: 0 var(--margin); }
+.brand-card { flex: none; width: min(78vw, 440px); display: grid; gap: 6px; }
+.brand-card__img {
   position: relative;
-  flex: none;
-  width: min(84vw, 560px);
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: 6px;
   background: var(--surface);
+  margin-bottom: 10px;
 }
-.brand-card img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 900ms var(--ease-out);
-}
-.brand-card:hover img { transform: scale(1.04); }
-.brand-card__label {
-  position: absolute; inset: auto 0 0 0;
-  display: grid; gap: 6px;
-  padding: 64px 24px 22px;
-  background: linear-gradient(to top, rgba(5, 5, 7, 0.78), rgba(5, 5, 7, 0)); /* taste-skill-ignore: neutrale scrim onder tekst op foto */
-}
-.brand-card__title {
-  font-family: var(--font-display); text-transform: uppercase;
-  font-size: clamp(1.75rem, 1.2rem + 1.4vw, 2.5rem); line-height: 0.9;
-}
-.brand-card__line { font-size: var(--step-body); max-width: 28ch; }
-
-/* ---------- Werkwijze: één werkwoord per scherm ---------- */
-.verbs { margin-top: var(--section); }
-.verb { position: relative; height: 100svh; overflow: hidden; }
-.verb__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.verb__word-wrap { position: absolute; inset: 0; }
-.verb__word {
-  position: sticky; top: 50%;
-  transform: translateY(-50%);
-  text-align: center;
-  font-size: var(--step-giant);
+.brand-card__img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); }
+.brand-card__eye {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
   color: var(--ink);
 }
-.verb__text {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 24px var(--margin) var(--margin);
-  background: var(--scrim);
-  font-size: var(--step-body);
-}
+.brand-card__eye svg { width: 44px; height: 44px; }
+.brand-card__title { font-family: var(--font-display); text-transform: uppercase; font-size: 1.75rem; line-height: 1; }
+.brand-card__line { color: var(--muted); font-size: var(--step-body); }
+
+/* ---------- Werkwijze: drie routes, groot gezet ---------- */
+.routes { padding: var(--section) var(--margin) 0; display: grid; gap: 64px; }
+.routes__title { font-size: var(--step-head); }
+.routes__list { margin: 0; padding: 0; list-style: none; display: grid; gap: clamp(56px, 7vw, 96px); }
+.route { display: grid; gap: 12px; }
+.route__word { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(5rem, 1rem + 13vw, 12.5rem); line-height: 0.9; }
+.route__text { max-width: 36ch; font-size: var(--step-lead); line-height: 1.35; }
+.route__text strong { font-weight: 600; }
 
 /* ---------- Founder ---------- */
 .founder {
@@ -214,11 +175,14 @@ a { color: inherit; text-decoration: none; }
 .founder__bio { font-size: var(--step-statement); line-height: 1.25; max-width: 34ch; }
 .founder__bio--soft { color: var(--muted); font-size: var(--step-body); line-height: 1.5; }
 .founder__portrait {
+  position: relative;
   aspect-ratio: 1;
   overflow: hidden;
+  border-radius: 6px;
   background: var(--surface);
 }
 .founder__portrait img { width: 100%; height: 100%; object-fit: cover; filter: blur(18px); transform: scale(1.2); transition: filter 900ms var(--ease-out); }
+.founder__portrait .brand-card__eye svg { width: 56px; height: 56px; }
 .founder__portrait.is-peeking img { filter: blur(9px); }
 .founder__facts { order: 3; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: var(--step-small); color: var(--muted); }
 
@@ -269,7 +233,10 @@ a { color: inherit; text-decoration: none; }
   .ledger__row { grid-template-columns: 2.4fr 5fr; align-items: baseline; gap: var(--gap); }
   .ledger__figure { text-align: right; }
 
-  .verb__text { right: auto; max-width: 520px; }
+  .route { grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); align-items: end; }
+  .route__word { grid-column: 1 / 8; }
+  .route__text { grid-column: 8 / 13; padding-bottom: 0.6em; }
+  .brand-card__title { font-size: 2rem; }
 
   .founder { grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); }
   .founder { align-items: start; }
@@ -287,12 +254,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------- Beweging ---------- */
-/* Hero-beeld opent als een sluiter */
-.js .shutter img { clip-path: inset(0 0 100% 0); transform: scale(1.12); }
-.js .shutter.is-open img {
-  clip-path: inset(0 0 0 0); transform: scale(1);
-  transition: clip-path 1.1s var(--ease-out), transform 1.6s var(--ease-out);
-}
 /* Delen van een sectie komen na elkaar binnen */
 .js [data-enter] { opacity: 0; transform: translateY(24px); }
 .js [data-enter].is-in {
@@ -305,7 +266,6 @@ a { color: inherit; text-decoration: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .shutter img, .js [data-enter] { clip-path: none; opacity: 1; transform: none; transition: none; }
-  .brand-card img, .brand-card:hover img { transition: none; transform: none; }
+  .js [data-enter] { opacity: 1; transform: none; transition: none; }
   .reveal-button.is-denied { animation: none; }
 }
