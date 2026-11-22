@@ -11,7 +11,7 @@ Bijgewerkt op 22-11-2026 na de visie-vragenlijst (`vragenlijst-visie.md`).
 - **Doelgroep:** jonge e-commerce-ondernemers van 20 tot 28 die al groot zijn (high scalers), geen beginners.
 - **Sfeer:** donker, dik en zelfverzekerd: grote cijfers, 100x als echt object (auto-wrap, ketting), founder anoniem. Niets wat AI-achtig oogt.
 - **Kleuren:** bijna zwart (#050507), donkergrijs (#15161b), gebroken wit (#ecebe7), grijze bijtekst (#9b978f). Geen fel accent.
-- **Lettertypes:** Anton voor koppen, Work Sans voor tekst (Google Fonts).
+- **Lettertypes:** Newsreader (serif, zoals slash.com) voor koppen, met één cursief woord als accent; Inter voor tekst (Google Fonts). Design-referentie: slash.com en hun guidelines (styles.refero.design).
 - **Toon van de teksten:** kort, direct en zelfverzekerd, zonder grootspraak. Cijfers alleen met bron en periode.
 - **Niet noemen:** merknamen en andere bedrijven van de oprichters komen niet op de site, tenzij dat expliciet is afgesproken. Wel afgesproken (21-11-2026): de niches (pet-supplementen, sieraden) en de cijfers uit `vragenlijst-visie.md`.
 
