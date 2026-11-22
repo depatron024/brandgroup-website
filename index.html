@@ -16,37 +16,18 @@
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
 
-  <!-- Header-demo's: kies met ?header=pill | wide | morph | light | glide | island (tijdelijk, tot er een gekozen is) -->
-  <script>
-    (function () {
-      var keuze = new URLSearchParams(location.search).get('header');
-      if (keuze) document.documentElement.setAttribute('data-header', keuze);
-    })();
-  </script>
   <header class="site-header" data-header-bar>
-    <a class="wordmark" href="/">100x Group</a>
-    <span class="island-label" data-island-label hidden></span>
+    <a class="wordmark" href="/"><span class="wordmark__x">100x</span> <span class="wordmark__group">Group</span></a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-button>Menu</button>
     <nav id="site-nav" aria-label="Main menu">
       <ul class="site-nav">
         <li><a href="#brands">Brands</a></li>
         <li><a href="#how">How we work</a></li>
         <li><a href="#partners">Partners</a></li>
-        <li><a href="#founder">Founder</a></li>
+        <li><a href="#founder"><span class="nav-avatar" aria-hidden="true"><img src="images/founder.webp" width="900" height="900" alt=""></span>Founder</a></li>
       </ul>
     </nav>
   </header>
-
-  <!-- Wisselaar voor de header-demo's, alleen zichtbaar met ?header= in de link -->
-  <div class="header-switch" data-header-switch hidden>
-    <span>Header</span>
-    <a href="?header=pill">1 · Pill</a>
-    <a href="?header=wide">2 · Wide</a>
-    <a href="?header=morph">3 · Morph</a>
-    <a href="?header=light">4 · Light</a>
-    <a href="?header=glide">5 · Glide</a>
-    <a href="?header=island">6 · Island</a>
-  </div>
 
   <main id="content">
 

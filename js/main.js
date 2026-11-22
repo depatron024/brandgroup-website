@@ -115,7 +115,7 @@ if (chain && !geenBeweging) {
   chain.addEventListener('pointerdown', () => duw(Math.random() < 0.5 ? -0.05 : 0.05));
 }
 
-// Header: menu op de telefoon, actieve sectie in het menu, en (in de demo's) gedrag bij scrollen
+// Header: menu op de telefoon en de actieve sectie in het menu
 const balk = document.querySelector('[data-header-bar]');
 const menuKnop = document.querySelector('[data-menu-button]');
 if (balk && menuKnop) {
@@ -143,52 +143,12 @@ if ('IntersectionObserver' in window && menuLinks.length) {
   secties.forEach((s) => wijzer.observe(s));
 }
 
-const demoKeuze = document.documentElement.getAttribute('data-header');
-if (demoKeuze && balk) {
-  const wissel = document.querySelector('[data-header-switch]');
-  if (wissel) {
-    wissel.hidden = false;
-    wissel.querySelectorAll('a').forEach((a) => a.setAttribute('aria-current', String(a.getAttribute('href') === '?header=' + demoKeuze)));
-  }
+// De pil gaat weg als je naar beneden scrolt en komt terug als je omhoog gaat
+if (balk) {
   let vorige = window.scrollY;
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    balk.classList.toggle('is-scrolled', y > 40);
-    // De pillen gaan weg als je naar beneden scrolt en komen terug als je omhoog gaat
-    if (['pill', 'wide', 'light', 'glide'].includes(demoKeuze)) {
-      balk.classList.toggle('is-hidden', y > vorige && y > 300 && !balk.classList.contains('is-open'));
-    }
+    balk.classList.toggle('is-hidden', y > vorige && y > 300 && !balk.classList.contains('is-open'));
     vorige = y;
   }, { passive: true });
-}
-
-// Demo Island: laat de naam van de sectie zien waar je bent
-const eiland = document.querySelector('[data-island-label]');
-if (demoKeuze === 'island' && eiland) {
-  eiland.hidden = false;
-  new MutationObserver(() => {
-    const nu = menuLinks.find((a) => a.getAttribute('aria-current') === 'true');
-    eiland.textContent = nu && window.scrollY > 200 ? nu.textContent : '';
-  }).observe(balk, { attributes: true, subtree: true, attributeFilter: ['aria-current'] });
-}
-
-// Demo Glide: een vlakje glijdt naar de link onder de muis, anders naar de huidige sectie
-if (demoKeuze === 'glide' && balk) {
-  const lijst = balk.querySelector('.site-nav');
-  const vlak = document.createElement('span');
-  vlak.className = 'nav-glide';
-  vlak.setAttribute('aria-hidden', 'true');
-  lijst.prepend(vlak);
-  const zet = (a) => {
-    menuLinks.forEach((l) => l.classList.toggle('is-lit', l === a));
-    if (!a) { vlak.style.opacity = '0'; return; }
-    vlak.style.opacity = '1';
-    vlak.style.width = a.offsetWidth + 'px';
-    vlak.style.transform = `translateX(${a.parentElement.offsetLeft}px)`;
-  };
-  const huidige = () => menuLinks.find((a) => a.getAttribute('aria-current') === 'true');
-  menuLinks.forEach((a) => a.addEventListener('mouseenter', () => zet(a)));
-  lijst.addEventListener('mouseleave', () => zet(huidige()));
-  new MutationObserver(() => { if (!lijst.matches(':hover')) zet(huidige()); })
-    .observe(lijst, { attributes: true, subtree: true, attributeFilter: ['aria-current'] });
 }
