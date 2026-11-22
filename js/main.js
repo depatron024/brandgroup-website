@@ -5,6 +5,7 @@ const groepen = [
   ['.hero', ['.hero__line', '.hero__lead']],
   ['.brands', ['.brands__title', '.brands__note']],
   ['.routes', ['.routes__title', '.routes__lead', '.feature']],
+  ['.partners', ['.partners__title', '.partners__lead', '.partners__group']],
   ['.founder', ['.founder__title', '.founder__bio', '.reveal-button', '.founder__facts p', '.founder__portrait']],
   ['.site-footer', ['.site-footer__title', '.site-footer__links li']],
 ];
