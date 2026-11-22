@@ -8,6 +8,7 @@
   /* Kleur: één grond, één inkt, één omgekeerd vlak voor de afsluiting */
   --bg: #050507;
   --surface: #15161b;
+  --surface-hover: #1c1d23;
   --ink: #ecebe7;
   --muted: #9b978f;
   --field: #ecebe7;
@@ -67,8 +68,8 @@ a { color: inherit; text-decoration: none; }
 .skip-link:focus { top: var(--margin); }
 
 /* Koppen in de smalle zware letter */
-.display, .hero__title, .ledger__title, .brands__title, .routes__title,
-.founder__title, .site-footer__title, .site-footer__name, .ledger__figure, .wordmark {
+.display, .hero__title, .stats__title, .brands__title, .routes__title,
+.founder__title, .site-footer__title, .site-footer__name, .wordmark {
   font-family: var(--font-display);
   font-weight: 400;
   text-transform: uppercase;
@@ -110,21 +111,19 @@ a { color: inherit; text-decoration: none; }
 .diamant__mark { fill: var(--ink); }
 .diamant__mark.has-chrome .fly__glyph { visibility: hidden; }
 
-/* ---------- Cijfers ---------- */
-.ledger {
-  display: grid; gap: 48px;
-  padding: var(--section) var(--margin) 0;
+/* ---------- Cijfers: vier blokken op een rij ---------- */
+.stats { padding: var(--section) var(--margin) 0; display: grid; gap: 56px; justify-items: center; text-align: center; }
+.stats__title { font-size: var(--step-head); }
+.stats__grid { margin: 0; padding: 0; list-style: none; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 72px var(--gap); }
+.stat { display: grid; justify-items: center; align-content: start; gap: 8px; }
+.stat__figure { margin-bottom: 10px; }
+.stat__label { font-size: var(--step-body); font-weight: 600; }
+.stat__figure {
+  font-family: var(--font-display); text-transform: uppercase;
+  font-size: clamp(3rem, 1.6rem + 5vw, 6rem); line-height: 0.9;
+  white-space: nowrap;
 }
-.ledger__title { font-size: var(--step-head); line-height: 0.95; }
-.soft { color: var(--muted); }
-.ledger__rows { display: grid; gap: 28px; }
-.ledger__row { display: grid; grid-template-columns: 1fr; gap: 6px; }
-.ledger__figure {
-  font-size: var(--step-display);
-  line-height: 0.9;
-  font-variant-numeric: tabular-nums lining-nums;
-}
-.ledger__caption { font-size: var(--step-body); max-width: 32ch; }
+.stat__caption { max-width: 22ch; color: var(--muted); font-size: var(--step-body); }
 
 /* ---------- Merken: doorlopende carousel, verborgen achter blur ---------- */
 .brands { padding-top: var(--section); }
@@ -156,14 +155,23 @@ a { color: inherit; text-decoration: none; }
 .brand-card__title { font-family: var(--font-display); text-transform: uppercase; font-size: 1.75rem; line-height: 1; }
 .brand-card__line { color: var(--muted); font-size: var(--step-body); }
 
-/* ---------- Werkwijze: drie routes, groot gezet ---------- */
-.routes { padding: var(--section) var(--margin) 0; display: grid; gap: 64px; }
+/* ---------- Werkwijze: kop links, drie routes rechts ---------- */
+.routes { padding: var(--section) var(--margin) 0; display: grid; gap: 40px; }
+.routes__intro { display: grid; gap: 16px; align-content: start; }
 .routes__title { font-size: var(--step-head); }
-.routes__list { margin: 0; padding: 0; list-style: none; display: grid; gap: clamp(56px, 7vw, 96px); }
-.route { display: grid; gap: 12px; }
-.route__word { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(5rem, 1rem + 13vw, 12.5rem); line-height: 0.9; }
-.route__text { max-width: 36ch; font-size: var(--step-lead); line-height: 1.35; }
-.route__text strong { font-weight: 600; }
+.routes__lead { max-width: 26ch; color: var(--muted); font-size: var(--step-lead); line-height: 1.3; }
+.routes__list { display: grid; gap: 8px; }
+.route {
+  display: grid; gap: 10px;
+  padding: 28px 24px;
+  border-radius: 6px;
+  background: var(--surface);
+  transition: background-color 300ms var(--ease-out);
+}
+.route:hover { background: var(--surface-hover); }
+.route__for { color: var(--muted); font-size: var(--step-small); font-weight: 600; }
+.route__name { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(2.75rem, 1.5rem + 3vw, 4.5rem); line-height: 0.9; }
+.route__text { max-width: 44ch; font-size: var(--step-body); }
 
 /* ---------- Founder ---------- */
 .founder {
@@ -227,15 +235,14 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- Tablet en groter ---------- */
 @media (min-width: 760px) {
-  .ledger { grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); align-items: center; }
-  .ledger__title { grid-column: 1 / 7; }
-  .ledger__rows { grid-column: 7 / 13; gap: 20px; }
-  .ledger__row { grid-template-columns: 2.4fr 5fr; align-items: baseline; gap: var(--gap); }
-  .ledger__figure { text-align: right; }
-
-  .route { grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); align-items: end; }
-  .route__word { grid-column: 1 / 8; }
-  .route__text { grid-column: 8 / 13; padding-bottom: 0.6em; }
+  .stats__grid { grid-template-columns: repeat(4, 1fr); }
+  .routes { grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); }
+  .routes__intro { grid-column: 1 / 6; position: sticky; top: 96px; align-self: start; }
+  .routes__list { grid-column: 6 / 13; }
+  .route { grid-template-columns: 1fr 1.4fr; column-gap: var(--gap); padding: 36px 32px; }
+  .route__name { grid-column: 1; grid-row: 1 / 3; }
+  .route__for { grid-column: 2; grid-row: 1; }
+  .route__text { grid-column: 2; grid-row: 2; }
   .brand-card__title { font-size: 2rem; }
 
   .founder { grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); }

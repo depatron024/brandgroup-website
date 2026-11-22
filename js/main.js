@@ -3,9 +3,9 @@ const geenBeweging = window.matchMedia('(prefers-reduced-motion: reduce)').match
 // Delen van elke sectie komen na elkaar binnen (kop, tekst, beeld)
 const groepen = [
   ['.hero', ['.hero__line', '.hero__lead']],
-  ['.ledger', ['.ledger__title', '.ledger__row']],
+  ['.stats', ['.stats__title', '.stat']],
   ['.brands', ['.brands__title', '.brands__note']],
-  ['.routes', ['.routes__title', '.route']],
+  ['.routes', ['.routes__title', '.routes__lead', '.route']],
   ['.founder', ['.founder__title', '.founder__bio', '.reveal-button', '.founder__facts p', '.founder__portrait']],
   ['.site-footer', ['.site-footer__title', '.site-footer__links li', '.site-footer__name']],
 ];
