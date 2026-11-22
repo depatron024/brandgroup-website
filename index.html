@@ -16,14 +16,15 @@
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
 
-  <header class="site-header">
-    <a class="wordmark" href="/">100x Group</a>
-    <nav aria-label="Main menu">
+  <header class="site-header" data-header-bar>
+    <a class="wordmark" href="/"><span class="wordmark__x">100x</span> <span class="wordmark__group">Group</span></a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-button>Menu</button>
+    <nav id="site-nav" aria-label="Main menu">
       <ul class="site-nav">
         <li><a href="#brands">Brands</a></li>
         <li><a href="#how">How we work</a></li>
         <li><a href="#partners">Partners</a></li>
-        <li><a href="#founder">Founder</a></li>
+        <li><a href="#founder"><span class="nav-avatar" aria-hidden="true"><img src="images/founder.webp" width="900" height="900" alt=""></span>Founder</a></li>
       </ul>
     </nav>
   </header>

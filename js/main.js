@@ -114,3 +114,41 @@ if (chain && !geenBeweging) {
   });
   chain.addEventListener('pointerdown', () => duw(Math.random() < 0.5 ? -0.05 : 0.05));
 }
+
+// Header: menu op de telefoon en de actieve sectie in het menu
+const balk = document.querySelector('[data-header-bar]');
+const menuKnop = document.querySelector('[data-menu-button]');
+if (balk && menuKnop) {
+  menuKnop.addEventListener('click', () => {
+    const open = balk.classList.toggle('is-open');
+    menuKnop.setAttribute('aria-expanded', String(open));
+    menuKnop.textContent = open ? 'Close' : 'Menu';
+  });
+  balk.querySelectorAll('.site-nav a').forEach((a) => a.addEventListener('click', () => {
+    balk.classList.remove('is-open');
+    menuKnop.setAttribute('aria-expanded', 'false');
+    menuKnop.textContent = 'Menu';
+  }));
+}
+
+const menuLinks = [...document.querySelectorAll('.site-nav a')];
+if ('IntersectionObserver' in window && menuLinks.length) {
+  const secties = menuLinks.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const wijzer = new IntersectionObserver((items) => {
+    items.forEach((item) => {
+      if (!item.isIntersecting) return;
+      menuLinks.forEach((a) => a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + item.target.id)));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  secties.forEach((s) => wijzer.observe(s));
+}
+
+// De pil gaat weg als je naar beneden scrolt en komt terug als je omhoog gaat
+if (balk) {
+  let vorige = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    balk.classList.toggle('is-hidden', y > vorige && y > 300 && !balk.classList.contains('is-open'));
+    vorige = y;
+  }, { passive: true });
+}
