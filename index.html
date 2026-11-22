@@ -66,51 +66,100 @@
       </dl>
     </section>
 
-    <!-- De drie merken -->
+    <!-- De merken: een doorlopende carousel, namen verborgen -->
     <section class="brands" id="brands" aria-labelledby="brands-title">
-      <h2 id="brands-title" class="visually-hidden">Our brands</h2>
-
-      <article class="brand brand--one" data-reveal>
-        <div class="brand__visual">
-          <img src="images/hond.webp" width="1600" height="1986" alt="A Dobermann sitting in a dark studio" loading="lazy">
-        </div>
-        <div class="brand__cluster">
-          <img class="brand__small" src="images/hond-strand.webp" width="1200" height="678" alt="A dog running along a beach at dawn" loading="lazy">
-          <div class="brand__meta">
-            <h3 class="brand__title">Pet supplements</h3>
-            <p class="brand__text">Our first brand. Built and run by five people. Eight figures in revenue in its first year, 2026. The name stays off this page.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="brand brand--two" data-reveal>
-        <div class="brand__visual">
-          <img src="images/doos.webp" width="1600" height="1600" alt="An unlabelled black product box under a single spotlight" loading="lazy">
-        </div>
-        <div class="brand__cluster">
-          <img class="brand__small" src="images/magazijn.webp" width="1200" height="678" alt="Pallets of unmarked black boxes in a warehouse at night" loading="lazy">
-          <div class="brand__meta">
-            <h3 class="brand__title">First in the world</h3>
-            <div class="brand__text">
-              <p>A product nobody had launched before. We did it first, worldwide.</p>
-              <p class="redacted"><span>Revenue</span> <span class="redacted__bar" role="img" aria-label="Not public yet"></span></p>
+      <div class="brands__head">
+        <h2 id="brands-title" class="brands__title">Our brands</h2>
+        <p class="brands__note">Three brands. Names stay hidden for now.</p>
+      </div>
+      <div class="carousel" data-carousel tabindex="0" aria-label="Our brands, scroll sideways">
+        <ul class="carousel__track">
+          <li class="brand-card">
+            <img src="images/merk-hond-straat.webp" width="1600" height="904" alt="A woman walking her Dobermann down a city street at golden hour" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">Pet supplements</p>
+              <p class="brand-card__line">8 figures in year one, 2026. Team of five.</p>
             </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="brand brand--three" data-reveal>
-        <div class="brand__visual">
-          <img src="images/sieraden.webp" width="1600" height="1986" alt="Silver and diamond rings and a fine chain worn on a hand" loading="lazy">
-        </div>
-        <div class="brand__cluster">
-          <img class="brand__small" src="images/sieradendoos.webp" width="1200" height="678" alt="A diamond ring and a silver chain in an open black box" loading="lazy">
-          <div class="brand__meta">
-            <h3 class="brand__title">Jewellery, exited</h3>
-            <p class="brand__text">A jewellery brand in Europe. We built it, grew it and sold it in 2025. Start to exit.</p>
-          </div>
-        </div>
-      </article>
+          </li>
+          <li class="brand-card">
+            <img src="images/merk-launch-unboxing.webp" width="1600" height="904" alt="A young man unboxing a black package on a sofa" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">First in the world</p>
+              <p class="brand-card__line">Launched first, worldwide. Numbers stay private.</p>
+            </div>
+          </li>
+          <li class="brand-card">
+            <img src="images/merk-sieraden-model.webp" width="1600" height="904" alt="A model wearing layered silver chains and diamond rings" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">Jewellery</p>
+              <p class="brand-card__line">Built, grown and exited in 2025.</p>
+            </div>
+          </li>
+          <li class="brand-card">
+            <img src="images/merk-hond-keuken.webp" width="1600" height="904" alt="A man scooping food into a bowl while his dog waits in the kitchen" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">Pet supplements</p>
+              <p class="brand-card__line">8 figures in year one, 2026. Team of five.</p>
+            </div>
+          </li>
+          <li class="brand-card">
+            <img src="images/merk-launch-rij.webp" width="1600" height="904" alt="People queuing outside a store at night for a launch" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">First in the world</p>
+              <p class="brand-card__line">Launched first, worldwide. Numbers stay private.</p>
+            </div>
+          </li>
+          <li class="brand-card">
+            <img src="images/merk-sieraden-bed.webp" width="1600" height="904" alt="A woman on white sheets wearing a silver necklace and diamond earrings" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">Jewellery</p>
+              <p class="brand-card__line">Built, grown and exited in 2025.</p>
+            </div>
+          </li>
+          <li class="brand-card" aria-hidden="true">
+            <img src="images/merk-hond-straat.webp" width="1600" height="904" alt="" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">Pet supplements</p>
+              <p class="brand-card__line">8 figures in year one, 2026. Team of five.</p>
+            </div>
+          </li>
+          <li class="brand-card" aria-hidden="true">
+            <img src="images/merk-launch-unboxing.webp" width="1600" height="904" alt="" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">First in the world</p>
+              <p class="brand-card__line">Launched first, worldwide. Numbers stay private.</p>
+            </div>
+          </li>
+          <li class="brand-card" aria-hidden="true">
+            <img src="images/merk-sieraden-model.webp" width="1600" height="904" alt="" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">Jewellery</p>
+              <p class="brand-card__line">Built, grown and exited in 2025.</p>
+            </div>
+          </li>
+          <li class="brand-card" aria-hidden="true">
+            <img src="images/merk-hond-keuken.webp" width="1600" height="904" alt="" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">Pet supplements</p>
+              <p class="brand-card__line">8 figures in year one, 2026. Team of five.</p>
+            </div>
+          </li>
+          <li class="brand-card" aria-hidden="true">
+            <img src="images/merk-launch-rij.webp" width="1600" height="904" alt="" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">First in the world</p>
+              <p class="brand-card__line">Launched first, worldwide. Numbers stay private.</p>
+            </div>
+          </li>
+          <li class="brand-card" aria-hidden="true">
+            <img src="images/merk-sieraden-bed.webp" width="1600" height="904" alt="" loading="lazy">
+            <div class="brand-card__label">
+              <p class="brand-card__title">Jewellery</p>
+              <p class="brand-card__line">Built, grown and exited in 2025.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <!-- Werkwijze: één werkwoord per scherm -->

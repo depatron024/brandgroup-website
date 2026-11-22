@@ -10,7 +10,7 @@ if (sluiter) {
 const groepen = [
   ['.hero__text', ['.hero__line', '.hero__lead']],
   ['.ledger', ['.ledger__title', '.ledger__row']],
-  ['.brand', ['.brand__small', '.brand__title', '.brand__text']],
+  ['.brands', ['.brands__title', '.brands__note']],
   ['.founder', ['.founder__title', '.founder__bio', '.reveal-button', '.founder__facts p', '.founder__portrait']],
   ['.site-footer', ['.site-footer__title', '.site-footer__links li', '.site-footer__name']],
 ];
@@ -57,4 +57,36 @@ if (knop && antwoord && portret) {
     knop.classList.add('is-denied');
     window.setTimeout(() => portret.classList.remove('is-peeking'), 900);
   });
+}
+
+// Merken-carousel: schuift langzaam door, stopt bij hover, focus of aanraken.
+// Zonder JS (of met minder beweging) is het een gewone rij die je zelf scrolt.
+const carousel = document.querySelector('[data-carousel]');
+if (carousel && !geenBeweging) {
+  let pauze = false;
+  let positie = carousel.scrollLeft;
+  const stop = () => { pauze = true; };
+  const verder = () => { pauze = false; positie = carousel.scrollLeft; };
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', verder);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', verder);
+  carousel.addEventListener('touchstart', stop, { passive: true });
+  carousel.addEventListener('touchend', () => window.setTimeout(verder, 1500), { passive: true });
+
+  const kaarten = carousel.querySelectorAll('.brand-card');
+  const lus = () => kaarten[kaarten.length / 2].offsetLeft - kaarten[0].offsetLeft;
+
+  const stap = () => {
+    const helft = lus();
+    if (!pauze) {
+      positie += 0.5;
+      if (positie >= helft) positie -= helft;
+      carousel.scrollLeft = positie;
+    } else if (carousel.scrollLeft >= helft) {
+      carousel.scrollLeft -= helft;
+    }
+    requestAnimationFrame(stap);
+  };
+  requestAnimationFrame(stap);
 }
