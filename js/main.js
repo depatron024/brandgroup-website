@@ -1,219 +1,116 @@
 const geenBeweging = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Mobiel menu openen en sluiten
-const navToggle = document.querySelector('.nav-toggle');
-const siteNav = document.querySelector('.site-nav');
+// Delen van elke sectie komen na elkaar binnen (kop, tekst, beeld)
+const groepen = [
+  ['.hero', ['.hero__line', '.hero__lead']],
+  ['.brands', ['.brands__title', '.brands__note']],
+  ['.routes', ['.routes__title', '.routes__lead', '.feature']],
+  ['.partners', ['.partners__title', '.partners__lead', '.partners__group']],
+  ['.founder', ['.founder__title', '.founder__bio', '.reveal-button', '.founder__facts p', '.founder__portrait']],
+  ['.site-footer', ['.site-footer__title', '.site-footer__links li']],
+];
 
-function zetMenu(open) {
-  siteNav.classList.toggle('is-open', open);
-  navToggle.setAttribute('aria-expanded', String(open));
-  navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-
-if (navToggle && siteNav) {
-  navToggle.addEventListener('click', () => {
-    zetMenu(!siteNav.classList.contains('is-open'));
+const delen = [];
+groepen.forEach(([groep, kinderen]) => {
+  document.querySelectorAll(groep).forEach((blok) => {
+    blok.querySelectorAll(kinderen.join(',')).forEach((el, i) => {
+      el.setAttribute('data-enter', '');
+      el.style.setProperty('--i', i);
+      delen.push(el);
+    });
   });
-
-  // Menu sluiten na klikken op een link
-  siteNav.addEventListener('click', (event) => {
-    if (event.target.closest('a')) zetMenu(false);
-  });
-}
-
-// Hero: de grote "100x" telt op van 1x naar 100x (zonder JS of met minder beweging blijft "100x" staan)
-const heroTeller = document.querySelector('[data-hero-counter]');
-
-if (heroTeller && !geenBeweging) {
-  const duur = 2400;
-  const start = performance.now();
-
-  function heroStap(nu) {
-    const voortgang = Math.min((nu - start) / duur, 1);
-    const waarde = Math.max(1, Math.round(100 * (1 - Math.pow(1 - voortgang, 3))));
-    heroTeller.textContent = waarde + 'x';
-    if (voortgang < 1) requestAnimationFrame(heroStap);
-    else heroTeller.classList.add('is-done');
-  }
-
-  heroTeller.textContent = '1x';
-  requestAnimationFrame(heroStap);
-} else if (heroTeller) {
-  heroTeller.classList.add('is-done');
-}
-
-// Hero: de "100x" zakt mee en vervaagt bij het scrollen (parallax)
-const hero = document.querySelector('.hero');
-
-if (heroTeller && hero && !geenBeweging) {
-  let gepland = false;
-
-  function zetParallax() {
-    gepland = false;
-    const y = Math.min(window.scrollY, hero.offsetHeight);
-    heroTeller.style.transform = `translate(-50%, calc(-52% + ${y * 0.35}px)) scale(${1 + y * 0.0003})`;
-    heroTeller.style.opacity = String(Math.max(0, 1 - y / (hero.offsetHeight * 0.9)));
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!gepland) {
-      gepland = true;
-      requestAnimationFrame(zetParallax);
-    }
-  }, { passive: true });
-}
-
-// Blokken schuiven zacht in beeld; kaarten naast elkaar net na elkaar
-document.querySelectorAll('.brands, .tiles, .team, .highlights').forEach((groep) => {
-  groep.querySelectorAll('.reveal').forEach((item, i) => item.style.setProperty('--vertraging', `${i * 90}ms`));
 });
 
-const revealItems = document.querySelectorAll('.reveal');
-
-if ('IntersectionObserver' in window && !geenBeweging) {
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-  revealItems.forEach((item) => revealObserver.observe(item));
+if (geenBeweging || !('IntersectionObserver' in window)) {
+  delen.forEach((el) => el.classList.add('is-in'));
 } else {
-  revealItems.forEach((item) => item.classList.add('is-visible'));
-}
-
-// Track record: de tijdlijn speelt af terwijl je scrolt (terug scrollen spoelt terug)
-const tracker = document.querySelector('[data-tracker]');
-
-if (tracker) {
-  const blokjes = [...tracker.children];
-  const label = document.querySelector('[data-tracker-label]');
-  const hoogtepunten = [...document.querySelectorAll('.highlight[data-month]')];
-
-  hoogtepunten.forEach((h) => {
-    const blokje = blokjes[Number(h.dataset.month) - 1];
-    if (blokje) blokje.classList.add('is-milestone');
-  });
-
-  function toonTijdlijn(gevuld) {
-    blokjes.forEach((b, i) => {
-      b.classList.toggle('is-filled', i < gevuld);
-      b.classList.toggle('is-current', gevuld < blokjes.length && i === gevuld - 1);
-    });
-    hoogtepunten.forEach((h) => h.classList.toggle('is-active', Number(h.dataset.month) <= gevuld));
-    if (label) label.textContent = gevuld >= blokjes.length ? 'Now' : `Month ${Math.max(gevuld, 1)}`;
-  }
-
-  if (geenBeweging) {
-    toonTijdlijn(blokjes.length);
-  } else {
-    let tijdlijnGepland = false;
-
-    // Begint als de tijdlijn op 85% van het scherm staat, klaar op 35%
-    function updateTijdlijn() {
-      tijdlijnGepland = false;
-      const boven = tracker.getBoundingClientRect().top;
-      const h = window.innerHeight;
-      const voortgang = Math.min(Math.max((h * 0.85 - boven) / (h * 0.5), 0), 1);
-      toonTijdlijn(Math.round(voortgang * blokjes.length));
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!tijdlijnGepland) {
-        tijdlijnGepland = true;
-        requestAnimationFrame(updateTijdlijn);
+  const kijker = new IntersectionObserver((items) => {
+    items.forEach((item) => {
+      if (item.isIntersecting) {
+        item.target.classList.add('is-in');
+        kijker.unobserve(item.target);
       }
-    }, { passive: true });
-    window.addEventListener('resize', updateTijdlijn);
-    updateTijdlijn();
-  }
-}
-
-// Tabs bij "How we build", ook met pijltjestoetsen te bedienen
-const tabs = [...document.querySelectorAll('.tab')];
-
-function kiesTab(tab) {
-  tabs.forEach((t) => {
-    const actief = t === tab;
-    t.setAttribute('aria-selected', String(actief));
-    t.tabIndex = actief ? 0 : -1;
-    document.getElementById(t.getAttribute('aria-controls')).hidden = !actief;
-  });
-}
-
-tabs.forEach((tab, i) => {
-  tab.addEventListener('click', () => kiesTab(tab));
-  tab.addEventListener('keydown', (event) => {
-    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
-    const stap = event.key === 'ArrowRight' ? 1 : -1;
-    const volgende = tabs[(i + stap + tabs.length) % tabs.length];
-    kiesTab(volgende);
-    volgende.focus();
-  });
-});
-
-// Rollende band: lijst verdubbelen zodat hij naadloos doorloopt
-const band = document.querySelector('.band__track');
-
-if (band && !geenBeweging) {
-  [...band.children].forEach((item) => {
-    const kopie = item.cloneNode(true);
-    kopie.setAttribute('aria-hidden', 'true');
-    band.appendChild(kopie);
-  });
-  band.classList.add('is-looping');
-}
-
-// Tellers: getal loopt op tot de waarde in data-counter (leeg = "—" blijft staan)
-function telOp(el) {
-  const doel = Number(el.dataset.counter);
-  if (!el.dataset.counter || Number.isNaN(doel)) return;
-
-  const prefix = el.dataset.prefix || '';
-  const suffix = el.dataset.suffix || '';
-  const decimalen = (el.dataset.counter.split('.')[1] || '').length;
-  const opmaak = (waarde) => prefix + waarde.toLocaleString('en-GB', {
-    minimumFractionDigits: decimalen,
-    maximumFractionDigits: decimalen,
-  }) + suffix;
-
-  if (geenBeweging) {
-    el.textContent = opmaak(doel);
-    return;
-  }
-
-  const duur = 1600;
-  const start = performance.now();
-
-  function stap(nu) {
-    const voortgang = Math.min((nu - start) / duur, 1);
-    el.textContent = opmaak(doel * (1 - Math.pow(1 - voortgang, 3)));
-    if (voortgang < 1) requestAnimationFrame(stap);
-  }
-
-  requestAnimationFrame(stap);
-}
-
-const tellers = document.querySelectorAll('[data-counter]');
-
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      telOp(entry.target);
-      observer.unobserve(entry.target);
     });
-  }, { threshold: 0.4 });
-
-  tellers.forEach((el) => observer.observe(el));
-} else {
-  tellers.forEach(telOp);
+  }, { rootMargin: '0px 0px -8% 0px' });
+  delen.forEach((el) => kijker.observe(el));
 }
 
-// Huidig jaar in de footer
-document.querySelectorAll('[data-year]').forEach((el) => {
-  el.textContent = new Date().getFullYear();
-});
+// Founder: de knop laat even iets meer zien en zegt dan "nog niet"
+const knop = document.querySelector('[data-reveal-button]');
+const antwoord = document.querySelector('[data-reveal-answer]');
+const portret = document.querySelector('[data-portrait]');
+const antwoorden = ['Not yet.', 'Still not yet.', 'Soon. Not today.'];
+let keer = 0;
+
+if (knop && antwoord && portret) {
+  knop.addEventListener('click', () => {
+    antwoord.textContent = antwoorden[Math.min(keer, antwoorden.length - 1)];
+    keer += 1;
+    portret.classList.add('is-peeking');
+    knop.classList.remove('is-denied');
+    void knop.offsetWidth;
+    knop.classList.add('is-denied');
+    window.setTimeout(() => portret.classList.remove('is-peeking'), 900);
+  });
+}
+
+// Merken: zoals de verhalen op slash.com. Eén kaart is breed en zoomt langzaam in;
+// elke 7 seconden schuift hij door, of als je op een andere kaart klikt.
+const verhalen = document.querySelector('[data-stories]');
+if (verhalen) {
+  const kaarten = [...verhalen.querySelectorAll('[data-story]')];
+  const panelen = [...document.querySelectorAll('[data-panel]')];
+  let actief = 0;
+  let klok = null;
+  const toon = (n) => {
+    actief = n;
+    kaarten.forEach((k, i) => {
+      k.classList.toggle('is-active', i === n);
+      k.setAttribute('aria-pressed', String(i === n));
+    });
+    panelen.forEach((p, i) => { p.hidden = i !== n; });
+  };
+  const start = () => {
+    if (geenBeweging) return;
+    clearInterval(klok);
+    klok = setInterval(() => toon((actief + 1) % kaarten.length), 7000);
+  };
+  kaarten.forEach((k, i) => k.addEventListener('click', () => { toon(i); start(); }));
+  verhalen.addEventListener('mouseenter', () => clearInterval(klok));
+  verhalen.addEventListener('mouseleave', start);
+  start();
+}
+
+// Footer: de 100x-chain hangt aan de bovenrand en zwaait als je er met de muis langs gaat
+// (of hem op de telefoon aantikt). Een simpele slinger met demping.
+const chain = document.querySelector('[data-chain]');
+if (chain && !geenBeweging) {
+  let hoek = 0;
+  let snelheid = 0;
+  let loopt = false;
+  const veer = 0.018;
+  const demping = 0.985;
+
+  const tik = () => {
+    snelheid += -hoek * veer;
+    snelheid *= demping;
+    hoek += snelheid;
+    hoek = Math.max(-0.7, Math.min(0.7, hoek));
+    chain.style.setProperty('--zwaai', hoek.toFixed(4) + 'rad');
+    if (Math.abs(hoek) > 0.0005 || Math.abs(snelheid) > 0.0005) {
+      requestAnimationFrame(tik);
+    } else {
+      hoek = 0; snelheid = 0; loopt = false;
+      chain.style.setProperty('--zwaai', '0rad');
+    }
+  };
+  const duw = (kracht) => {
+    snelheid += kracht;
+    if (!loopt) { loopt = true; requestAnimationFrame(tik); }
+  };
+
+  chain.addEventListener('pointermove', (e) => {
+    if (e.pointerType === 'mouse') duw(Math.max(-0.02, Math.min(0.02, e.movementX * 0.0008)));
+  });
+  chain.addEventListener('pointerdown', () => duw(Math.random() < 0.5 ? -0.05 : 0.05));
+}
