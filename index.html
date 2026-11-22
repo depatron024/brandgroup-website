@@ -16,7 +16,7 @@
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
 
-  <!-- Header-demo's: kies met ?header=pill | split | center | bar (tijdelijk, tot er een gekozen is) -->
+  <!-- Header-demo's: kies met ?header=pill | wide | morph | light | glide | island (tijdelijk, tot er een gekozen is) -->
   <script>
     (function () {
       var keuze = new URLSearchParams(location.search).get('header');
@@ -25,6 +25,7 @@
   </script>
   <header class="site-header" data-header-bar>
     <a class="wordmark" href="/">100x Group</a>
+    <span class="island-label" data-island-label hidden></span>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-button>Menu</button>
     <nav id="site-nav" aria-label="Main menu">
       <ul class="site-nav">
@@ -39,10 +40,12 @@
   <!-- Wisselaar voor de header-demo's, alleen zichtbaar met ?header= in de link -->
   <div class="header-switch" data-header-switch hidden>
     <span>Header</span>
-    <a href="?header=pill">A · Pill</a>
-    <a href="?header=split">B · Split</a>
-    <a href="?header=center">C · Center</a>
-    <a href="?header=bar">D · Bar</a>
+    <a href="?header=pill">1 · Pill</a>
+    <a href="?header=wide">2 · Wide</a>
+    <a href="?header=morph">3 · Morph</a>
+    <a href="?header=light">4 · Light</a>
+    <a href="?header=glide">5 · Glide</a>
+    <a href="?header=island">6 · Island</a>
   </div>
 
   <main id="content">
