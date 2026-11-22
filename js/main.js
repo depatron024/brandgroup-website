@@ -3,9 +3,8 @@ const geenBeweging = window.matchMedia('(prefers-reduced-motion: reduce)').match
 // Delen van elke sectie komen na elkaar binnen (kop, tekst, beeld)
 const groepen = [
   ['.hero', ['.hero__line', '.hero__lead']],
-  ['.stats', ['.stats__title', '.stat']],
   ['.brands', ['.brands__title', '.brands__note']],
-  ['.routes', ['.routes__title', '.routes__lead', '.route']],
+  ['.routes', ['.routes__title', '.routes__lead', '.feature']],
   ['.founder', ['.founder__title', '.founder__bio', '.reveal-button', '.founder__facts p', '.founder__portrait']],
   ['.site-footer', ['.site-footer__title', '.site-footer__links li']],
 ];
@@ -54,36 +53,31 @@ if (knop && antwoord && portret) {
   });
 }
 
-// Merken-carousel: schuift langzaam door, stopt bij hover, focus of aanraken.
-// Zonder JS (of met minder beweging) is het een gewone rij die je zelf scrolt.
-const carousel = document.querySelector('[data-carousel]');
-if (carousel && !geenBeweging) {
-  let pauze = false;
-  let positie = carousel.scrollLeft;
-  const stop = () => { pauze = true; };
-  const verder = () => { pauze = false; positie = carousel.scrollLeft; };
-  carousel.addEventListener('mouseenter', stop);
-  carousel.addEventListener('mouseleave', verder);
-  carousel.addEventListener('focusin', stop);
-  carousel.addEventListener('focusout', verder);
-  carousel.addEventListener('touchstart', stop, { passive: true });
-  carousel.addEventListener('touchend', () => window.setTimeout(verder, 1500), { passive: true });
-
-  const kaarten = carousel.querySelectorAll('.brand-card');
-  const lus = () => kaarten[kaarten.length / 2].offsetLeft - kaarten[0].offsetLeft;
-
-  const stap = () => {
-    const helft = lus();
-    if (!pauze) {
-      positie += 0.5;
-      if (positie >= helft) positie -= helft;
-      carousel.scrollLeft = positie;
-    } else if (carousel.scrollLeft >= helft) {
-      carousel.scrollLeft -= helft;
-    }
-    requestAnimationFrame(stap);
+// Merken: zoals de verhalen op slash.com. Eén kaart is breed en zoomt langzaam in;
+// elke 7 seconden schuift hij door, of als je op een andere kaart klikt.
+const verhalen = document.querySelector('[data-stories]');
+if (verhalen) {
+  const kaarten = [...verhalen.querySelectorAll('[data-story]')];
+  const panelen = [...document.querySelectorAll('[data-panel]')];
+  let actief = 0;
+  let klok = null;
+  const toon = (n) => {
+    actief = n;
+    kaarten.forEach((k, i) => {
+      k.classList.toggle('is-active', i === n);
+      k.setAttribute('aria-pressed', String(i === n));
+    });
+    panelen.forEach((p, i) => { p.hidden = i !== n; });
   };
-  requestAnimationFrame(stap);
+  const start = () => {
+    if (geenBeweging) return;
+    clearInterval(klok);
+    klok = setInterval(() => toon((actief + 1) % kaarten.length), 7000);
+  };
+  kaarten.forEach((k, i) => k.addEventListener('click', () => { toon(i); start(); }));
+  verhalen.addEventListener('mouseenter', () => clearInterval(klok));
+  verhalen.addEventListener('mouseleave', start);
+  start();
 }
 
 // Footer: de 100x-chain hangt aan de bovenrand en zwaait als je er met de muis langs gaat

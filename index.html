@@ -40,162 +40,86 @@
       <p class="hero__lead">100x Group builds its own e-commerce brands, and buys others to make them bigger.</p>
     </section>
 
-    <!-- De merken: doorlopende carousel, verborgen achter blur -->
+    <!-- De merken: zoals de verhalen op slash.com. De actieve kaart is breed en zoomt in -->
     <section class="brands" id="brands" aria-labelledby="brands-title">
       <div class="brands__head">
         <h2 id="brands-title" class="brands__title">Our brands</h2>
-        <p class="brands__note">Names stay hidden until we show them.</p>
+        <p class="brands__note">Three brands. Names stay hidden until we show them.</p>
       </div>
-      <div class="carousel" data-carousel tabindex="0" aria-label="Our brands, scroll sideways">
-        <ul class="carousel__track">
-          <li class="brand-card">
-            <div class="brand-card__img">
-              <img src="images/merk-hond-straat.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">Pet supplements</p>
-            <p class="brand-card__line">8 figures in year one</p>
-          </li>
-          <li class="brand-card">
-            <div class="brand-card__img">
-              <img src="images/merk-launch-unboxing.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">First in the world</p>
-            <p class="brand-card__line">Numbers private</p>
-          </li>
-          <li class="brand-card">
-            <div class="brand-card__img">
-              <img src="images/merk-sieraden-model.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">Jewellery</p>
-            <p class="brand-card__line">Exited in 2025</p>
-          </li>
-          <li class="brand-card">
-            <div class="brand-card__img">
-              <img src="images/merk-hond-keuken.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">Pet supplements</p>
-            <p class="brand-card__line">Team of five</p>
-          </li>
-          <li class="brand-card">
-            <div class="brand-card__img">
-              <img src="images/merk-launch-rij.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">First in the world</p>
-            <p class="brand-card__line">Launched first, worldwide</p>
-          </li>
-          <li class="brand-card">
-            <div class="brand-card__img">
-              <img src="images/merk-sieraden-bed.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">Jewellery</p>
-            <p class="brand-card__line">Built, grown, sold</p>
-          </li>
-          <li class="brand-card" aria-hidden="true">
-            <div class="brand-card__img">
-              <img src="images/merk-hond-straat.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">Pet supplements</p>
-            <p class="brand-card__line">8 figures in year one</p>
-          </li>
-          <li class="brand-card" aria-hidden="true">
-            <div class="brand-card__img">
-              <img src="images/merk-launch-unboxing.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">First in the world</p>
-            <p class="brand-card__line">Numbers private</p>
-          </li>
-          <li class="brand-card" aria-hidden="true">
-            <div class="brand-card__img">
-              <img src="images/merk-sieraden-model.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">Jewellery</p>
-            <p class="brand-card__line">Exited in 2025</p>
-          </li>
-          <li class="brand-card" aria-hidden="true">
-            <div class="brand-card__img">
-              <img src="images/merk-hond-keuken.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">Pet supplements</p>
-            <p class="brand-card__line">Team of five</p>
-          </li>
-          <li class="brand-card" aria-hidden="true">
-            <div class="brand-card__img">
-              <img src="images/merk-launch-rij.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">First in the world</p>
-            <p class="brand-card__line">Launched first, worldwide</p>
-          </li>
-          <li class="brand-card" aria-hidden="true">
-            <div class="brand-card__img">
-              <img src="images/merk-sieraden-bed.webp" width="640" height="362" alt="" loading="lazy">
-              <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            </div>
-            <p class="brand-card__title">Jewellery</p>
-            <p class="brand-card__line">Built, grown, sold</p>
-          </li>
-        </ul>
+      <div class="stories" data-stories>
+        <button class="story is-active" type="button" data-story="0" aria-pressed="true" aria-controls="story-stats">
+          <span class="story__media"><img src="images/merk-hond-straat.webp" width="640" height="362" alt="" loading="lazy"></span>
+          <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          <span class="story__who"><span class="story__name">Pet supplements</span><span class="story__sub">Name hidden for now</span></span>
+        </button>
+        <button class="story" type="button" data-story="1" aria-pressed="false" aria-controls="story-stats">
+          <span class="story__media"><img src="images/merk-launch-unboxing.webp" width="640" height="362" alt="" loading="lazy"></span>
+          <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          <span class="story__who"><span class="story__name">First in the world</span><span class="story__sub">Name hidden for now</span></span>
+        </button>
+        <button class="story" type="button" data-story="2" aria-pressed="false" aria-controls="story-stats">
+          <span class="story__media"><img src="images/merk-sieraden-model.webp" width="640" height="362" alt="" loading="lazy"></span>
+          <span class="brand-card__eye"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A10.6 10.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.2 7.6C4.2 9.2 3 12 3 12s4 6 9 6c1.4 0 2.7-.4 3.8-1M9.9 10a3 3 0 0 0 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          <span class="story__who"><span class="story__name">Jewellery</span><span class="story__sub">Name hidden for now</span></span>
+        </button>
+      </div>
+      <div class="stories__stats" id="story-stats" aria-live="polite">
+        <div class="stories__panel" data-panel="0">
+          <div class="story-stat"><p class="story-stat__figure">8 figures</p><p class="story-stat__label">revenue in year one, 2026</p></div><div class="story-stat"><p class="story-stat__figure">5</p><p class="story-stat__label">people on the team</p></div>
+          <p class="stories__tag">Pet · Supplements</p>
+        </div>
+        <div class="stories__panel" data-panel="1" hidden>
+          <div class="story-stat"><p class="story-stat__figure">1st</p><p class="story-stat__label">to launch it, worldwide</p></div><div class="story-stat"><p class="story-stat__figure">Private</p><p class="story-stat__label">numbers, for now</p></div>
+          <p class="stories__tag">New category</p>
+        </div>
+        <div class="stories__panel" data-panel="2" hidden>
+          <div class="story-stat"><p class="story-stat__figure">2025</p><p class="story-stat__label">built, grown and exited</p></div><div class="story-stat"><p class="story-stat__figure">Europe</p><p class="story-stat__label">where it sold</p></div>
+          <p class="stories__tag">Jewellery · Exited</p>
+        </div>
       </div>
     </section>
 
-    <!-- Cijfers: vier blokken op een rij -->
-    <section class="stats" aria-labelledby="stats-title">
-      <h2 id="stats-title" class="stats__title">What we've built</h2>
-      <ul class="stats__grid">
-        <li class="stat">
-          <p class="stat__figure">8 figures</p>
-          <p class="stat__label">Revenue, year one</p>
-          <p class="stat__caption">Our pet supplement brand, 2026.</p>
-        </li>
-        <li class="stat">
-          <p class="stat__figure">5</p>
-          <p class="stat__label">Team</p>
-          <p class="stat__caption">People who built that brand.</p>
-        </li>
-        <li class="stat">
-          <p class="stat__figure">1st</p>
-          <p class="stat__label">Launch</p>
-          <p class="stat__caption">In the world to launch our second brand's product.</p>
-        </li>
-        <li class="stat">
-          <p class="stat__figure">2025</p>
-          <p class="stat__label">Exit</p>
-          <p class="stat__caption">A jewellery brand in Europe, built and sold.</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Werkwijze: kop links, drie routes rechts -->
+    <!-- Werkwijze: drie kaarten met bewegende visuals, zoals op slash.com -->
     <section class="routes" id="how" aria-labelledby="how-title">
       <div class="routes__intro">
         <h2 id="how-title" class="routes__title">How we work</h2>
         <p class="routes__lead">Three ways in. The same systems behind every brand.</p>
       </div>
-      <ul class="routes__list">
-        <li class="route">
-          <h3 class="route__name">Build</h3>
-          <p class="route__for">Our own brands</p>
-          <p class="route__text">We start brands from zero and run every part in-house: product, content, ads and operations.</p>
+      <ul class="routes__grid">
+        <li class="feature">
+          <div class="feature__visual visual-build" aria-hidden="true">
+            <div class="ui-panel">
+              <p class="ui-panel__head">New brand <span>Launch</span></p>
+              <ul class="ui-steps">
+                <li><span class="ui-check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Product</li>
+                <li><span class="ui-check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Content</li>
+                <li><span class="ui-check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Store</li>
+                <li><span class="ui-check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ads live</li>
+              </ul>
+              <div class="ui-bar"><i></i></div>
+            </div>
+          </div>
+          <p class="feature__text"><strong>Build.</strong> We start our own brands from zero and run every part in-house.</p>
         </li>
-        <li class="route">
-          <h3 class="route__name">Buy</h3>
-          <p class="route__for">Your brand, our ownership</p>
-          <p class="route__text">We buy e-commerce brands we believe in and make them bigger with the same systems.</p>
+        <li class="feature">
+          <div class="feature__visual visual-buy" aria-hidden="true">
+            <div class="ui-deal">
+              <span class="ui-chip ui-chip--brand">Your brand</span>
+              <span class="ui-arrow"></span>
+              <span class="ui-chip ui-chip--us">100x Group</span>
+            </div>
+            <div class="ui-toast"><span class="ui-check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Deal signed</div>
+          </div>
+          <p class="feature__text"><strong>Buy.</strong> We buy e-commerce brands we believe in and make them bigger with the same systems.</p>
         </li>
-        <li class="route">
-          <h3 class="route__name">Invest</h3>
-          <p class="route__for">Your brand, shared ownership</p>
-          <p class="route__text">Our systems behind your brand, in return for a stake. We grow when you grow.</p>
+        <li class="feature">
+          <div class="feature__visual visual-invest" aria-hidden="true">
+            <span class="ui-pill"><span class="ui-check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>100x systems enabled</span>
+            <span class="ui-line ui-line--l"></span>
+            <span class="ui-line ui-line--r"></span>
+            <span class="ui-tile"><img src="images/diamant-100x.webp" width="900" height="442" alt="" loading="lazy"></span>
+          </div>
+          <p class="feature__text"><strong>Invest.</strong> Our systems behind your brand, in return for a stake. We grow when you grow.</p>
         </li>
       </ul>
     </section>
@@ -222,10 +146,13 @@
   </main>
 
   <footer class="site-footer" aria-labelledby="footer-title">
+    <div class="site-footer__painting" aria-hidden="true">
+      <img src="images/villa.webp" width="2400" height="1200" alt="" loading="lazy">
+    </div>
     <div class="site-footer__chain" data-chain aria-hidden="true">
       <img src="images/chain-100x.webp" width="435" height="878" alt="" loading="lazy" draggable="false">
     </div>
-    <div class="site-footer__top">
+    <div class="site-footer__content">
       <h2 id="footer-title" class="site-footer__title">More brands<br>are coming</h2>
       <ul class="site-footer__links">
         <li><a href="#brands">Brands</a></li>
@@ -233,13 +160,9 @@
         <li><a href="#founder">Founder</a></li>
       </ul>
     </div>
-    <p class="site-footer__name" aria-hidden="true">100x Group</p>
     <div class="site-footer__legal">
       <p>© 2026 100x Group, the Netherlands</p>
       <p>Brand names and faces hidden on purpose</p>
-    </div>
-    <div class="site-footer__painting">
-      <img src="images/zee.webp" width="2400" height="1200" alt="An oil painting of a dark sea under the moon" loading="lazy">
     </div>
   </footer>
 </body>
